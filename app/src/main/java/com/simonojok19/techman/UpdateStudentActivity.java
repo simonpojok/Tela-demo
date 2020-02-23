@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -46,5 +48,24 @@ public class UpdateStudentActivity extends AppCompatActivity {
         studentClass.setText(student.getStudentClass());
         studentSchool.setText(student.getStudentSchool());
         studentDistrict.setText(student.getStudentDistrict());
+
+        final Button button = findViewById(R.id.update_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                student.setStudentName(studentName.getText().toString());
+                student.setStudentClass(studentClass.getText().toString());
+                student.setStudentSchool(studentSchool.getText().toString());
+                student.setStudentDistrict(studentDistrict.getText().toString());
+                Intent out = new Intent();
+                out.putExtra(STUDENT_ID, student.getId());
+                out.putExtra(STUDENT_NAME, student.getStudentName());
+                out.putExtra(STUDENT_CLASS, student.getStudentClass());
+                out.putExtra(STUDENT_SCHOOL, student.getStudentSchool());
+                out.putExtra(STUDENT_DISTRICT, student.getStudentDistrict());
+                setResult(RESULT_OK, out);
+                finish();
+            }
+        });
     }
 }
