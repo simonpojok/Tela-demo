@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHold> {
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
-    public class StudentViewHold extends RecyclerView.ViewHolder{
+    public class StudentViewHolder extends RecyclerView.ViewHolder{
         private final TextView studentName;
         private final TextView studentSchool;
         private final TextView studentDistrict;
 
-        public StudentViewHold(@NonNull View itemView) {
+        public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
             studentName = itemView.findViewById(R.id.text_name);
             studentSchool = itemView.findViewById(R.id.text_school);
@@ -36,6 +36,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     private final LayoutInflater layoutInflater;
     private List<Student> students;
+    private OnStudentClickListener onStudentClickListener;
+
+    public interface OnStudentClickListener {
+        void onStudentClick(View view, int position);
+    }
 
 
     StudentAdapter(Context context) {
@@ -44,13 +49,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @NonNull
     @Override
-    public StudentViewHold onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = layoutInflater.inflate(R.layout.recyclerview_student, parent, false);
-        return new StudentViewHold(view);
+        return new StudentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StudentViewHold holder, int position) {
+    public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
         Student current = students.get(position);
         holder.bindStudent(current);
     }
@@ -69,9 +74,5 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     void setStudents(List<Student> students) {
         this.students = students;
         notifyDataSetChanged();
-    }
-
-    public static interface AdapterOnclickListenter {
-        public abstract void onClick();
     }
 }
