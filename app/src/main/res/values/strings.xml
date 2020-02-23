@@ -6,4 +6,5 @@
     <string name="hint_student_class">Student\'s Class</string>
     <string name="hint_student_school">Student\'s School</string>
     <string name="hint_student_district">Student\'s District</string>
+    <string name="text_save">Save</string>
 </resources>
