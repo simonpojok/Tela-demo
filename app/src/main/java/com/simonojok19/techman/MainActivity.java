@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
             return true;
         }
 
+        if (id == R.id.delete_add) {
+            studentViewModel.deleteAllStudents();
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
