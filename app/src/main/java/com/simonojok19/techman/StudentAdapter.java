@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class StudentAdaper extends RecyclerView.Adapter<StudentAdaper.StudentViewHold> {
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHold> {
 
     public class StudentViewHold extends RecyclerView.ViewHolder{
         private final TextView studentName;
@@ -36,7 +36,7 @@ public class StudentAdaper extends RecyclerView.Adapter<StudentAdaper.StudentVie
     private List<Student> students;
 
 
-    StudentAdaper(Context context) {
+    StudentAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
     }
 
