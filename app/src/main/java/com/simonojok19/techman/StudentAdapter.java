@@ -84,4 +84,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         this.students = students;
         notifyDataSetChanged();
     }
+
+    public Student getStudentAtPosition(int position) {
+        return students.get(position);
+    }
 }

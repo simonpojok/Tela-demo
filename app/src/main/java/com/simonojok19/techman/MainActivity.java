@@ -6,11 +6,13 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
     private StudentViewModel studentViewModel;
     public static final int NEW_STUDENT_ACTIVITY = 348;
     public static final int UPDATE_STUDENT_ACTIVITY = 3496;
+    StudentAdapter adapter;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
             }
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView_students);
-        final StudentAdapter adapter = new StudentAdapter(this, this);
+        recyclerView = findViewById(R.id.recyclerView_students);
+        adapter = new StudentAdapter(this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -56,6 +60,29 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
                 adapter.setStudents(students);
             }
         });
+
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
+        ) {
+            @Override
+            public boolean onMove(
+                    @NonNull RecyclerView recyclerView,
+                    @NonNull RecyclerView.ViewHolder viewHolder,
+                    @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position =  viewHolder.getAdapterPosition();
+                Student student = adapter.getStudentAtPosition(position);
+                Toast.makeText(MainActivity.this, "Student " + student.getStudentName() + " was deleted", Toast.LENGTH_SHORT).show();
+                studentViewModel.deleteStudent(student);
+            }
+        });
+
+        helper.attachToRecyclerView(recyclerView);
 
     }
 
