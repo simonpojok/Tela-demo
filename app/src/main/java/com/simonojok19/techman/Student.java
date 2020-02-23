@@ -1,5 +1,6 @@
 package com.simonojok19.techman;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,6 +10,8 @@ import java.io.Serializable;
 @Entity(tableName = "student_table")
 public class Student implements Serializable {
     @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id")
     private int id;
 
     @ColumnInfo(name = "name")

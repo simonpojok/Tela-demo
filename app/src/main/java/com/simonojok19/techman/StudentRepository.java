@@ -1,6 +1,7 @@
 package com.simonojok19.techman;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -25,5 +26,16 @@ public class StudentRepository {
         StudentDatabase.databaseWriteExecutor.execute( () -> {
             studentDao.insert(student);
         });
+//        new LoadDataTask().execute(student);
+
+    }
+
+    public class LoadDataTask extends AsyncTask<Student, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Student... students) {
+            studentDao.insert(students[0]);
+            return null;
+        }
     }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
@@ -13,7 +14,7 @@ public interface StudentDao {
     @Query("SELECT * FROM student_table")
     LiveData<List<Student>> getAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Student student);
 
     @Delete
