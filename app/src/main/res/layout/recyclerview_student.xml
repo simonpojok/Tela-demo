@@ -22,7 +22,6 @@
                 android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:layout_marginBottom="5dp"
                 android:text="Simon Peter Ojok"
                 android:background="@color/colorPrimary"
@@ -34,7 +33,6 @@
                 android:id="@+id/text_school"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="Kijjabwemi Secondary School"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
@@ -47,7 +45,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary"
-                    android:padding="5dp"
                     android:text="Masaka"/>
             </LinearLayout>
         </LinearLayout>
