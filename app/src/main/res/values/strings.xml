@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">TechMan</string>
     <string name="action_settings">Settings</string>
+    <string name="hint_student_name">Student\'s Name</string>
+    <string name="text_new_student">Add New Student</string>
+    <string name="hint_student_class">Student\'s Class</string>
+    <string name="hint_student_school">Student\'s School</string>
+    <string name="hint_student_district">Student\'s District</string>
 </resources>
