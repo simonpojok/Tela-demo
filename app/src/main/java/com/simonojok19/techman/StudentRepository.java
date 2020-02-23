@@ -32,4 +32,10 @@ public class StudentRepository {
             studentDao.deleteStudents();
         });
     }
+
+    void deleteStudent(Student student) {
+        StudentRoomDB.databaseWriteExecuter.execute(() -> {
+            studentDao.deleteStudent(student);
+        });
+    }
 }
