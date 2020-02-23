@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements StudentAdapter.OnStudentClickListener{
     private StudentViewModel studentViewModel;
     public static final int NEW_STUDENT_ACTIVITY = 348;
 
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_students);
-        final StudentAdapter adapter = new StudentAdapter(this);
+        final StudentAdapter adapter = new StudentAdapter(this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -91,5 +91,10 @@ public class MainActivity extends AppCompatActivity {
             );
             studentViewModel.insert(student);
         }
+    }
+
+    @Override
+    public void onStudentClick(Student student) {
+        Toast.makeText(this, student.getStudentName(), Toast.LENGTH_SHORT).show();
     }
 }
