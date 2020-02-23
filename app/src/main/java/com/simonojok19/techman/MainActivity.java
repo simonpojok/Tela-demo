@@ -93,6 +93,17 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
             );
             studentViewModel.insert(student);
         }
+
+        if (requestCode == UPDATE_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
+            Student student = new Student(
+                    data.getStringExtra(UpdateStudentActivity.STUDENT_NAME),
+                    data.getStringExtra(UpdateStudentActivity.STUDENT_CLASS),
+                    data.getStringExtra(UpdateStudentActivity.STUDENT_SCHOOL),
+                    data.getStringExtra(UpdateStudentActivity.STUDENT_DISTRICT)
+            );
+            student.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
+            Toast.makeText(this, student.getStudentName(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

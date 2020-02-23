@@ -36,7 +36,6 @@ public class UpdateStudentActivity extends AppCompatActivity {
                     intent.getStringExtra(STUDENT_DISTRICT)
             );
             student.setId(intent.getIntExtra(STUDENT_ID, -1));
-            Toast.makeText(this, intent.getStringExtra(STUDENT_NAME), Toast.LENGTH_SHORT).show();
         }
 
         studentName = findViewById(R.id.update_name);
