@@ -1,6 +1,7 @@
 package com.simonojok19.techman;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         }
 
         public void bindStudent(Student student) {
+            Log.d("RecyclerView", "=====  Binding Data === ");
             studentName.setText(student.getStudentName());
             studentSchool.setText(student.getStudentSchool());
             studentDistrict.setText(student.getStudentDistrict());
@@ -49,17 +51,19 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHold holder, int position) {
-        if (students != null) {
-            Student current = students.get(position);
-            holder.bindStudent(current);
-        }
+        Student current = students.get(position);
+        holder.bindStudent(current);
     }
 
     @Override
     public int getItemCount() {
-        if (students != null) {
+        if ( students != null ) {
+            Log.d("RecyclerView", "== List Not Nulll ===");
             return students.size();
-        } else return 0;
+        } else {
+            Log.d("RecyclerView", "== List Nulll ===");
+            return 0;
+        }
     }
 
     void setStudents(List<Student> students) {
