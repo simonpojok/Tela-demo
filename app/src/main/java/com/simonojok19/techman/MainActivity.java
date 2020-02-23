@@ -134,7 +134,8 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
                     data.getStringExtra(UpdateStudentActivity.STUDENT_DISTRICT)
             );
             student.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
-            Toast.makeText(this, student.getStudentName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Student " + student.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
+            studentViewModel.updateStudent(student);
         }
     }
 

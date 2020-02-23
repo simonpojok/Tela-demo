@@ -38,4 +38,10 @@ public class StudentRepository {
             studentDao.deleteStudent(student);
         });
     }
+
+    void  updateStudent(Student student) {
+        StudentRoomDB.databaseWriteExecuter.execute(() -> {
+            studentDao.updateStudent(student);
+        });
+    }
 }
