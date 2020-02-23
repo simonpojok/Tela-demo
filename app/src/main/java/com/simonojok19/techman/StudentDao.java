@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface StudentDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     void insert(Student student);
 
     @Query("DELETE FROM student_table")
