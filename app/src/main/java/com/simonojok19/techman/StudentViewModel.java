@@ -26,4 +26,8 @@ public class StudentViewModel extends AndroidViewModel {
     public void insert(Student student) {
         repository.insert(student);
     }
+
+    public void deleteAllStudents() {
+        repository.deleteAllStudents();
+    }
 }
