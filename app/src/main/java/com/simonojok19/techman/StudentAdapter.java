@@ -1,6 +1,7 @@
 package com.simonojok19.techman;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -8,23 +9,44 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder>{
     private final Context context;
+    private List<Student> mStudents;
+
+    StudentAdapter(Context context) {
+        this.context = context;
+    }
 
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(context).inflate(R.layout.recyclerview_student, parent, false);
+        return new StudentViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
+        if (mStudents != null) {
+            Student student = mStudents.get(position);
+            holder.studentName.setText(student.getStudentName());
+            holder.studentSchool.setText(student.getStudentSchool());
+            holder.studentDistrict.setText(student.getStudentDistrict());
+        }
+    }
 
+    void setStudents(List<Student> students) {
+        mStudents = students;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (mStudents != null) {
+            return mStudents.size();
+        }
+        else return 0;
     }
 
     class StudentViewHolder extends RecyclerView.ViewHolder {
