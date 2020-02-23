@@ -21,6 +21,9 @@ public class StudentRepository {
     }
 
     void insert(Student student) {
-        studentDao.insert(student);
+//        studentDao.insert(student);
+        StudentDatabase.databaseWriteExecutor.execute( () -> {
+            studentDao.insert(student);
+        });
     }
 }
