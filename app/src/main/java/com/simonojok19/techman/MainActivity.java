@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements StudentAdapter.OnStudentClickListener{
     private StudentViewModel studentViewModel;
     public static final int NEW_STUDENT_ACTIVITY = 348;
+    public static final int UPDATE_STUDENT_ACTIVITY = 3496;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +97,12 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
 
     @Override
     public void onStudentClick(Student student) {
-        Toast.makeText(this, student.getStudentName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, UpdateStudentActivity.class);
+        intent.putExtra(UpdateStudentActivity.STUDENT_ID, student.getId());
+        intent.putExtra(UpdateStudentActivity.STUDENT_NAME, student.getStudentName());
+        intent.putExtra(UpdateStudentActivity.STUDENT_CLASS, student.getStudentClass());
+        intent.putExtra(UpdateStudentActivity.STUDENT_SCHOOL, student.getStudentSchool());
+        intent.putExtra(UpdateStudentActivity.STUDENT_DISTRICT, student.getStudentDistrict());
+        startActivityForResult(intent, UPDATE_STUDENT_ACTIVITY);
     }
 }

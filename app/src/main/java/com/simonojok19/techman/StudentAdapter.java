@@ -74,10 +74,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public int getItemCount() {
         if ( students != null ) {
-            Log.d("RecyclerView", "== List Not Nulll ===");
             return students.size();
         } else {
-            Log.d("RecyclerView", "== List Nulll ===");
             return 0;
         }
     }
