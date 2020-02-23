@@ -8,8 +8,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "student_table")
 public class Student {
 
-    @PrimaryKey
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @ColumnInfo(name = "name")
     private String studentName;
 
@@ -60,5 +61,13 @@ public class Student {
 
     public void setStudentDistrict(String studentDistrict) {
         this.studentDistrict = studentDistrict;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
