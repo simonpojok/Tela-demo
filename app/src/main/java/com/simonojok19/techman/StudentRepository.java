@@ -16,4 +16,14 @@ public class StudentRepository {
         studentDao = db.getStudentDao();
         students = studentDao.getStudents();
     }
+
+    LiveData<List<Student>> getStudents() {
+        return students;
+    }
+
+    void insert(Student student) {
+        StudentRoomDB.databaseWriteExecuter.execute( () -> {
+            studentDao.insert(student);
+        });
+    }
 }
