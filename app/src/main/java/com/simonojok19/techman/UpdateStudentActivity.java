@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class UpdateStudentActivity extends AppCompatActivity {
@@ -13,6 +14,12 @@ public class UpdateStudentActivity extends AppCompatActivity {
     public static final String STUDENT_SCHOOL = "com.simonojok19.techman.STUDENT_SCHOOL";
     public static final String STUDENT_DISTRICT = "com.simonojok19.techman.STUDENT_DISTRICT";
 
+    private EditText studentName;
+    private EditText studentClass;
+    private EditText studentSchool;
+    private EditText studentDistrict;
+    Student student;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +27,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null ) {
-            Student student = new Student(
+            student = new Student(
                     intent.getStringExtra(STUDENT_NAME),
                     intent.getStringExtra(STUDENT_CLASS),
                     intent.getStringExtra(STUDENT_SCHOOL),
@@ -29,5 +36,15 @@ public class UpdateStudentActivity extends AppCompatActivity {
             student.setId(intent.getIntExtra(STUDENT_ID, -1));
             Toast.makeText(this, intent.getStringExtra(STUDENT_NAME), Toast.LENGTH_SHORT).show();
         }
+
+        studentName = findViewById(R.id.update_name);
+        studentClass = findViewById(R.id.update_class);
+        studentSchool = findViewById(R.id.update_school);
+        studentDistrict = findViewById(R.id.update_district);
+
+        studentName.setText(student.getStudentName());
+        studentClass.setText(student.getStudentClass());
+        studentSchool.setText(student.getStudentSchool());
+        studentDistrict.setText(student.getStudentDistrict());
     }
 }
