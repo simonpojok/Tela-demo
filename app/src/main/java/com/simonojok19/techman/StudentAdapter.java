@@ -70,4 +70,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         this.students = students;
         notifyDataSetChanged();
     }
+
+    public static interface AdapterOnclickListenter {
+        public abstract void onClick();
+    }
 }
