@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:padding="5dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +25,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:text="Simon Peter Ojok"
-                android:background="@color/colorPrimary"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
                 android:textColor="@color/colorLight"
                 android:textStyle="bold"/>
