@@ -18,4 +18,7 @@ public interface StudentDao {
 
     @Query("SELECT * FROM student_table ORDER BY id ASC")
     LiveData<List<Student>> getStudents();
+
+    @Query("SELECT * FROM student_table LIMIT 1")
+    Student[] getAnyStudent();
 }
