@@ -1,10 +1,12 @@
 package com.simonojok19.techman;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
+@Entity(tableName = "student_table")
 public class Student implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -21,8 +23,7 @@ public class Student implements Serializable {
     @ColumnInfo(name = "district")
     private String studentDistrict;
 
-    public Student(int id, String studentName, String studentClass, String studentSchool, String studentDistrict) {
-        this.id = id;
+    public Student(String studentName, String studentClass, String studentSchool, String studentDistrict) {
         this.studentName = studentName;
         this.studentClass = studentClass;
         this.studentSchool = studentSchool;
