@@ -1,10 +1,12 @@
 package com.simonojok19.techman;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
@@ -15,11 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private StudentViewModel studentViewModel;
+    public static final int NEW_STUDENT_ACTIVITY = 348;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, AddStudentActivity.class);
+                startActivityForResult(intent, NEW_STUDENT_ACTIVITY);
             }
         });
 
@@ -72,5 +77,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == NEW_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
+            Student student = new Student(
+                    data.getStringExtra(AddStudentActivity.STUDENT_NAME),
+                    data.getStringExtra(AddStudentActivity.STUDENT_CLASS),
+                    data.getStringExtra(AddStudentActivity.STUDENT_SCHOOL),
+                    data.getStringExtra(AddStudentActivity.STUDENT_DISTRICT)
+            );
+            studentViewModel.insert(student);
+        }
     }
 }
