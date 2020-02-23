@@ -1,5 +1,6 @@
 package com.simonojok19.techman;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -16,5 +17,5 @@ public interface StudentDao {
     void deleteStudents();
 
     @Query("SELECT * FROM student_table ORDER BY id ASC")
-    List<Student> getStudents();
+    LiveData<List<Student>> getStudents();
 }
