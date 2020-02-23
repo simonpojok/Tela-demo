@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        studentViewModel.getAllStudents().observe(this, new Observer<List<Student>>() {
+        studentViewModel.getStudents().observe(this, new Observer<List<Student>>() {
             @Override
             public void onChanged(List<Student> students) {
                 adapter.setStudents(students);
