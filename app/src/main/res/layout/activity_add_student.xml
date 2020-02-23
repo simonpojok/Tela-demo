@@ -24,6 +24,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textAutoComplete"
             android:id="@+id/student_name"
             android:hint="@string/hint_student_name"/>
 
@@ -31,18 +32,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/student_class"
+            android:inputType="textAutoComplete"
             android:hint="@string/hint_student_class"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/student_school"
+            android:inputType="textAutoComplete"
             android:hint="@string/hint_student_school"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/student_district"
+            android:inputType="textAutoComplete"
             android:hint="@string/hint_student_district"/>
     </LinearLayout>
 
