@@ -7,4 +7,5 @@
     <string name="hint_student_school">Student\'s School</string>
     <string name="hint_student_district">Student\'s District</string>
     <string name="text_save">Save</string>
+    <string name="text_update_student">Update Student</string>
 </resources>
