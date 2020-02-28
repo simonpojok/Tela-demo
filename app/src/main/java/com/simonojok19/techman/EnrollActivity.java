@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suprema.BioMiniFactory;
 import com.suprema.CaptureResponder;
@@ -47,6 +48,7 @@ public class EnrollActivity extends AppCompatActivity {
     public final static String TAG = "BioMini Sample";
     private TextView mLogView;
     private ScrollView mScrollLog = null;
+    public IBioMiniDevice.TemplateData teacherCapturedTemplate;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
     private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
@@ -69,6 +71,8 @@ public class EnrollActivity extends AppCompatActivity {
                     }
                 }
             });
+            teacherCapturedTemplate = capturedTemplate;
+
             return true;
         }
 
@@ -151,7 +155,8 @@ public class EnrollActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                ((TextView) findViewById(R.id.revText)).setText(msg);
+                ((TextView) findViewById(R.id.status_view)).setText(msg);
+                Toast.makeText(EnrollActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -281,6 +286,13 @@ public class EnrollActivity extends AppCompatActivity {
 
         restartBioMini();
         printRev(""+mBioMiniFactory.getSDKInfo());
+
+        findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
