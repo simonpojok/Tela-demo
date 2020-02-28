@@ -180,4 +180,18 @@
         android:textColor="@color/colorLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/enroll_scroll_view" />
+
+    <Button
+        android:id="@+id/verify_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/verify_teacher"
+        android:textAllCaps="false"
+        android:textColor="@color/colorLight"
+        android:layout_marginBottom="5dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/button_save"
+        app:layout_constraintStart_toStartOf="@id/enroll_scroll_view"
+        app:layout_constraintTop_toTopOf="@+id/button_save"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

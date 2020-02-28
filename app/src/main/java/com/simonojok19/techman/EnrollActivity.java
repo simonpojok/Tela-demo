@@ -38,9 +38,10 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText studentClass;
     private EditText studentSchool;
     private EditText studentDistrict;
-    private TextView studentActionTitle;
     private Bitmap teacherImage;
-    private Intent intent;
+    private Button saveTeacher;
+    private Button verifyTeacher;
+
 
     public static final String STUDENT_NAME = "com.simonojok19.techman.STUDENT_NAME";
     public static final String STUDENT_CLASS = "com.simonojok19.techman.STUDENT_CLASS";
@@ -204,10 +205,13 @@ public class EnrollActivity extends AppCompatActivity {
         studentClass = findViewById(R.id.student_class);
         studentSchool = findViewById(R.id.student_school);
         studentDistrict = findViewById(R.id.student_district);
-        studentActionTitle = findViewById(R.id.action_title);
-        intent = getIntent();
+        saveTeacher = findViewById(R.id.button_save);
+        verifyTeacher = findViewById(R.id.verify_teacher);
+        TextView studentActionTitle = findViewById(R.id.action_title);
+        Intent intent = getIntent();
 
         if (Objects.equals(intent.getAction(), MainActivity.ACTION_VERIFY)) {
+            saveTeacher.setEnabled(false);
             studentName.setEnabled(false);
             studentClass.setEnabled(false);
             studentSchool.setEnabled(false);
@@ -216,6 +220,22 @@ public class EnrollActivity extends AppCompatActivity {
             studentClass.setText(intent.getStringExtra(STUDENT_CLASS));
             studentSchool.setText(intent.getStringExtra(STUDENT_SCHOOL));
             studentDistrict.setText(intent.getStringExtra(STUDENT_DISTRICT));
+        } else {
+            verifyTeacher.setEnabled(false);
+            saveTeacher.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra(STUDENT_IMAGE_BYTES, teacherImage);
+                    intent.putExtra(STUDENT_TEMPLATE_BYTES, teacherCapturedTemplate.data);
+                    intent.putExtra(STUDENT_NAME, studentName.getText().toString());
+                    intent.putExtra(STUDENT_CLASS, studentClass.getText().toString());
+                    intent.putExtra(STUDENT_SCHOOL, studentSchool.getText().toString());
+                    intent.putExtra(STUDENT_DISTRICT, studentDistrict.getText().toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            });
         }
 
         findViewById(R.id.capture_single).setOnClickListener(new View.OnClickListener() {
@@ -294,21 +314,6 @@ public class EnrollActivity extends AppCompatActivity {
 
 
         restartBioMini();
-
-        findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra(STUDENT_IMAGE_BYTES, teacherImage);
-                intent.putExtra(STUDENT_TEMPLATE_BYTES, teacherCapturedTemplate.data);
-                intent.putExtra(STUDENT_NAME, studentName.getText().toString());
-                intent.putExtra(STUDENT_CLASS, studentClass.getText().toString());
-                intent.putExtra(STUDENT_SCHOOL, studentSchool.getText().toString());
-                intent.putExtra(STUDENT_DISTRICT, studentDistrict.getText().toString());
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
 
     }
 
