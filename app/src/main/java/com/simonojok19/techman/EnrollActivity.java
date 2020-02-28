@@ -31,13 +31,16 @@ import com.suprema.IUsbEventHandler;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
+import java.util.Objects;
 
 public class EnrollActivity extends AppCompatActivity {
     private EditText studentName;
     private EditText studentClass;
     private EditText studentSchool;
     private EditText studentDistrict;
+    private TextView studentActionTitle;
     private Bitmap teacherImage;
+    private Intent intent;
 
     public static final String STUDENT_NAME = "com.simonojok19.techman.STUDENT_NAME";
     public static final String STUDENT_CLASS = "com.simonojok19.techman.STUDENT_CLASS";
@@ -201,6 +204,19 @@ public class EnrollActivity extends AppCompatActivity {
         studentClass = findViewById(R.id.student_class);
         studentSchool = findViewById(R.id.student_school);
         studentDistrict = findViewById(R.id.student_district);
+        studentActionTitle = findViewById(R.id.action_title);
+        intent = getIntent();
+
+        if (Objects.equals(intent.getAction(), MainActivity.ACTION_VERIFY)) {
+            studentName.setEnabled(false);
+            studentClass.setEnabled(false);
+            studentSchool.setEnabled(false);
+            studentDistrict.setEnabled(false);
+            studentName.setText(intent.getStringExtra(STUDENT_NAME));
+            studentClass.setText(intent.getStringExtra(STUDENT_CLASS));
+            studentSchool.setText(intent.getStringExtra(STUDENT_SCHOOL));
+            studentDistrict.setText(intent.getStringExtra(STUDENT_DISTRICT));
+        }
 
         findViewById(R.id.capture_single).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
     private TeacherViewModel studentViewModel;
     public static final int ENROLL_TEACHER = 348;
     public static final int VERIFY_TEACHER = 3496;
+    protected static final String ACTION_VERIFY = "com.simonojok19.techman.MainActivity.ACTION_VERIFY";
     TeacherAdapter adapter;
     RecyclerView recyclerView;
 
@@ -141,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
 
     @Override
     public void onStudentClick(Teacher teacher) {
-        EnrollActivity.NEW_TEACTER = false;
-        Intent intent = new Intent();
+        Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+        intent.setAction(ACTION_VERIFY);
         intent.putExtra(EnrollActivity.STUDENT_IMAGE_BYTES, teacher.getStudentImage());
         intent.putExtra(EnrollActivity.STUDENT_TEMPLATE_BYTES, teacher.getFingerPrint());
         intent.putExtra(EnrollActivity.STUDENT_NAME, teacher.getStudentName());
