@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StudentViewModel extends AndroidViewModel {
     private StudentRepository repository;
-    private LiveData<List<Student>> students;
+    private LiveData<List<Teacher>> students;
 
 
     public StudentViewModel(@NonNull Application application) {
@@ -19,23 +19,23 @@ public class StudentViewModel extends AndroidViewModel {
         students = repository.getStudents();
     }
 
-    LiveData<List<Student>> getStudents() {
+    LiveData<List<Teacher>> getStudents() {
         return students;
     }
 
-    void insert(Student student) {
-        repository.insert(student);
+    void insert(Teacher teacher) {
+        repository.insert(teacher);
     }
 
     void deleteAllStudents() {
         repository.deleteAllStudents();
     }
 
-    void deleteStudent(Student student) {
-        repository.deleteStudent(student);
+    void deleteStudent(Teacher teacher) {
+        repository.deleteStudent(teacher);
     }
 
-    void updateStudent(Student student) {
-        repository.updateStudent(student);
+    void updateStudent(Teacher teacher) {
+        repository.updateStudent(teacher);
     }
 }

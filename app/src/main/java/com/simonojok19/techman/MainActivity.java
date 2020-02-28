@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,10 +52,10 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        studentViewModel.getStudents().observe(this, new Observer<List<Student>>() {
+        studentViewModel.getStudents().observe(this, new Observer<List<Teacher>>() {
             @Override
-            public void onChanged(List<Student> students) {
-                adapter.setStudents(students);
+            public void onChanged(List<Teacher> teachers) {
+                adapter.setTeachers(teachers);
             }
         });
 
@@ -76,9 +74,9 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position =  viewHolder.getAdapterPosition();
-                Student student = adapter.getStudentAtPosition(position);
-                Toast.makeText(MainActivity.this, "Student " + student.getStudentName() + " was deleted", Toast.LENGTH_SHORT).show();
-                studentViewModel.deleteStudent(student);
+                Teacher teacher = adapter.getStudentAtPosition(position);
+                Toast.makeText(MainActivity.this, "Teacher " + teacher.getStudentName() + " was deleted", Toast.LENGTH_SHORT).show();
+                studentViewModel.deleteStudent(teacher);
             }
         });
 
@@ -117,36 +115,36 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
-            Student student = new Student(
+            Teacher teacher = new Teacher(
                     data.getStringExtra(AddStudentActivity.STUDENT_NAME),
                     data.getStringExtra(AddStudentActivity.STUDENT_CLASS),
                     data.getStringExtra(AddStudentActivity.STUDENT_SCHOOL),
                     data.getStringExtra(AddStudentActivity.STUDENT_DISTRICT)
             );
-            studentViewModel.insert(student);
+            studentViewModel.insert(teacher);
         }
 
         if (requestCode == UPDATE_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
-            Student student = new Student(
+            Teacher teacher = new Teacher(
                     data.getStringExtra(UpdateStudentActivity.STUDENT_NAME),
                     data.getStringExtra(UpdateStudentActivity.STUDENT_CLASS),
                     data.getStringExtra(UpdateStudentActivity.STUDENT_SCHOOL),
                     data.getStringExtra(UpdateStudentActivity.STUDENT_DISTRICT)
             );
-            student.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
-            Toast.makeText(this, "Student " + student.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
-            studentViewModel.updateStudent(student);
+            teacher.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
+            Toast.makeText(this, "Teacher " + teacher.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
+            studentViewModel.updateStudent(teacher);
         }
     }
 
     @Override
-    public void onStudentClick(Student student) {
+    public void onStudentClick(Teacher teacher) {
         Intent intent = new Intent(MainActivity.this, UpdateStudentActivity.class);
-        intent.putExtra(UpdateStudentActivity.STUDENT_ID, student.getId());
-        intent.putExtra(UpdateStudentActivity.STUDENT_NAME, student.getStudentName());
-        intent.putExtra(UpdateStudentActivity.STUDENT_CLASS, student.getStudentClass());
-        intent.putExtra(UpdateStudentActivity.STUDENT_SCHOOL, student.getStudentSchool());
-        intent.putExtra(UpdateStudentActivity.STUDENT_DISTRICT, student.getStudentDistrict());
+        intent.putExtra(UpdateStudentActivity.STUDENT_ID, teacher.getId());
+        intent.putExtra(UpdateStudentActivity.STUDENT_NAME, teacher.getStudentName());
+        intent.putExtra(UpdateStudentActivity.STUDENT_CLASS, teacher.getStudentClass());
+        intent.putExtra(UpdateStudentActivity.STUDENT_SCHOOL, teacher.getStudentSchool());
+        intent.putExtra(UpdateStudentActivity.STUDENT_DISTRICT, teacher.getStudentDistrict());
         startActivityForResult(intent, UPDATE_STUDENT_ACTIVITY);
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StudentRepository {
     private StudentDao studentDao;
-    private LiveData<List<Student>> students;
+    private LiveData<List<Teacher>> students;
 
 
     StudentRepository(Application application) {
@@ -17,13 +17,13 @@ public class StudentRepository {
         students = studentDao.getStudents();
     }
 
-    LiveData<List<Student>> getStudents() {
+    LiveData<List<Teacher>> getStudents() {
         return students;
     }
 
-    void insert(Student student) {
+    void insert(Teacher teacher) {
         StudentRoomDB.databaseWriteExecuter.execute( () -> {
-            studentDao.insert(student);
+            studentDao.insert(teacher);
         });
     }
 
@@ -33,15 +33,15 @@ public class StudentRepository {
         });
     }
 
-    void deleteStudent(Student student) {
+    void deleteStudent(Teacher teacher) {
         StudentRoomDB.databaseWriteExecuter.execute(() -> {
-            studentDao.deleteStudent(student);
+            studentDao.deleteStudent(teacher);
         });
     }
 
-    void  updateStudent(Student student) {
+    void  updateStudent(Teacher teacher) {
         StudentRoomDB.databaseWriteExecuter.execute(() -> {
-            studentDao.updateStudent(student);
+            studentDao.updateStudent(teacher);
         });
     }
 }

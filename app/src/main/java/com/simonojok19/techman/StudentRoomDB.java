@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = { Student.class }, version = 1, exportSchema = false)
+@Database(entities = { Teacher.class }, version = 1, exportSchema = false)
 public abstract class StudentRoomDB extends RoomDatabase {
     public abstract StudentDao getStudentDao();
 
@@ -41,28 +41,28 @@ public abstract class StudentRoomDB extends RoomDatabase {
             databaseWriteExecuter.execute(() -> {
                 StudentDao dao = INSTANCE.getStudentDao();
                 dao.deleteStudents();
-                Student student1 = new Student(
+                Teacher teacher1 = new Teacher(
                         "Robert Kyagulanyi",
                         "Masters Degree",
                         "Makerere University",
                         "Wakiso District"
                 );
-                dao.insert(student1);
-                Student student2 = new Student(
+                dao.insert(teacher1);
+                Teacher teacher2 = new Teacher(
                         "Dr Kizza Besigy",
                         "Master Degree",
                         "Oxford University",
                         "Kampala District"
                 );
-                dao.insert(student2);
+                dao.insert(teacher2);
 
-                Student student3 = new Student(
+                Teacher teacher3 = new Teacher(
                         "Simon Peter Ojok",
                         "Undergraduate Degree",
                         "Makerere University",
                         "Gulu District"
                 );
-                dao.insert(student3);
+                dao.insert(teacher3);
             });
         }
 

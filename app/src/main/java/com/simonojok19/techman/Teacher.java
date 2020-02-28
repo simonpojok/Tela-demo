@@ -5,8 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.suprema.IBioMiniDevice;
+
 @Entity(tableName = "student_table")
-public class Student {
+public class Teacher {
     @NonNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -24,12 +26,21 @@ public class Student {
     @ColumnInfo(name = "district")
     private String studentDistrict;
 
-    public Student(@NonNull String studentName, String studentClass, String studentSchool, String studentDistrict) {
+    @ColumnInfo(name = "image", typeAffinity = ColumnInfo.BLOB)
+    private byte[] studentImage;
+
+    @ColumnInfo(name = "fingerprint", typeAffinity = ColumnInfo.BLOB)
+    private byte[] fingerPrint;
+
+    public Teacher(String studentName, String studentClass, String studentSchool, String studentDistrict, byte[] studentImage, byte[] fingerPrint) {
         this.studentName = studentName;
-        this.studentDistrict = studentDistrict;
         this.studentClass = studentClass;
         this.studentSchool = studentSchool;
+        this.studentDistrict = studentDistrict;
+        this.studentImage = studentImage;
+        this.fingerPrint = fingerPrint;
     }
+
 
     @NonNull
     public String getStudentName() {
@@ -70,5 +81,21 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public byte[] getStudentImage() {
+        return studentImage;
+    }
+
+    public void setStudentImage(byte[] studentImage) {
+        this.studentImage = studentImage;
+    }
+
+    public byte[] getFingerPrint() {
+        return fingerPrint;
+    }
+
+    public void setFingerPrint(byte[] fingerPrint) {
+        this.fingerPrint = fingerPrint;
     }
 }

@@ -1,8 +1,6 @@
 package com.simonojok19.techman;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,26 +28,26 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             studentDistrict = itemView.findViewById(R.id.text_district);
         }
 
-        public void bindStudent(Student student, final OnStudentClickListener listener) {
+        public void bindStudent(Teacher teacher, final OnStudentClickListener listener) {
             Log.d("RecyclerView", "=====  Binding Data === ");
-            studentName.setText(student.getStudentName());
-            studentSchool.setText(student.getStudentSchool());
-            studentDistrict.setText(student.getStudentDistrict());
+            studentName.setText(teacher.getStudentName());
+            studentSchool.setText(teacher.getStudentSchool());
+            studentDistrict.setText(teacher.getStudentDistrict());
             itemHolder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onStudentClick(student);
+                    listener.onStudentClick(teacher);
                 }
             });
         }
     }
 
     private final LayoutInflater layoutInflater;
-    private List<Student> students;
+    private List<Teacher> teachers;
     private OnStudentClickListener listener;
 
     public interface OnStudentClickListener {
-        void onStudentClick(Student student);
+        void onStudentClick(Teacher teacher);
     }
 
 
@@ -67,25 +65,25 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        Student current = students.get(position);
+        Teacher current = teachers.get(position);
         holder.bindStudent(current, listener);
     }
 
     @Override
     public int getItemCount() {
-        if ( students != null ) {
-            return students.size();
+        if ( teachers != null ) {
+            return teachers.size();
         } else {
             return 0;
         }
     }
 
-    void setStudents(List<Student> students) {
-        this.students = students;
+    void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
         notifyDataSetChanged();
     }
 
-    public Student getStudentAtPosition(int position) {
-        return students.get(position);
+    public Teacher getStudentAtPosition(int position) {
+        return teachers.get(position);
     }
 }

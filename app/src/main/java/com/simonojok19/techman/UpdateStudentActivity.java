@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class UpdateStudentActivity extends AppCompatActivity {
     public static final String STUDENT_ID = "com.simonojok19.techman.STUDENT_ID";
@@ -20,7 +19,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
     private EditText studentClass;
     private EditText studentSchool;
     private EditText studentDistrict;
-    Student student;
+    Teacher teacher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +28,13 @@ public class UpdateStudentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null ) {
-            student = new Student(
+            teacher = new Teacher(
                     intent.getStringExtra(STUDENT_NAME),
                     intent.getStringExtra(STUDENT_CLASS),
                     intent.getStringExtra(STUDENT_SCHOOL),
                     intent.getStringExtra(STUDENT_DISTRICT)
             );
-            student.setId(intent.getIntExtra(STUDENT_ID, -1));
+            teacher.setId(intent.getIntExtra(STUDENT_ID, -1));
         }
 
         studentName = findViewById(R.id.update_name);
@@ -43,25 +42,25 @@ public class UpdateStudentActivity extends AppCompatActivity {
         studentSchool = findViewById(R.id.update_school);
         studentDistrict = findViewById(R.id.update_district);
 
-        studentName.setText(student.getStudentName());
-        studentClass.setText(student.getStudentClass());
-        studentSchool.setText(student.getStudentSchool());
-        studentDistrict.setText(student.getStudentDistrict());
+        studentName.setText(teacher.getStudentName());
+        studentClass.setText(teacher.getStudentClass());
+        studentSchool.setText(teacher.getStudentSchool());
+        studentDistrict.setText(teacher.getStudentDistrict());
 
         final Button button = findViewById(R.id.update_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                student.setStudentName(studentName.getText().toString());
-                student.setStudentClass(studentClass.getText().toString());
-                student.setStudentSchool(studentSchool.getText().toString());
-                student.setStudentDistrict(studentDistrict.getText().toString());
+                teacher.setStudentName(studentName.getText().toString());
+                teacher.setStudentClass(studentClass.getText().toString());
+                teacher.setStudentSchool(studentSchool.getText().toString());
+                teacher.setStudentDistrict(studentDistrict.getText().toString());
                 Intent out = new Intent();
-                out.putExtra(STUDENT_ID, student.getId());
-                out.putExtra(STUDENT_NAME, student.getStudentName());
-                out.putExtra(STUDENT_CLASS, student.getStudentClass());
-                out.putExtra(STUDENT_SCHOOL, student.getStudentSchool());
-                out.putExtra(STUDENT_DISTRICT, student.getStudentDistrict());
+                out.putExtra(STUDENT_ID, teacher.getId());
+                out.putExtra(STUDENT_NAME, teacher.getStudentName());
+                out.putExtra(STUDENT_CLASS, teacher.getStudentClass());
+                out.putExtra(STUDENT_SCHOOL, teacher.getStudentSchool());
+                out.putExtra(STUDENT_DISTRICT, teacher.getStudentDistrict());
                 setResult(RESULT_OK, out);
                 finish();
             }
