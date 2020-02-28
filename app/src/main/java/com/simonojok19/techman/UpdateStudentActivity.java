@@ -28,13 +28,7 @@ public class UpdateStudentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null ) {
-            teacher = new Teacher(
-                    intent.getStringExtra(STUDENT_NAME),
-                    intent.getStringExtra(STUDENT_CLASS),
-                    intent.getStringExtra(STUDENT_SCHOOL),
-                    intent.getStringExtra(STUDENT_DISTRICT)
-            );
-            teacher.setId(intent.getIntExtra(STUDENT_ID, -1));
+
         }
 
         studentName = findViewById(R.id.update_name);

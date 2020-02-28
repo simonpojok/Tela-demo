@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 import com.suprema.IBioMiniDevice;
 
-@Entity(tableName = "student_table")
+@Entity(tableName = "teacher_table")
 public class Teacher {
     @NonNull
     @PrimaryKey(autoGenerate = true)
@@ -32,7 +32,12 @@ public class Teacher {
     @ColumnInfo(name = "fingerprint", typeAffinity = ColumnInfo.BLOB)
     private byte[] fingerPrint;
 
-    public Teacher(String studentName, String studentClass, String studentSchool, String studentDistrict, byte[] studentImage, byte[] fingerPrint) {
+    public Teacher(String studentName,
+                   String studentClass,
+                   String studentSchool,
+                   String studentDistrict,
+                   byte[] studentImage,
+                   byte[] fingerPrint) {
         this.studentName = studentName;
         this.studentClass = studentClass;
         this.studentSchool = studentSchool;
@@ -40,7 +45,6 @@ public class Teacher {
         this.studentImage = studentImage;
         this.fingerPrint = fingerPrint;
     }
-
 
     @NonNull
     public String getStudentName() {

@@ -13,8 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".EnrollActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".EnrollActivity"></activity>
         <activity android:name=".FingerPrintActivity" />
         <activity android:name=".UpdateStudentActivity" />
         <activity android:name=".AddStudentActivity" />

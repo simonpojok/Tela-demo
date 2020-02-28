@@ -115,25 +115,20 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
-            Teacher teacher = new Teacher(
-                    data.getStringExtra(AddStudentActivity.STUDENT_NAME),
-                    data.getStringExtra(AddStudentActivity.STUDENT_CLASS),
-                    data.getStringExtra(AddStudentActivity.STUDENT_SCHOOL),
-                    data.getStringExtra(AddStudentActivity.STUDENT_DISTRICT)
-            );
-            studentViewModel.insert(teacher);
+//            Teacher teacher = new Teacher(
+//                    data.getStringExtra(AddStudentActivity.STUDENT_NAME),
+//                    data.getStringExtra(AddStudentActivity.STUDENT_CLASS),
+//                    data.getStringExtra(AddStudentActivity.STUDENT_SCHOOL),
+//                    data.getStringExtra(AddStudentActivity.STUDENT_DISTRICT)
+//            );
+//            studentViewModel.insert(teacher);
         }
 
         if (requestCode == UPDATE_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
-            Teacher teacher = new Teacher(
-                    data.getStringExtra(UpdateStudentActivity.STUDENT_NAME),
-                    data.getStringExtra(UpdateStudentActivity.STUDENT_CLASS),
-                    data.getStringExtra(UpdateStudentActivity.STUDENT_SCHOOL),
-                    data.getStringExtra(UpdateStudentActivity.STUDENT_DISTRICT)
-            );
-            teacher.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
-            Toast.makeText(this, "Teacher " + teacher.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
-            studentViewModel.updateStudent(teacher);
+//
+//            teacher.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
+//            Toast.makeText(this, "Teacher " + teacher.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
+//            studentViewModel.updateStudent(teacher);
         }
     }
 

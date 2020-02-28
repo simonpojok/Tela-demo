@@ -14,13 +14,13 @@ public interface StudentDao {
     @Insert
     void insert(Teacher teacher);
 
-    @Query("DELETE FROM Teacher")
+    @Query("DELETE FROM teacher_table")
     void deleteStudents();
 
-    @Query("SELECT * FROM Teacher ORDER BY id ASC")
+    @Query("SELECT * FROM teacher_table ORDER BY id ASC")
     LiveData<List<Teacher>> getStudents();
 
-    @Query("SELECT * FROM Teacher LIMIT 1")
+    @Query("SELECT * FROM teacher_table LIMIT 1")
     Teacher[] getAnyStudent();
 
     @Delete

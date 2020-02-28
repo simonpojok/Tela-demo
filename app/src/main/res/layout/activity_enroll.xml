@@ -76,17 +76,6 @@
             android:src="@drawable/ic_fingerprint_black_50dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/status_view"
-        android:layout_width="0dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/logBackgroundBlack"
-        android:layout_height="40dp"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:text="Device Connected" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -96,7 +85,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@id/status_view">
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"

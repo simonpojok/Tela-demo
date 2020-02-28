@@ -28,52 +28,10 @@ public abstract class StudentRoomDB extends RoomDatabase {
                         context.getApplicationContext(),
                         StudentRoomDB.class,
                         "student_databse"
-                ).addCallback(callback).build();
+                ).build();
             }
         }
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback callback = new RoomDatabase.Callback() {
-        @Override
-        public void onOpen(@NonNull SupportSQLiteDatabase db) {
-            super.onOpen(db);
-            databaseWriteExecuter.execute(() -> {
-                StudentDao dao = INSTANCE.getStudentDao();
-                dao.deleteStudents();
-                Teacher teacher1 = new Teacher(
-                        "Robert Kyagulanyi",
-                        "Masters Degree",
-                        "Makerere University",
-                        "Wakiso District"
-                );
-                dao.insert(teacher1);
-                Teacher teacher2 = new Teacher(
-                        "Dr Kizza Besigy",
-                        "Master Degree",
-                        "Oxford University",
-                        "Kampala District"
-                );
-                dao.insert(teacher2);
-
-                Teacher teacher3 = new Teacher(
-                        "Simon Peter Ojok",
-                        "Undergraduate Degree",
-                        "Makerere University",
-                        "Gulu District"
-                );
-                dao.insert(teacher3);
-            });
-        }
-
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-        }
-
-        @Override
-        public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
-            super.onDestructiveMigration(db);
-        }
-    };
 }

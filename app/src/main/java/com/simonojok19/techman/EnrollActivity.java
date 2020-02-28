@@ -57,7 +57,6 @@ public class EnrollActivity extends AppCompatActivity {
                                    final IBioMiniDevice.TemplateData capturedTemplate,
                                    final IBioMiniDevice.FingerState fingerState) {
             log("onCapture : Capture successful!");
-            printState(getResources().getText(R.string.capture_single_ok));
 
             log(((IBioMiniDevice) context).popPerformanceLog());
             runOnUiThread(new Runnable() {
@@ -79,8 +78,6 @@ public class EnrollActivity extends AppCompatActivity {
         @Override
         public void onCaptureError(Object contest, int errorCode, String error) {
             log("onCaptureError : " + error + " ErrorCode :" + errorCode);
-            if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
-                printState(getResources().getText(R.string.capture_single_fail) + "("+error+")");
         }
     };
 
@@ -91,7 +88,6 @@ public class EnrollActivity extends AppCompatActivity {
                                    final IBioMiniDevice.FingerState fingerState) {
 
             Log.d("CaptureResponsePrev", String.format(Locale.ENGLISH , "captureTemplate.size (%d) , fingerState(%s)" , capturedTemplate== null? 0 : capturedTemplate.data.length, String.valueOf(fingerState.isFingerExist)));
-            printState(getResources().getText(R.string.start_capture_ok));
             byte[] pImage_raw =null;
             if( (mCurrentDevice!= null && (pImage_raw = mCurrentDevice.getCaptureImageAsRAW_8() )!= null)) {
                 Log.d("CaptureResponsePrev ", String.format(Locale.ENGLISH, "pImage (%d) , FP Quality(%d)", pImage_raw.length , mCurrentDevice.getFPQuality(pImage_raw, mCurrentDevice.getImageWidth(), mCurrentDevice.getImageHeight(), 2)));
@@ -114,19 +110,8 @@ public class EnrollActivity extends AppCompatActivity {
         public void onCaptureError(Object context, int errorCode, String error) {
             log("onCaptureError : " + error);
             log(((IBioMiniDevice)context).popPerformanceLog());
-            if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
-                printState(getResources().getText(R.string.start_capture_fail));
         }
     };
-    synchronized public void printState(final CharSequence str){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((TextView)findViewById(R.id.status_view)).setText(str);
-            }
-        });
-
-    }
     synchronized public void log(final String msg)
     {
         Log.d(TAG, msg);
@@ -147,16 +132,6 @@ public class EnrollActivity extends AppCompatActivity {
                 else {
                     Log.d("", msg);
                 }
-            }
-        });
-    }
-
-    synchronized public void printRev(final String msg) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((TextView) findViewById(R.id.status_view)).setText(msg);
-                Toast.makeText(EnrollActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -285,11 +260,11 @@ public class EnrollActivity extends AppCompatActivity {
 
 
         restartBioMini();
-        printRev(""+mBioMiniFactory.getSDKInfo());
 
         findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });
@@ -308,7 +283,6 @@ public class EnrollActivity extends AppCompatActivity {
                     }
                     if (mBioMiniFactory != null) {
                         mCurrentDevice = mBioMiniFactory.getDevice(0);
-                        printState(getResources().getText(R.string.device_attached));
                         Log.d(TAG, "mCurrentDevice attached : " + mCurrentDevice);
                         if (mCurrentDevice != null /*&& mCurrentDevice.getDeviceInfo() != null*/) {
                             log(" DeviceName : " + mCurrentDevice.getDeviceInfo().deviceName);
@@ -319,7 +293,6 @@ public class EnrollActivity extends AppCompatActivity {
                 }
             }).start();
         } else if (mCurrentDevice != null && event == IUsbEventHandler.DeviceChangeEvent.DEVICE_DETACHED && mCurrentDevice.isEqual(dev)) {
-            printState(getResources().getText(R.string.device_detached));
             Log.d(TAG, "mCurrentDevice removed : " + mCurrentDevice);
             mCurrentDevice = null;
         }
@@ -371,15 +344,6 @@ public class EnrollActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void clearState(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((TextView)findViewById(R.id.status_view)).clearComposingText();
-            }
-        });
-
-    }
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},  REQUEST_WRITE_PERMISSION);
