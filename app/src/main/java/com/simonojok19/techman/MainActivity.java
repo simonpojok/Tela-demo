@@ -22,10 +22,15 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import static com.simonojok19.techman.EnrollActivity.STUDENT_CLASS;
+import static com.simonojok19.techman.EnrollActivity.STUDENT_IMAGE_BYTES;
+import static com.simonojok19.techman.EnrollActivity.STUDENT_NAME;
+import static com.simonojok19.techman.EnrollActivity.STUDENT_TEMPLATE_BYTES;
+
 public class MainActivity extends AppCompatActivity implements TeacherAdapter.OnStudentClickListener{
     private TeacherViewModel studentViewModel;
-    public static final int NEW_STUDENT_ACTIVITY = 348;
-    public static final int UPDATE_STUDENT_ACTIVITY = 3496;
+    public static final int ENROLL_TEACHER = 348;
+    public static final int VERIFY_TEACHER = 3496;
     TeacherAdapter adapter;
     RecyclerView recyclerView;
 
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
-                startActivityForResult(intent, NEW_STUDENT_ACTIVITY);
+                startActivityForResult(intent, ENROLL_TEACHER);
             }
         });
 
@@ -114,19 +119,19 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == NEW_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
+        if (requestCode == ENROLL_TEACHER && resultCode == RESULT_OK) {
             Teacher teacher = new Teacher(
-                    data.getStringExtra(EnrollActivity.STUDENT_NAME),
-                    data.getStringExtra(EnrollActivity.STUDENT_CLASS),
+                    data.getStringExtra(STUDENT_NAME),
+                    data.getStringExtra(STUDENT_CLASS),
                     data.getStringExtra(EnrollActivity.STUDENT_SCHOOL),
                     data.getStringExtra(EnrollActivity.STUDENT_DISTRICT),
-                    data.getByteArrayExtra(EnrollActivity.STUDENT_IMAGE_BYTES),
-                    data.getByteArrayExtra(EnrollActivity.STUDENT_TEMPLATE_BYTES)
+                    data.getByteArrayExtra(STUDENT_IMAGE_BYTES),
+                    data.getByteArrayExtra(STUDENT_TEMPLATE_BYTES)
             );
             studentViewModel.insert(teacher);
         }
 
-        if (requestCode == UPDATE_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
+        if (requestCode == VERIFY_TEACHER && resultCode == RESULT_OK) {
 //
 //            teacher.setId(data.getIntExtra(UpdateStudentActivity.STUDENT_ID, -1));
 //            Toast.makeText(this, "Teacher " + teacher.getStudentName() + " was updated", Toast.LENGTH_SHORT).show();
@@ -136,12 +141,14 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
 
     @Override
     public void onStudentClick(Teacher teacher) {
-        Intent intent = new Intent(MainActivity.this, UpdateStudentActivity.class);
-        intent.putExtra(UpdateStudentActivity.STUDENT_ID, teacher.getId());
-        intent.putExtra(UpdateStudentActivity.STUDENT_NAME, teacher.getStudentName());
-        intent.putExtra(UpdateStudentActivity.STUDENT_CLASS, teacher.getStudentClass());
-        intent.putExtra(UpdateStudentActivity.STUDENT_SCHOOL, teacher.getStudentSchool());
-        intent.putExtra(UpdateStudentActivity.STUDENT_DISTRICT, teacher.getStudentDistrict());
-        startActivityForResult(intent, UPDATE_STUDENT_ACTIVITY);
+        EnrollActivity.NEW_TEACTER = false;
+        Intent intent = new Intent();
+        intent.putExtra(EnrollActivity.STUDENT_IMAGE_BYTES, teacher.getStudentImage());
+        intent.putExtra(EnrollActivity.STUDENT_TEMPLATE_BYTES, teacher.getFingerPrint());
+        intent.putExtra(EnrollActivity.STUDENT_NAME, teacher.getStudentName());
+        intent.putExtra(EnrollActivity.STUDENT_CLASS, teacher.getStudentClass());
+        intent.putExtra(EnrollActivity.STUDENT_SCHOOL, teacher.getStudentSchool());
+        intent.putExtra(EnrollActivity.STUDENT_DISTRICT, teacher.getStudentDistrict());
+        startActivityForResult(intent, VERIFY_TEACHER);
     }
 }

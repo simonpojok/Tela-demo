@@ -45,6 +45,7 @@ public class EnrollActivity extends AppCompatActivity {
     public static final String STUDENT_DISTRICT = "com.simonojok19.techman.STUDENT_DISTRICT";
     public static final String STUDENT_TEMPLATE_BYTES = "com.simonojok19.techman.STUDENT_TEMPLATE_BYTES";
     public static final String STUDENT_IMAGE_BYTES = "com.simonojok19.techman.STUDENT_IMAGE_BYTES";
+    public static boolean NEW_TEACTER = true;
 
     //Flag.
     public static final boolean mbUsbExternalUSBManager = false;
