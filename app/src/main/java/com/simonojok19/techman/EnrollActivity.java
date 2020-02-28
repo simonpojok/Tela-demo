@@ -41,6 +41,7 @@ public class EnrollActivity extends AppCompatActivity {
     private Bitmap teacherImage;
     private Button saveTeacher;
     private Button verifyTeacher;
+    private TextView actionTitle;
 
 
     public static final String STUDENT_NAME = "com.simonojok19.techman.STUDENT_NAME";
@@ -207,10 +208,11 @@ public class EnrollActivity extends AppCompatActivity {
         studentDistrict = findViewById(R.id.student_district);
         saveTeacher = findViewById(R.id.button_save);
         verifyTeacher = findViewById(R.id.verify_teacher);
-        TextView studentActionTitle = findViewById(R.id.action_title);
+        actionTitle = findViewById(R.id.action_title);
         Intent intent = getIntent();
 
         if (Objects.equals(intent.getAction(), MainActivity.ACTION_VERIFY)) {
+            actionTitle.setText("Verify Teacher");
             saveTeacher.setEnabled(false);
             studentName.setEnabled(false);
             studentClass.setEnabled(false);
@@ -220,6 +222,13 @@ public class EnrollActivity extends AppCompatActivity {
             studentClass.setText(intent.getStringExtra(STUDENT_CLASS));
             studentSchool.setText(intent.getStringExtra(STUDENT_SCHOOL));
             studentDistrict.setText(intent.getStringExtra(STUDENT_DISTRICT));
+
+            verifyTeacher.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         } else {
             verifyTeacher.setEnabled(false);
             saveTeacher.setOnClickListener(new View.OnClickListener() {
