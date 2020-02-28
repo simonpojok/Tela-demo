@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddStudentActivity.class);
+                Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
                 startActivityForResult(intent, NEW_STUDENT_ACTIVITY);
             }
         });

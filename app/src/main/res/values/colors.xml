@@ -5,4 +5,5 @@
     <color name="colorAccent">#0a7455</color>
     <color name="colorLight">#cff5bc</color>
     <color name="colorRed">#e70004</color>
+    <color name="logBackgroundBlack">#000000</color>
 </resources>
