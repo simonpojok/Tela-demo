@@ -33,6 +33,19 @@ import java.util.Iterator;
 import java.util.Locale;
 
 public class EnrollActivity extends AppCompatActivity {
+    private EditText studentName;
+    private EditText studentClass;
+    private EditText studentSchool;
+    private EditText studentDistrict;
+    private Bitmap teacherImage;
+
+    public static final String STUDENT_NAME = "com.simonojok19.techman.STUDENT_NAME";
+    public static final String STUDENT_CLASS = "com.simonojok19.techman.STUDENT_CLASS";
+    public static final String STUDENT_SCHOOL = "com.simonojok19.techman.STUDENT_SCHOOL";
+    public static final String STUDENT_DISTRICT = "com.simonojok19.techman.STUDENT_DISTRICT";
+    public static final String STUDENT_TEMPLATE_BYTES = "com.simonojok19.techman.STUDENT_TEMPLATE_BYTES";
+    public static final String STUDENT_IMAGE_BYTES = "com.simonojok19.techman.STUDENT_IMAGE_BYTES";
+
     //Flag.
     public static final boolean mbUsbExternalUSBManager = false;
     private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
@@ -71,6 +84,7 @@ public class EnrollActivity extends AppCompatActivity {
                 }
             });
             teacherCapturedTemplate = capturedTemplate;
+            teacherImage = capturedImage;
 
             return true;
         }
@@ -182,6 +196,10 @@ public class EnrollActivity extends AppCompatActivity {
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         mLogView = findViewById(R.id.log_text);
         mScrollLog = findViewById(R.id.enroll_scroll_view);
+        studentName = findViewById(R.id.student_name);
+        studentClass = findViewById(R.id.student_class);
+        studentSchool = findViewById(R.id.student_school);
+        studentDistrict = findViewById(R.id.student_district);
 
         findViewById(R.id.capture_single).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,7 +222,15 @@ public class EnrollActivity extends AppCompatActivity {
                     BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
                         @Override
                         public void onDeviceChange(DeviceChangeEvent event, Object dev) {
-
+                            Intent intent = new Intent();
+                            intent.putExtra(STUDENT_IMAGE_BYTES, teacherImage);
+                            intent.putExtra(STUDENT_TEMPLATE_BYTES, teacherCapturedTemplate.data);
+                            intent.putExtra(STUDENT_NAME, studentName.getText().toString());
+                            intent.putExtra(STUDENT_CLASS, studentClass.getText().toString());
+                            intent.putExtra(STUDENT_SCHOOL, studentSchool.getText().toString());
+                            intent.putExtra(STUDENT_DISTRICT, studentDistrict.getText().toString());
+                            setResult(RESULT_OK, intent);
+                            finish();
                         }
                     };
                     IBioMiniDevice mCurrentDeivce = null;
