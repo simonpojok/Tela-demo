@@ -50,6 +50,8 @@ public class EnrollActivity extends AppCompatActivity {
     public static final String STUDENT_DISTRICT = "com.simonojok19.techman.STUDENT_DISTRICT";
     public static final String STUDENT_TEMPLATE_BYTES = "com.simonojok19.techman.STUDENT_TEMPLATE_BYTES";
     public static final String STUDENT_IMAGE_BYTES = "com.simonojok19.techman.STUDENT_IMAGE_BYTES";
+    public static final String STUDENT_TEMPLATE_TYPE = "com.simonojok19.techman.STUDENT_TEMPLATE_TYPE";
+    public static final String STUDENT_TEMPLATE_INT = "com.simonojok19.techman.STUDENT_TEMPLATE_INT";
     public static boolean NEW_TEACTER = true;
 
     //Flag.
@@ -226,7 +228,12 @@ public class EnrollActivity extends AppCompatActivity {
             verifyTeacher.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+//                    IBioMiniDevice.TemplateData savedUser = new IBioMiniDevice.TemplateData()
+                    if(mCurrentDevice.verify(intent.getByteArrayExtra(STUDENT_TEMPLATE_BYTES), teacherCapturedTemplate.data)) {
+                        Toast.makeText(EnrollActivity.this, "User the same", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(EnrollActivity.this, "User Note the same", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         } else {
