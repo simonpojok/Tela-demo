@@ -6,9 +6,12 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -33,48 +36,6 @@ public class FingerPrintActivity extends AppCompatActivity {
     public static final int REQUEST_WRITE_PERMISSION = 786;
     public IBioMiniDevice mCurrentDevice = null;
     private FingerPrintActivity mainContext;
-
-    private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
-    private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
-        @Override
-        public boolean onCaptureEx(final Object context, final Bitmap capturedImage,
-                                   final IBioMiniDevice.TemplateData capturedTemplate,
-                                   final IBioMiniDevice.FingerState fingerState) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(FingerPrintActivity.this, "Success in Capture", Toast.LENGTH_SHORT).show();
-                }
-            });
-            return true;
-        }
-
-        @Override
-        public void onCaptureError(Object contest, int errorCode, String error) {
-            Toast.makeText(FingerPrintActivity.this, "Error in Capture", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    private CaptureResponder mCaptureResponsePrev = new CaptureResponder() {
-        @Override
-        public boolean onCaptureEx(final Object context, final Bitmap capturedImage,
-                                   final IBioMiniDevice.TemplateData capturedTemplate,
-                                   final IBioMiniDevice.FingerState fingerState) {
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(FingerPrintActivity.this, "Success in Capture 2", Toast.LENGTH_SHORT).show();
-                }
-            });
-            return true;
-        }
-
-        @Override
-        public void onCaptureError(Object context, int errorCode, String error) {
-            Toast.makeText(FingerPrintActivity.this, "Error in Capture 2", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver(){
         public void onReceive(Context context, Intent intent){
@@ -115,5 +76,57 @@ public class FingerPrintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finger_print);
+        mainContext = this;
+
+        if(mBioMiniFactory != null) {
+            mBioMiniFactory.close();
+        }
+        restartBioMini();
+    }
+
+    void restartBioMini() {
+        if(mBioMiniFactory != null) {
+            mBioMiniFactory.close();
+        }
+        if( mbUsbExternalUSBManager ){
+            mUsbManager = (UsbManager)getSystemService(Context.USB_SERVICE);
+            mBioMiniFactory = new BioMiniFactory(mainContext, mUsbManager){
+                @Override
+                public void onDeviceChange(DeviceChangeEvent event, Object dev) {
+
+                }
+            };
+            //
+            mPermissionIntent = PendingIntent.getBroadcast(this,0,new Intent(ACTION_USB_PERMISSION),0);
+            IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+            registerReceiver(mUsbReceiver, filter);
+            checkDevice();
+        }else {
+            mBioMiniFactory = new BioMiniFactory(mainContext) {
+                @Override
+                public void onDeviceChange(DeviceChangeEvent event, Object dev) {
+
+                }
+            };
+        }
+        //mBioMiniFactory.setTransferMode(IBioMiniDevice.TransferMode.MODE2);
+    }
+
+    private void requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},  REQUEST_WRITE_PERMISSION);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == REQUEST_WRITE_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(FingerPrintActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState){
+        requestPermission();
+        super.onPostCreate(savedInstanceState);
     }
 }
