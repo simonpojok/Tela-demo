@@ -61,6 +61,7 @@
             android:textColor="@color/colorLight"/>
 
         <ImageView
+            android:id="@+id/fingerImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_fingerprint_black_50dp"

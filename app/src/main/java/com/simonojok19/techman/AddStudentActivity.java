@@ -42,5 +42,13 @@ public class AddStudentActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        findViewById(R.id.fingerImage).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddStudentActivity.this, FingerPrintActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
