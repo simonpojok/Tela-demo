@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.StudentViewHolder> {
 
     public class StudentViewHolder extends RecyclerView.ViewHolder{
         private final TextView studentName;
@@ -51,7 +51,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     }
 
 
-    StudentAdapter(Context context, OnStudentClickListener listener) {
+    TeacherAdapter(Context context, OnStudentClickListener listener) {
         layoutInflater = LayoutInflater.from(context);
         this.listener = listener;
     }

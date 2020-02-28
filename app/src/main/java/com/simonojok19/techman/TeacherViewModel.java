@@ -8,14 +8,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class StudentViewModel extends AndroidViewModel {
-    private StudentRepository repository;
+public class TeacherViewModel extends AndroidViewModel {
+    private TeacherRepository repository;
     private LiveData<List<Teacher>> students;
 
 
-    public StudentViewModel(@NonNull Application application) {
+    public TeacherViewModel(@NonNull Application application) {
         super(application);
-        repository = new StudentRepository(application);
+        repository = new TeacherRepository(application);
         students = repository.getStudents();
     }
 

@@ -22,11 +22,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements StudentAdapter.OnStudentClickListener{
-    private StudentViewModel studentViewModel;
+public class MainActivity extends AppCompatActivity implements TeacherAdapter.OnStudentClickListener{
+    private TeacherViewModel studentViewModel;
     public static final int NEW_STUDENT_ACTIVITY = 348;
     public static final int UPDATE_STUDENT_ACTIVITY = 3496;
-    StudentAdapter adapter;
+    TeacherAdapter adapter;
     RecyclerView recyclerView;
 
     @Override
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        studentViewModel = new ViewModelProvider(this).get(StudentViewModel.class);
+        studentViewModel = new ViewModelProvider(this).get(TeacherViewModel.class);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements StudentAdapter.On
         });
 
         recyclerView = findViewById(R.id.recyclerView_students);
-        adapter = new StudentAdapter(this, this);
+        adapter = new TeacherAdapter(this, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
