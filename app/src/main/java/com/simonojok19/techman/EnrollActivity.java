@@ -222,15 +222,6 @@ public class EnrollActivity extends AppCompatActivity {
                     BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
                         @Override
                         public void onDeviceChange(DeviceChangeEvent event, Object dev) {
-                            Intent intent = new Intent();
-                            intent.putExtra(STUDENT_IMAGE_BYTES, teacherImage);
-                            intent.putExtra(STUDENT_TEMPLATE_BYTES, teacherCapturedTemplate.data);
-                            intent.putExtra(STUDENT_NAME, studentName.getText().toString());
-                            intent.putExtra(STUDENT_CLASS, studentClass.getText().toString());
-                            intent.putExtra(STUDENT_SCHOOL, studentSchool.getText().toString());
-                            intent.putExtra(STUDENT_DISTRICT, studentDistrict.getText().toString());
-                            setResult(RESULT_OK, intent);
-                            finish();
                         }
                     };
                     IBioMiniDevice mCurrentDeivce = null;
@@ -290,8 +281,15 @@ public class EnrollActivity extends AppCompatActivity {
         findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                Intent intent = new Intent();
+                intent.putExtra(STUDENT_IMAGE_BYTES, teacherImage);
+                intent.putExtra(STUDENT_TEMPLATE_BYTES, teacherCapturedTemplate.data);
+                intent.putExtra(STUDENT_NAME, studentName.getText().toString());
+                intent.putExtra(STUDENT_CLASS, studentClass.getText().toString());
+                intent.putExtra(STUDENT_SCHOOL, studentSchool.getText().toString());
+                intent.putExtra(STUDENT_DISTRICT, studentDistrict.getText().toString());
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 

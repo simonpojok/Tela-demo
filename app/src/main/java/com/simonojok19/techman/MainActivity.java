@@ -115,13 +115,15 @@ public class MainActivity extends AppCompatActivity implements TeacherAdapter.On
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == NEW_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
-//            Teacher teacher = new Teacher(
-//                    data.getStringExtra(AddStudentActivity.STUDENT_NAME),
-//                    data.getStringExtra(AddStudentActivity.STUDENT_CLASS),
-//                    data.getStringExtra(AddStudentActivity.STUDENT_SCHOOL),
-//                    data.getStringExtra(AddStudentActivity.STUDENT_DISTRICT)
-//            );
-//            studentViewModel.insert(teacher);
+            Teacher teacher = new Teacher(
+                    data.getStringExtra(EnrollActivity.STUDENT_NAME),
+                    data.getStringExtra(EnrollActivity.STUDENT_CLASS),
+                    data.getStringExtra(EnrollActivity.STUDENT_SCHOOL),
+                    data.getStringExtra(EnrollActivity.STUDENT_DISTRICT),
+                    data.getByteArrayExtra(EnrollActivity.STUDENT_IMAGE_BYTES),
+                    data.getByteArrayExtra(EnrollActivity.STUDENT_TEMPLATE_BYTES)
+            );
+            studentViewModel.insert(teacher);
         }
 
         if (requestCode == UPDATE_STUDENT_ACTIVITY && resultCode == RESULT_OK) {
