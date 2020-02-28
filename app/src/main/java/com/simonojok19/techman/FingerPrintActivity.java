@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,8 @@ import com.suprema.BioMiniFactory;
 import com.suprema.CaptureResponder;
 import com.suprema.IBioMiniDevice;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class FingerPrintActivity extends AppCompatActivity {
@@ -71,6 +75,41 @@ public class FingerPrintActivity extends AppCompatActivity {
             Toast.makeText(FingerPrintActivity.this, "Error in Capture 2", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver(){
+        public void onReceive(Context context, Intent intent){
+            String action = intent.getAction();
+            if(ACTION_USB_PERMISSION.equals(action)){
+                synchronized(this){
+                    UsbDevice device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                    if(intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)){
+                        if(device != null){
+                            if( mBioMiniFactory == null) return;
+                            mBioMiniFactory.addDevice(device);
+                            Toast.makeText(FingerPrintActivity.this, "Device Connected well", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(FingerPrintActivity.this, "No device connected", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+    };
+
+    public void checkDevice(){
+        if(mUsbManager == null) return;
+        HashMap<String , UsbDevice> deviceList = mUsbManager.getDeviceList();
+        Iterator<UsbDevice> deviceIter = deviceList.values().iterator();
+        while(deviceIter.hasNext()){
+            UsbDevice _device = deviceIter.next();
+            if( _device.getVendorId() ==0x16d1 ){
+                //Suprema vendor ID
+                mUsbManager.requestPermission(_device , mPermissionIntent);
+            }else{
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
