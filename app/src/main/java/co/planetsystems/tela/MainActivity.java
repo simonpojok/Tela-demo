@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundSuccess));
                     if(capturedImage != null) {
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
                         if(iv != null) {
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCaptureError(Object contest, int errorCode, String error) {
+            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundError));
             log("onCaptureError : " + error + " ErrorCode :" + errorCode);
             if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
                 printState(getResources().getText(R.string.capture_single_fail) + "("+error+")");
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundSuccess));
                     if(capturedImage != null) {
                         ((ImageView) findViewById(R.id.finger_image)).setImageBitmap(null);
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
@@ -111,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCaptureError(Object context, int errorCode, String error) {
+            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundError));
             log("onCaptureError : " + error);
             log(((IBioMiniDevice)context).popPerformanceLog());
             if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
@@ -210,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundCapturing));
                 ((ImageView) findViewById(R.id.finger_image)).setImageDrawable(getDrawable(R.drawable.ic_fingerprint_black_24dp));
                 if(mCurrentDevice != null) {
                     //mCaptureOptionDefault.captureTimeout = (int)mCurrentDevice.getParameter(IBioMiniDevice.ParameterType.TIMEOUT).value;
@@ -224,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.start_capture).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundCapturing));
                 ((ImageView) findViewById(R.id.finger_image)).setImageDrawable(getDrawable(R.drawable.ic_fingerprint_black_24dp));
                 if(mCurrentDevice != null) {
                     BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
