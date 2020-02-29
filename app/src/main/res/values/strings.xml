@@ -75,4 +75,16 @@
     <string name="device_attached">Device Connected</string>
     <string name="device_detached">Device Disconnected</string>
     <string name="device_not_ready">Fingerprint Scanner Missing</string>
+    <string name="action_enroll">Enroll New Teacher</string>
+    <string name="hint_tr_firstName">First Name</string>
+    <string name="hint_tr_lastNames">Last Name</string>
+    <string name="hint_tr_id">Id Number</string>
+    <string name="text_save">Save</string>
+    <string name="hint_tr_email">Email</string>
+    <string name="hint_tr_telephone">Telephone</string>
+    <string name="hint_tr_gender">Gender</string>
+    <string name="hint_tr_nin">National ID</string>
+    <string name="hint_tr_school">School Name</string>
+    <string name="hint_tr_district">District</string>
+    <string name="hint_tr_role">Role</string>
 </resources>

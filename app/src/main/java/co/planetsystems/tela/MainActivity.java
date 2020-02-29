@@ -256,6 +256,22 @@ public class MainActivity extends AppCompatActivity {
 
         printRev(""+mBioMiniFactory.getSDKInfo());
 
+        findViewById(R.id.enroll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.verify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     void restartBioMini() {
