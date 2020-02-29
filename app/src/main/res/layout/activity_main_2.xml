@@ -132,18 +132,18 @@
             android:text="@string/check_device" />
 
         <Button
-            android:id="@+id/start_capture"
+            android:id="@+id/enroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/start_capture" />
+            android:text="@string/enroll" />
 
         <Button
-            android:id="@+id/abort_capture"
+            android:id="@+id/verify"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/abort_capture" />
+            android:text="@string/verify" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout_bottom"

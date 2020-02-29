@@ -239,53 +239,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.start_capture).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundCapturing));
-                ((ImageView) findViewById(R.id.finger_image)).setImageDrawable(getDrawable(R.drawable.ic_fingerprint_black_24dp));
-                if(mCurrentDevice != null) {
-                    BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
-                        @Override
-                        public void onDeviceChange(DeviceChangeEvent event, Object dev) {
-
-                        }
-                    };
-                    IBioMiniDevice mCurrentDeivce = null;
-                    // Make BioMiniFactory instance, and get device handler(IBioMiniDevice).
-                    //mCaptureOptionDefault.captureTemplate =true;
-                    mCaptureOptionDefault.captureImage=true;
-                    //mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.ELOW;
-                    mCurrentDevice.startCapturing(
-                            mCaptureOptionDefault,
-                            mCaptureResponsePrev);
-                }
-            }
-        });
-
-        findViewById(R.id.abort_capture).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                if(mCurrentDevice != null) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mCurrentDevice.abortCapturing();
-                            int nRetryCount =0;
-                            while(mCurrentDevice != null && mCurrentDevice.isCapturing()){
-                                SystemClock.sleep(10);
-                                nRetryCount++;
-                            }
-                            Log.d("AbortCapturing" , String.format(Locale.ENGLISH ,
-                                    "IsCapturing return false.(Abort-lead time: %dms) " ,
-                                    nRetryCount* 10));
-                        }
-                    }).start();
-                }
-                ((ImageView) findViewById(R.id.finger_image)).setImageDrawable(getDrawable(R.drawable.ic_fingerprint_black_24dp));
-            }
-        });
-
         if( !mbUsbExternalUSBManager ){
             Button btn_checkDevice = (Button)findViewById(R.id.check_device);
             btn_checkDevice.setClickable(false);
