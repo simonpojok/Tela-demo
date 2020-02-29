@@ -341,6 +341,7 @@ public class MainActivity extends AppCompatActivity {
                         printState(getResources().getText(R.string.device_attached));
                         Log.d(TAG, "Hardware Attached : " + mCurrentDevice);
                         if (mCurrentDevice != null /*&& mCurrentDevice.getDeviceInfo() != null*/) {
+                            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundConnected));
                             log(" DeviceName : " + mCurrentDevice.getDeviceInfo().deviceName);
                             log("         SN : " + mCurrentDevice.getDeviceInfo().deviceSN);
                             log("SDK version : " + mCurrentDevice.getDeviceInfo().versionSDK);
@@ -349,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }).start();
         } else if (mCurrentDevice != null && event == IUsbEventHandler.DeviceChangeEvent.DEVICE_DETACHED && mCurrentDevice.isEqual(dev)) {
+            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorRed));
             printState(getResources().getText(R.string.device_detached));
             Log.d(TAG, "Fingerprint Scanner removed : " + mCurrentDevice);
             mCurrentDevice = null;

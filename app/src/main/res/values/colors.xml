@@ -10,4 +10,5 @@
     <color name="colorBackgroundError">#B90407</color>
     <color name="colorBackgroundSuccess">#54F009</color>
     <color name="colorBackgroundNormal">#CDDC39</color>
+    <color name="colorBackgroundConnected">#3F51B5</color>
 </resources>
