@@ -18,9 +18,9 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.suprema.BioMiniFactory;
@@ -28,6 +28,9 @@ import com.suprema.CaptureResponder;
 import com.suprema.IBioMiniDevice;
 import com.suprema.IUsbEventHandler;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
@@ -47,8 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     public final static String TAG = "Tela Log";
     private TextView mLogView;
+    private TextView mStatusView;
     private ScrollView mScrollLog = null;
     private CardView backgroundCard;
+    private TextClock textClock;
+    private TextView textDate;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
     private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
@@ -126,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-//                ((TextView)findViewById(R.id.textStatus)).setText(str);
+                mStatusView.setText(str);
             }
         });
 
@@ -210,6 +216,13 @@ public class MainActivity extends AppCompatActivity {
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
+        mStatusView = findViewById(R.id.status_view);
+        textClock = findViewById(R.id.textClock);
+        textClock.setFormat24Hour("hh:mm:ss a EEE MMM d");
+        textClock.animate();
+        textDate = findViewById(R.id.date_view);
+        textDate.setText(getCurrentDate());
+
 
         findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -384,5 +397,11 @@ public class MainActivity extends AppCompatActivity {
     public void onPostCreate(Bundle savedInstanceState){
         requestPermission();
         super.onPostCreate(savedInstanceState);
+    }
+
+    private String getCurrentDate() {
+        Date toDay = Calendar.getInstance().getTime();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return simpleDateFormat.format(toDay);
     }
 }
