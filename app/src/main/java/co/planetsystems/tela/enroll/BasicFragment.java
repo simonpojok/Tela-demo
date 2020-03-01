@@ -25,22 +25,16 @@ import java.util.List;
 import co.planetsystems.tela.R;
 
 
-public class BasicFragment extends Fragment implements View.OnClickListener, Validator.ValidationListener {
+public class BasicFragment extends Fragment implements View.OnClickListener{
     private static final String FIRST_NAME = "co.planetsystems.tela.BasicFragment.FIRST_NAME";
     private static final String LAST_NAME = "co.planetsystems.tela.BasicFragment.LAST_NAME";
     private static final String PHONE_NUMBER = "co.planetsystems.tela.BasicFragment.PHONE_NUMBER";
     OnNextBasicClick onNextBasicClick;
 
-    @NotEmpty
-    @Length(min = 3, max = 20)
     private EditText firstName;
 
-    @NotEmpty
-    @Length(min = 3, max = 20)
     private EditText lastName;
 
-    @NotEmpty
-    @Length(max = 10, min = 10)
     private EditText phoneNumber;
     private Button buttonNext;
     private Button buttonPrevious;
@@ -83,8 +77,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener, Val
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        validator = new Validator(this);
-        validator.setValidationListener(this);
         firstName = view.findViewById(R.id.basic_firstName);
         lastName = view.findViewById(R.id.basic_lastName);
         phoneNumber = view.findViewById(R.id.basic_telephone);
@@ -112,24 +104,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener, Val
                     lastName.getText().toString(),
                     phoneNumber.getText().toString()
             );
-        }
-    }
-
-    @Override
-    public void onValidationSucceeded() {
-        Toast.makeText(getActivity(), "We got it right!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onValidationFailed(List<ValidationError> errors) {
-        for (ValidationError error : errors ) {
-            View view = error.getView();
-            String message = error.getCollatedErrorMessage(getActivity());
-            if (view instanceof EditText) {
-                ((EditText)view).setError(message);
-            } else {
-                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
