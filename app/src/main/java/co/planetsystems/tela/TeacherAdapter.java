@@ -1,5 +1,6 @@
 package co.planetsystems.tela;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,30 +16,45 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherH
     private List<Teacher> teachers;
     private OnTeacherClickListener listener;
 
+    TeacherAdapter(Context context, OnTeacherClickListener listener) {
+        layoutInflater = LayoutInflater.from(context);
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public TeacherHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View view = layoutInflater.inflate(R.layout.recycler_view, parent, false);
+        return new TeacherHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TeacherHolder holder, int position) {
-
+        Teacher teacher = teachers.get(position);
+        holder.bindTeacher(teacher, listener);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if ( teachers != null ) {
+            return teachers.size();
+        } else {
+            return 0;
+        }
     }
 
-    public class TeacherHolder extends RecyclerView.ViewHolder {
+    public Teacher getTeacherAtPosition(int position) {
+        return teachers.get(position);
+    }
+
+    class TeacherHolder extends RecyclerView.ViewHolder {
         TextView firstName;
         TextView lastName;
         TextView role;
         TextView district;
         View itemHolder;
 
-        public TeacherHolder(@NonNull View itemView) {
+        TeacherHolder(@NonNull View itemView) {
             super(itemView);
             firstName = itemView.findViewById(R.id.firstName);
             lastName = itemView.findViewById(R.id.lastName);
@@ -47,7 +63,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherH
             this.itemHolder = itemView;
         }
 
-        public void bindTeacher(Teacher teacher, final OnTeacherClickListener listener) {
+        void bindTeacher(Teacher teacher, final OnTeacherClickListener listener) {
             firstName.setText(teacher.getFirstName());
             lastName.setText(teacher.getLastName());
             role.setText(teacher.getRole());
