@@ -3,28 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/tr_school"
-        android:layout_marginTop="5dp"
+    <LinearLayout
+        android:layout_weight="9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_school"
-        android:inputType="text" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/tr_district"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_district"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/tr_school"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_school"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/tr_role"
-        android:layout_marginTop="5dp"
+        <EditText
+            android:id="@+id/tr_district"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_district"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/tr_role"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_role"
+            android:inputType="text" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="end"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_role"
-        android:inputType="text" />
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/previous"
+            android:id="@+id/basic_previous"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:id="@+id/basic_next"/>
+    </LinearLayout>
 
 </LinearLayout>
