@@ -11,7 +11,8 @@ public class TeacherAttendance {
     public Teacher teacher;
     @Relation(
             parentColumn = "nationID",
-            entityColumn = "id"
+            entityColumn = "teacher_nin",
+            entity = Attendance.class
     )
     public LiveData<List<Attendance>> attendances;
 }
