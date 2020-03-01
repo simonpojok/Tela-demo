@@ -1,5 +1,6 @@
 package co.planetsystems.tela;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -7,7 +8,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class TeacherRecyclerView extends RecyclerView.Adapter<TeacherRecyclerView.TeacherHolder> {
+import java.util.List;
+
+public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherHolder> {
+    private final LayoutInflater layoutInflater;
+    private List<Teacher> teachers;
+    private OnTeacherClickListener listener;
 
     @NonNull
     @Override
