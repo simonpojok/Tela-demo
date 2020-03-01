@@ -2,6 +2,7 @@ package co.planetsystems.tela;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity {
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
                         if(iv != null) {
                             iv.setImageBitmap(capturedImage);
+                            verify.setEnabled(true);
+                            clockIn.setEnabled(true);
+                            clockOut.setEnabled(true);
+                            enroll.setEnabled(true);
                         }
                     }
                 }
@@ -226,6 +231,13 @@ public class MainActivity extends AppCompatActivity {
         clockOut = findViewById(R.id.clock_out);
         capture = findViewById(R.id.capture);
 
+        // disable very thing
+        enroll.setEnabled(false);
+        verify.setEnabled(false);
+        clockIn.setEnabled(false);
+        clockOut.setEnabled(false);
+        capture.setEnabled(false);
+
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
         mStatusView = findViewById(R.id.status_view);
@@ -255,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
 
         printRev(""+mBioMiniFactory.getSDKInfo());
 
-        findViewById(R.id.enroll).setOnClickListener(new View.OnClickListener() {
+        enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
@@ -264,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.verify).setOnClickListener(new View.OnClickListener() {
+        verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
@@ -306,7 +318,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
         }
-        //mBioMiniFactory.setTransferMode(IBioMiniDevice.TransferMode.MODE2);
     }
 
     void handleDevChange(IUsbEventHandler.DeviceChangeEvent event, Object dev) {
@@ -324,6 +335,7 @@ public class MainActivity extends AppCompatActivity {
                         printState(getResources().getText(R.string.device_attached));
                         Log.d(TAG, "Hardware Attached : " + mCurrentDevice);
                         if (mCurrentDevice != null /*&& mCurrentDevice.getDeviceInfo() != null*/) {
+                            capture.setEnabled(true);
                             backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundConnected));
                             log(" DeviceName : " + mCurrentDevice.getDeviceInfo().deviceName);
                             log("         SN : " + mCurrentDevice.getDeviceInfo().deviceSN);
@@ -334,6 +346,9 @@ public class MainActivity extends AppCompatActivity {
             }).start();
         } else if (mCurrentDevice != null && event == IUsbEventHandler.DeviceChangeEvent.DEVICE_DETACHED && mCurrentDevice.isEqual(dev)) {
             backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorRed));
+            capture.setEnabled(false);
+            capture.setBackgroundColor(getResources().getColor(R.color.colorLight));
+            capture.setTextColor(getResources().getColor(R.color.white));
             printState(getResources().getText(R.string.device_detached));
             Log.d(TAG, "Fingerprint Scanner removed : " + mCurrentDevice);
             mCurrentDevice = null;
@@ -373,5 +388,17 @@ public class MainActivity extends AppCompatActivity {
         Date toDay = Calendar.getInstance().getTime();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return simpleDateFormat.format(toDay);
+    }
+
+    private void disableButton(Button view) {
+        view.setEnabled(false);
+        view.setBackgroundColor(getResources().getColor(R.color.colorLight));
+        view.setTextColor(getResources().getColor(R.color.white));
+    }
+
+    private void enableButton(Button view) {
+        view.setEnabled(true);
+        view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        view.setTextColor(getResources().getColor(R.color.colorLight));
     }
 }
