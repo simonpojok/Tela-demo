@@ -14,7 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import co.planetsystems.tela.R;
 
-public class SupplementaryFragment extends Fragment {
+public class SupplementaryFragment extends Fragment
+implements View.OnClickListener {
     private static final String SCHOOL_NAME = "co.planetsystems.tela.enroll.SupplementaryFragment.SCHOOL_NAME";
     private static final String DISTRICT = "co.planetsystems.tela.enroll.SupplementaryFragment.DISTRICT";
     private static final String ROLE = "co.planetsystems.tela.enroll.SupplementaryFragment.ROLE";
@@ -23,6 +24,7 @@ public class SupplementaryFragment extends Fragment {
     private EditText district;
     private EditText role;
     private Button previous;
+    private OnPreviousClickSupplementaryListener supplementaryListener;
 
     public SupplementaryFragment() {
         // Required empty public constructor
@@ -52,6 +54,7 @@ public class SupplementaryFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        supplementaryListener = (OnPreviousClickSupplementaryListener) context;
     }
 
     @Override
@@ -67,7 +70,29 @@ public class SupplementaryFragment extends Fragment {
         role = view.findViewById(R.id.sup_role);
         previous = view.findViewById(R.id.sup_previous);
 
+        if (getArguments() != null) {
+            school.setText(getArguments().getString(SCHOOL_NAME));
+            district.setText(getArguments().getString(DISTRICT));
+            role.setText(getArguments().getString(ROLE));
+        }
+
+        previous.setOnClickListener(this);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.sup_previous) {
+            supplementaryListener.onPreviousClick(
+                    school.getText().toString(),
+                    district.getText().toString(),
+                    role.getText().toString()
+            );
+        }
+    }
+
+    public interface OnPreviousClickSupplementaryListener {
+        void onPreviousClick(String school, String district, String role);
     }
 }
