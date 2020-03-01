@@ -1,36 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/primary_email"
-            android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_email"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/primary_gender"
+            android:id="@+id/primary_email_layout"
+            android:hint="@string/email_address"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your Email ie someone@something.com"
+            app:counterEnabled="true"
             android:layout_marginTop="5dp"
+            app:counterMaxLength="15"
+            app:startIconContentDescription="@string/email_ico"
+            app:startIconDrawable="@drawable/ic_email_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:id="@+id/primary_email"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_gender"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/primary_nin"
+            android:id="@+id/primary_gender_layout"
+            android:hint="@string/gender"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your Gender ie Male or Female"
+            app:counterEnabled="true"
             android:layout_marginTop="5dp"
+            app:counterMaxLength="15"
+            app:startIconContentDescription="@string/gender_image"
+            app:startIconDrawable="@drawable/ic_person_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/primary_gender"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_nin"
-            android:inputType="text" />
+            android:id="@+id/primary_nin_layout"
+            android:hint="@string/national_id"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your National ID Number"
+            app:counterEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="15"
+            app:startIconContentDescription="@string/mobile_phone"
+            app:startIconDrawable="@drawable/ic_account_balance_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/primary_nin"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 

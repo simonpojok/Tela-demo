@@ -12,17 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import co.planetsystems.tela.R;
 
 public class PrimaryFragment extends Fragment implements View.OnClickListener{
     private static final String EMAIL_ADDRESS = "co.planetsystems.tela.enroll.PrimaryFragment.EMAIL_ADDRESS";
     private static final String GENDER = "co.planetsystems.tela.enroll.PrimaryFragment.GENDER";
     private static final String NATIONAL_ID = "co.planetsystems.tela.enroll.PrimaryFragment.NATIONAL_ID";
-    private EditText email;
-    private EditText gender;
-    private EditText nationalId;
-    private Button nextButton;
-    private Button previousButton;
+    private TextInputEditText email;
+    private TextInputEditText gender;
+    private TextInputEditText nationalId;
+    private TextInputEditText nextButton;
+    private TextInputEditText previousButton;
     private OnNextPrimaryClickListener clickNextListener;
     private OnPreviousPrimaryClickListener clickPreviousListener;
     public PrimaryFragment() {

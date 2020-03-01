@@ -101,4 +101,9 @@
     <string name="basic_last_name">User Ico</string>
     <string name="basic_lastname_hint">Last Name</string>
     <string name="basic_first_name">First Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="email_ico">Email Icon</string>
+    <string name="gender">Gender</string>
+    <string name="gender_image">Gender Image</string>
+    <string name="national_id">National ID</string>
 </resources>
