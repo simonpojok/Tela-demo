@@ -63,7 +63,7 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
 
         if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.enroll_fragment, new BasicFragment())
+                    .add(R.id.enroll_fragment, BasicFragment.newInstance("Simon", "Ojok", "0775415"))
                     .commit();
         }
     }

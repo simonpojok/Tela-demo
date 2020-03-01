@@ -47,11 +47,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            firstName.setText(getArguments().getString(FIRST_NAME));
-            lastName.setText(getArguments().getString(LAST_NAME));
-            phoneNumber.setText(getArguments().getString(PHONE_NUMBER));
-        }
     }
 
     @Override
@@ -76,6 +71,11 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         buttonPrevious = view.findViewById(R.id.basic_previous);
 
         buttonNext.setOnClickListener(this);
+        if (getArguments() != null) {
+            firstName.setText(getArguments().getString(FIRST_NAME));
+            lastName.setText(getArguments().getString(LAST_NAME));
+            phoneNumber.setText(getArguments().getString(PHONE_NUMBER));
+        }
     }
 
     @Override

@@ -40,6 +40,7 @@
         android:background="@color/colorPrimary"
         android:text="@string/save"
         android:textAllCaps="false"
+        android:visibility="gone"
         android:textColor="@color/colorLight" />
 
 </LinearLayout>
