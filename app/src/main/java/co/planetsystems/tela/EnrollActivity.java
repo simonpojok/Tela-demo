@@ -28,7 +28,8 @@ public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
         PrimaryFragment.OnNextPrimaryClickListener,
         SupplementaryFragment.OnPreviousClickSupplementaryListener,
-        PrimaryFragment.OnPreviousPrimaryClickListener {
+        PrimaryFragment.OnPreviousPrimaryClickListener,
+        SupplementaryFragment.OnSaveEveryDataAndCloseListener {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -109,5 +110,21 @@ public class EnrollActivity extends AppCompatActivity implements
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
                 .commitNow();
+    }
+
+    @Override
+    public void saveEveryData(String school, String district, String role) {
+        this.schoolName = school;
+        this.district = district;
+        this.role = role;
+        Intent intent = new Intent();
+        intent.putExtra(FIRST_NAME, firstName);
+        intent.putExtra(LAST_NAME, lastName);
+        intent.putExtra(PHONE_NUMBER, phoneNumber);
+        intent.putExtra(EMAIL_ADDRESS, emailAddress);
+        intent.putExtra(GENDER, gender);
+        intent.putExtra(NATIONAL_ID, nationalID);
+        intent.putExtra(DISTRICT, district);
+        intent.putExtra(ROLE, role);
     }
 }

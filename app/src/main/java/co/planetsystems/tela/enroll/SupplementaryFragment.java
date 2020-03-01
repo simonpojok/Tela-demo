@@ -26,7 +26,9 @@ implements View.OnClickListener {
     private TextInputEditText district;
     private TextInputEditText role;
     private Button previous;
+    private Button save;
     private OnPreviousClickSupplementaryListener supplementaryListener;
+    private OnSaveEveryDataAndCloseListener saveEveryDataAndCloseListener;
 
     public SupplementaryFragment() {
         // Required empty public constructor
@@ -57,6 +59,7 @@ implements View.OnClickListener {
     public void onAttach(Context context) {
         super.onAttach(context);
         supplementaryListener = (OnPreviousClickSupplementaryListener) context;
+        saveEveryDataAndCloseListener = (OnSaveEveryDataAndCloseListener) context;
     }
 
     @Override
@@ -71,6 +74,7 @@ implements View.OnClickListener {
         district = view.findViewById(R.id.sup_district);
         role = view.findViewById(R.id.sup_role);
         previous = view.findViewById(R.id.sup_previous);
+        save = view.findViewById(R.id.sup_save);
 
         if (getArguments() != null) {
             school.setText(getArguments().getString(SCHOOL_NAME));
@@ -79,6 +83,7 @@ implements View.OnClickListener {
         }
 
         previous.setOnClickListener(this);
+        save.setOnClickListener(this);
 
 
     }
@@ -91,10 +96,20 @@ implements View.OnClickListener {
                     district.getText().toString(),
                     role.getText().toString()
             );
+        } else if (v.getId() == R.id.sup_save) {
+            saveEveryDataAndCloseListener.saveEveryData(
+                    school.getText().toString(),
+                    district.getText().toString(),
+                    role.getText().toString()
+            );
         }
     }
 
     public interface OnPreviousClickSupplementaryListener {
         void onPreviousSupplementaryClick(String school, String district, String role);
+    }
+
+    public interface  OnSaveEveryDataAndCloseListener {
+        void saveEveryData(String school, String district, String role);
     }
 }
