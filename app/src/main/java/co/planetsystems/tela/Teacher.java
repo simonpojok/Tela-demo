@@ -38,10 +38,10 @@ public class Teacher {
     @ColumnInfo(name = "role")
     private String role;
 
-    @ColumnInfo(name = "thumbImage")
-    private Bitmap thumbImage;
+    @ColumnInfo(name = "thumbImage", typeAffinity = ColumnInfo.BLOB)
+    private byte[] thumbImage;
 
-    @ColumnInfo(name = "fingerPrint")
+    @ColumnInfo(name = "fingerPrint", typeAffinity = ColumnInfo.BLOB)
     private byte[] fingerPrint;
 
     @ColumnInfo(name = "enrolled")
@@ -50,7 +50,7 @@ public class Teacher {
     @ColumnInfo(name = "updated")
     private String updated;
 
-    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, Bitmap thumbImage, byte[] fingerPrint, String enrolled, String updated) {
+    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, byte[] thumbImage, byte[] fingerPrint, String enrolled, String updated) {
         this.nationID = nationID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -159,15 +159,15 @@ public class Teacher {
         return fingerPrint;
     }
 
-    public Bitmap getThumbImage() {
+    public void setFingerPrint(byte[] fingerPrint) {
+        this.fingerPrint = fingerPrint;
+    }
+
+    public byte[] getThumbImage() {
         return thumbImage;
     }
 
-    public void setThumbImage(Bitmap thumbImage) {
+    public void setThumbImage(byte[] thumbImage) {
         this.thumbImage = thumbImage;
-    }
-
-    public void setFingerPrint(byte[] fingerPrint) {
-        this.fingerPrint = fingerPrint;
     }
 }

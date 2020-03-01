@@ -126,5 +126,7 @@ public class EnrollActivity extends AppCompatActivity implements
         intent.putExtra(NATIONAL_ID, nationalID);
         intent.putExtra(DISTRICT, district);
         intent.putExtra(ROLE, role);
+        setResult(RESULT_OK);
+        finish();
     }
 }

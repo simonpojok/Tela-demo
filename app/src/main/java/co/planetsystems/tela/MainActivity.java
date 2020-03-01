@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.getStringExtra(EnrollActivity.SCHOOL_NAME),
                     intent.getStringExtra(EnrollActivity.DISTRICT),
                     intent.getStringExtra(EnrollActivity.ROLE),
-                    fingerImage,
+                    null,
                     fingerPrint,
                     "23/93/10029",
                     null
