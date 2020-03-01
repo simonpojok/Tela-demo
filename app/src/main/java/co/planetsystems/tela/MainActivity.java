@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView backgroundCard;
     private TextClock textClock;
     private TextView textDate;
-    private Button checkDevice;
+    private Button attendance;
     private Button enroll;
     private Button verify;
     private Button clockIn;
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainContext = this;
-        checkDevice = findViewById(R.id.check_device);
+        attendance = findViewById(R.id.check_device);
         enroll = findViewById(R.id.enroll);
         verify = findViewById(R.id.verify);
         clockIn = findViewById(R.id.clock_in);
@@ -226,6 +226,14 @@ public class MainActivity extends AppCompatActivity {
                             mCaptureResponseDefault,
                             true);
                 }
+            }
+        });
+
+        attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TeacherListActivity.class);
+                startActivity(intent);
             }
         });
 
