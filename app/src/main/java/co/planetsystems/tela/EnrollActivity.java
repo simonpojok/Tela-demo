@@ -40,44 +40,44 @@ public class EnrollActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
+//
+//        firstName = findViewById(R.id.tr_firstName);
+//        lastName = findViewById(R.id.tr_lastNames);
+//        phoneNumber = findViewById(R.id.tr_telephone);
+//        emailAddress = findViewById(R.id.tr_email);
+//        gender = findViewById(R.id.tr_gender);
+//        schoolName = findViewById(R.id.tr_school);
+//        nationalID = findViewById(R.id.tr_nin);
+//        district = findViewById(R.id.tr_district);
+//        role = findViewById(R.id.tr_role);
+//        saveButton = findViewById(R.id.button_save);
 
-        firstName = findViewById(R.id.tr_firstName);
-        lastName = findViewById(R.id.tr_lastNames);
-        phoneNumber = findViewById(R.id.tr_telephone);
-        emailAddress = findViewById(R.id.tr_email);
-        gender = findViewById(R.id.tr_gender);
-        schoolName = findViewById(R.id.tr_school);
-        nationalID = findViewById(R.id.tr_nin);
-        district = findViewById(R.id.tr_district);
-        role = findViewById(R.id.tr_role);
-        saveButton = findViewById(R.id.button_save);
-
-        if (Objects.equals(getIntent().getAction(), ACTION_ENROLL)) {
-            enrollTeacher();
-        } else {
-            Intent intent = getIntent();
-            ((TextView)findViewById(R.id.action_title)).setText("Verify Teacher");
-            firstName.setText(intent.getStringExtra(FIRST_NAME));
-            lastName.setText(intent.getStringExtra(LAST_NAME));
-            phoneNumber.setText(intent.getStringExtra(PHONE_NUMBER));
-            emailAddress.setText(intent.getStringExtra(EMAIL_ADDRESS));
-            gender.setText(intent.getStringExtra(GENDER));
-            nationalID.setText(intent.getStringExtra(NATIONAL_ID));
-            schoolName.setText(intent.getStringExtra(SCHOOL_NAME));
-            district.setText(intent.getStringExtra(DISTRICT));
-            role.setText(intent.getStringExtra(ROLE));
-
-            firstName.setEnabled(false);
-            lastName.setEnabled(false);
-            phoneNumber.setEnabled(false);
-            emailAddress.setEnabled(false);
-            gender.setEnabled(false);
-            nationalID.setEnabled(false);
-            schoolName.setEnabled(false);
-            district.setEnabled(false);
-            role.setEnabled(false);
-            saveButton.setVisibility(View.INVISIBLE);
-        }
+//        if (Objects.equals(getIntent().getAction(), ACTION_ENROLL)) {
+//            enrollTeacher();
+//        } else {
+//            Intent intent = getIntent();
+//            ((TextView)findViewById(R.id.action_title)).setText("Verify Teacher");
+//            firstName.setText(intent.getStringExtra(FIRST_NAME));
+//            lastName.setText(intent.getStringExtra(LAST_NAME));
+//            phoneNumber.setText(intent.getStringExtra(PHONE_NUMBER));
+//            emailAddress.setText(intent.getStringExtra(EMAIL_ADDRESS));
+//            gender.setText(intent.getStringExtra(GENDER));
+//            nationalID.setText(intent.getStringExtra(NATIONAL_ID));
+//            schoolName.setText(intent.getStringExtra(SCHOOL_NAME));
+//            district.setText(intent.getStringExtra(DISTRICT));
+//            role.setText(intent.getStringExtra(ROLE));
+//
+//            firstName.setEnabled(false);
+//            lastName.setEnabled(false);
+//            phoneNumber.setEnabled(false);
+//            emailAddress.setEnabled(false);
+//            gender.setEnabled(false);
+//            nationalID.setEnabled(false);
+//            schoolName.setEnabled(false);
+//            district.setEnabled(false);
+//            role.setEnabled(false);
+//            saveButton.setVisibility(View.INVISIBLE);
+//        }
     }
 
     private void enrollTeacher() {

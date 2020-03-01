@@ -87,4 +87,6 @@
     <string name="hint_tr_school">School Name</string>
     <string name="hint_tr_district">District</string>
     <string name="hint_tr_role">Role</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>
