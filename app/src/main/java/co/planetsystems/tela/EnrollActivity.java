@@ -88,5 +88,9 @@ public class EnrollActivity extends AppCompatActivity implements
         this.gender = gender;
         this.nationalID = nationalID;
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.enroll_fragment,
+                SupplementaryFragment.newInstance(schoolName, district, role)
+        ).commitNow();
     }
 }
