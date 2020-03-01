@@ -1,7 +1,6 @@
 package co.planetsystems.tela.enroll;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,14 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import com.mobsandgeeks.saripaar.ValidationError;
-import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Length;
-import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-
-import java.util.List;
 
 import co.planetsystems.tela.R;
 
@@ -38,8 +29,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     private EditText phoneNumber;
     private Button buttonNext;
     private Button buttonPrevious;
-
-    private Validator validator;
 
 
 
@@ -97,7 +86,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        validator.validate();
         if (v.getId() == R.id.basic_next) {
             onNextBasicClick.clickNextBasic(
                     firstName.getText().toString(),
@@ -110,5 +98,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     public interface OnNextBasicClick {
         void clickNextBasic(String firstName, String lastName, String phoneNumber);
     }
+
+
 
 }
