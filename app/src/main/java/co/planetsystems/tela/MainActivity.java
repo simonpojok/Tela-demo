@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                Intent intent = new Intent(MainActivity.this, VerifyActivity.class);
                 intent.setAction(EnrollActivity.ACTION_VERIFY);
                 startActivity(intent);
             }
