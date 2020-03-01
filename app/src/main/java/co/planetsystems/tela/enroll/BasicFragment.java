@@ -59,4 +59,8 @@ public class BasicFragment extends Fragment {
         super.onDetach();
     }
 
+    public interface OnNextClick {
+        public void clickNext(String firstName, String lastName, String phoneNumber);
+    }
+
 }
