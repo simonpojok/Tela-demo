@@ -29,4 +29,11 @@ public interface TeacherDao {
     @Transaction
     @Query("SELECT * FROM teacher_table")
     List<TeacherAttendance> getTeacherAttendances();
+
+    @Insert
+    void addAttendnace(Attendance attendance);
+
+    @Update
+    void updateAttendance(Attendance attendance);
+
 }
