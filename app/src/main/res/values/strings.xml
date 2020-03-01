@@ -37,8 +37,8 @@
     <string name="capture_ok">Capture OK</string>
     <string name="capture_fail">Capture Fail</string>
 
-    <string name="capture_single_ok">Capture Single OK</string>
-    <string name="capture_single_fail">Capture Single Fail</string>
+    <string name="capture_single_ok">Capture OK</string>
+    <string name="capture_single_fail">Capture Fail</string>
 
     <string name="start_capture_ok">StartCapture OK</string>
     <string name="start_capture_fail">StartCapture Fail</string>
@@ -48,7 +48,7 @@
 
     <string name="verify_ok">Verify OK</string>
     <string name="verify_fail">Verify FAIL</string>
-    <string name="verify_not_match">Verify template not match</string>
+    <string name="verify_not_match">No Match</string>
 
     <string name="delete_user">Clear user list</string>
 
