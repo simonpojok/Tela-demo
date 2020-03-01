@@ -89,4 +89,5 @@
     <string name="hint_tr_role">Role</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="save">Save</string>
 </resources>
