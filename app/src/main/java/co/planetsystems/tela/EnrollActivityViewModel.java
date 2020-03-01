@@ -17,6 +17,6 @@ public class EnrollActivityViewModel extends AndroidViewModel {
     }
 
     public void setFragmentPostion(int fragmentPosition) {
-        this.fragmentPosition = fragmentPostion;
+        this.fragmentPosition = fragmentPosition;
     }
 }

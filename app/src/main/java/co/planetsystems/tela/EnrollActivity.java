@@ -2,6 +2,7 @@ package co.planetsystems.tela;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -47,6 +48,7 @@ public class EnrollActivity extends AppCompatActivity {
     private ViewPager mPager;
     private Button previous;
     private Button next;
+    private EnrollActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,7 @@ public class EnrollActivity extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         save = findViewById(R.id.save);
+        viewModel = new ViewModelProvider(this).get(EnrollActivityViewModel.class);
 
         if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
             getSupportFragmentManager().beginTransaction()
@@ -66,11 +69,14 @@ public class EnrollActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) != null) {
-                    getSupportFragmentManager().beginTransaction().replace(
-                            R.id.enroll_fragment, new PrimaryFragment()
-                    ).commitNow();
-//                }
+
+            }
+        });
+
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
