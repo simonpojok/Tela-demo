@@ -1,5 +1,6 @@
 package co.planetsystems.tela;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +18,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -377,5 +380,29 @@ public class MainActivity extends AppCompatActivity {
         view.setEnabled(true);
         view.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         view.setTextColor(getResources().getColor(R.color.colorLight));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_activity_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.setting:
+                // do some settings
+                return true;
+
+            case R.id.about:
+                // do about things
+                return true;
+
+            case R.id.help:
+                // do some help
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
