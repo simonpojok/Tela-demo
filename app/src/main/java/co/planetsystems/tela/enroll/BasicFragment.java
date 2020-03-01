@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import co.planetsystems.tela.R;
 
 
@@ -22,11 +24,11 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     private static final String PHONE_NUMBER = "co.planetsystems.tela.BasicFragment.PHONE_NUMBER";
     OnNextBasicClick onNextBasicClick;
 
-    private EditText firstName;
+    private TextInputEditText firstName;
 
-    private EditText lastName;
+    private TextInputEditText lastName;
 
-    private EditText phoneNumber;
+    private TextInputEditText phoneNumber;
     private Button buttonNext;
     private Button buttonPrevious;
 

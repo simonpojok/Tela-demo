@@ -1,35 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/basic_firstName"
-            android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_firstName"
-            android:inputType="text" />
+            android:id="@+id/basic_firstName_layout"
+            android:hint="@string/basic_first_name"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your first Name ie Atim"
+            app:counterEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="15"
+            app:errorEnabled="true"
+            app:startIconContentDescription="@string/mobile_phone"
+            app:startIconDrawable="@drawable/ic_perm_identity_black_24dp">
 
-        <EditText
-            android:id="@+id/basic_lastName"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_lastNames"
-            android:inputType="text" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/basic_firstName"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/basic_telephone"
-            android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_telephone"
-            android:inputType="phone" />
+            android:id="@+id/basic_lastName_layout"
+            android:hint="@string/basic_lastname_hint"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your last name is Simon Peter"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="15"
+            app:startIconContentDescription="@string/basic_last_name"
+            app:startIconDrawable="@drawable/ic_perm_identity_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/basic_lastName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/basic_phone_layout"
+            android:hint="@string/phone_number"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your phone number ie 0754140200"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="10"
+            app:startIconContentDescription="@string/mobile_phone"
+            app:startIconDrawable="@drawable/ic_local_phone_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/basic_telephone"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout

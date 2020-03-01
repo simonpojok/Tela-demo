@@ -96,4 +96,9 @@
     <string name="menu_setting">Setting</string>
     <string name="help">Help</string>
     <string name="about">About</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="mobile_phone">Mobile Phone</string>
+    <string name="basic_last_name">User Ico</string>
+    <string name="basic_lastname_hint">Last Name</string>
+    <string name="basic_first_name">First Name</string>
 </resources>
