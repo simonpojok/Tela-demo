@@ -55,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
     private CardView backgroundCard;
     private TextClock textClock;
     private TextView textDate;
+    private Button checkDevice;
+    private Button enroll;
+    private Button verify;
+    private Button clockIn;
+    private Button capture;
+    private Button clockOut;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
     private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
@@ -213,6 +219,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainContext = this;
+        checkDevice = findViewById(R.id.check_device);
+        enroll = findViewById(R.id.enroll);
+        verify = findViewById(R.id.verify);
+        clockIn = findViewById(R.id.clock_in);
+        clockOut = findViewById(R.id.clock_out);
+        capture = findViewById(R.id.capture);
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
@@ -238,21 +250,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        if(!mbUsbExternalUSBManager ){
-            Button btn_checkDevice = (Button)findViewById(R.id.check_device);
-            btn_checkDevice.setClickable(false);
-            btn_checkDevice.setEnabled(false);
-            btn_checkDevice.setBackgroundColor(getResources().getColor(R.color.colorLight));
-            btn_checkDevice.setTextColor(getResources().getColor(R.color.white));
-        }else{
-            ((Button)findViewById(R.id.check_device)).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    checkDevice();
-                }
-            });
-        }
 
         restartBioMini();
 
