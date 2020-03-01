@@ -68,7 +68,7 @@ public class EnrollActivity extends AppCompatActivity implements
 
         if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.enroll_fragment, BasicFragment.newInstance("Simon", "Ojok", "0775415"))
+                    .add(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
                     .commit();
         }
 
@@ -120,6 +120,11 @@ public class EnrollActivity extends AppCompatActivity implements
         this.schoolName = school;
         this.district = district;
         this.role = role;
+
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.enroll_fragment,
+                PrimaryFragment.newInstance(emailAddress, gender, nationalID)
+        ).commitNow();
     }
 
     @Override
@@ -127,6 +132,10 @@ public class EnrollActivity extends AppCompatActivity implements
         this.emailAddress = email;
         this.gender = gender;
         this.nationalID = nationId;
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
+                .commit();
     }
 
     @Override
