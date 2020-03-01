@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
+import co.planetsystems.tela.enroll.BasicFragment;
+
 public class EnrollActivity extends AppCompatActivity {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
@@ -40,8 +42,10 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText schoolName;
     private EditText district;
     private EditText role;
-    private Button saveButton;
+    private Button save;
     private ViewPager mPager;
+    private Button previous;
+    private Button next;
 
     int nLayouts[] = {
             R.layout.basic_information,
@@ -53,6 +57,10 @@ public class EnrollActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
+
+        previous = findViewById(R.id.previous);
+        next = findViewById(R.id.next);
+        save = findViewById(R.id.save);
 
 //
 //        firstName = findViewById(R.id.tr_firstName);
@@ -92,6 +100,23 @@ public class EnrollActivity extends AppCompatActivity {
 //            role.setEnabled(false);
 //            saveButton.setVisibility(View.INVISIBLE);
 //        }
+
+        if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.enroll_fragment, new BasicFragment())
+                    .commit();
+        }
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) != null) {
+                    getSupportFragmentManager().beginTransaction().replace(
+                            R.id.enroll_fragment, null
+                    );
+                }
+            }
+        });
     }
 
     private void enrollTeacher() {
