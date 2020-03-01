@@ -1,35 +1,17 @@
 package co.planetsystems.tela;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import java.util.List;
+
 public class TeacherAttendance {
     @Embedded
-    private Teacher teacher;
+    public Teacher teacher;
     @Relation(
             parentColumn = "nationID",
             entityColumn = "id"
     )
-    private Attendance attendance;
-
-    public TeacherAttendance(Teacher teacher, Attendance attendance) {
-        this.teacher = teacher;
-        this.attendance = attendance;
-    }
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
-    public Attendance getAttendance() {
-        return attendance;
-    }
-
-    public void setAttendance(Attendance attendance) {
-        this.attendance = attendance;
-    }
+    public LiveData<List<Attendance>> attendances;
 }
