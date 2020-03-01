@@ -23,8 +23,8 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
     private TextInputEditText email;
     private TextInputEditText gender;
     private TextInputEditText nationalId;
-    private TextInputEditText nextButton;
-    private TextInputEditText previousButton;
+    private Button nextButton;
+    private Button previousButton;
     private OnNextPrimaryClickListener clickNextListener;
     private OnPreviousPrimaryClickListener clickPreviousListener;
     public PrimaryFragment() {

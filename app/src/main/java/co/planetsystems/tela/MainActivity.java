@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         capture = findViewById(R.id.capture);
 
         // disable very thing
-        disableButton(enroll);
+//        disableButton(enroll);
         disableButton(verify);
         disableButton(clockIn);
         disableButton(clockOut);
