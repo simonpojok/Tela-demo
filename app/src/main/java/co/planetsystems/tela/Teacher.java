@@ -1,5 +1,7 @@
 package co.planetsystems.tela;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -37,7 +39,7 @@ public class Teacher {
     private String role;
 
     @ColumnInfo(name = "thumbImage")
-    private byte[] thumbImage;
+    private Bitmap thumbImage;
 
     @ColumnInfo(name = "fingerPrint")
     private byte[] fingerPrint;
@@ -48,7 +50,7 @@ public class Teacher {
     @ColumnInfo(name = "updated")
     private String updated;
 
-    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, byte[] thumbImage, byte[] fingerPrint, String enrolled, String updated) {
+    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, Bitmap thumbImage, byte[] fingerPrint, String enrolled, String updated) {
         this.nationID = nationID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -153,16 +155,16 @@ public class Teacher {
         this.role = role;
     }
 
-    public byte[] getThumbImage() {
+    public byte[] getFingerPrint() {
+        return fingerPrint;
+    }
+
+    public Bitmap getThumbImage() {
         return thumbImage;
     }
 
-    public void setThumbImage(byte[] thumbImage) {
+    public void setThumbImage(Bitmap thumbImage) {
         this.thumbImage = thumbImage;
-    }
-
-    public byte[] getFingerPrint() {
-        return fingerPrint;
     }
 
     public void setFingerPrint(byte[] fingerPrint) {

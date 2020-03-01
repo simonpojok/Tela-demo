@@ -1,8 +1,10 @@
 package co.planetsystems.tela;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.PendingIntent;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     //Flag.
     public static final boolean mbUsbExternalUSBManager = false;
     private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+    public static final int ENROLL_TEACHTER = 542;
     private UsbManager mUsbManager = null;
     private PendingIntent mPermissionIntent= null;
     //
@@ -65,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
     private Button clockIn;
     private Button capture;
     private Button clockOut;
+    private Bitmap fingerImage;
+    private byte[] fingerPrint;
+    private MainActivityViewModel mainActivityViewModel;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
     private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
@@ -88,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
                             enableButton(enroll);
                             enableButton(clockIn);
                             enableButton(clockOut);
+                            fingerImage = capturedImage;
+                            fingerPrint = capturedTemplate.data;
                         }
                     }
                 }
@@ -216,6 +224,8 @@ public class MainActivity extends AppCompatActivity {
         textDate = findViewById(R.id.date_view);
         textDate.setText(getCurrentDate());
 
+        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+
 
         findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
                 intent.setAction(EnrollActivity.ACTION_ENROLL);
-                startActivity(intent);
+                startActivityForResult(intent, ENROLL_TEACHTER);
             }
         });
 
@@ -404,5 +414,27 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode == RESULT_OK && requestCode == ENROLL_TEACHTER && intent != null) {
+            Teacher teacher = new Teacher(
+                    intent.getStringExtra(EnrollActivity.NATIONAL_ID),
+                    intent.getStringExtra(EnrollActivity.FIRST_NAME),
+                    intent.getStringExtra(EnrollActivity.LAST_NAME),
+                    intent.getStringExtra(EnrollActivity.PHONE_NUMBER),
+                    intent.getStringExtra(EnrollActivity.EMAIL_ADDRESS),
+                    intent.getStringExtra(EnrollActivity.GENDER),
+                    intent.getStringExtra(EnrollActivity.SCHOOL_NAME),
+                    intent.getStringExtra(EnrollActivity.DISTRICT),
+                    intent.getStringExtra(EnrollActivity.ROLE),
+                    fingerImage,
+                    fingerPrint,
+                    "23/93/10029",
+                    null
+            );
+        }
     }
 }
