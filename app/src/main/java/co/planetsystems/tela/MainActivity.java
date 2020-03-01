@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
     private Button clockIn;
     private Button capture;
     private Button clockOut;
-    private Bitmap fingerImage;
-    private byte[] fingerPrint;
+    public IBioMiniDevice.TemplateData teacherCapturedTemplate;
+    private Bitmap teacherImage;
     private MainActivityViewModel mainActivityViewModel;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
@@ -94,12 +94,12 @@ public class MainActivity extends AppCompatActivity {
                             enableButton(enroll);
                             enableButton(clockIn);
                             enableButton(clockOut);
-                            fingerImage = capturedImage;
-                            fingerPrint = capturedTemplate.data;
                         }
                     }
                 }
             });
+            teacherCapturedTemplate = capturedTemplate;
+            teacherImage = capturedImage;
             return true;
         }
 
@@ -431,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
                     intent.getStringExtra(EnrollActivity.DISTRICT),
                     intent.getStringExtra(EnrollActivity.ROLE),
                     null,
-                    fingerPrint,
+                    teacherCapturedTemplate.data,
                     "23/93/10029",
                     null
             );
