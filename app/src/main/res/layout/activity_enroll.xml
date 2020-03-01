@@ -39,23 +39,34 @@
 
         <Button
             android:layout_gravity="start"
-            android:id="@+id/previous"
+            android:id="@+id/first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@color/colorPrimary"
-            android:text="@string/previous"
+            android:text="@string/first"
             android:textAllCaps="false"
             android:textColor="@color/colorLight" />
 
         <Button
             android:layout_gravity="end"
-            android:id="@+id/next"
+            android:id="@+id/second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@color/colorPrimary"
-            android:text="@string/next"
+            android:text="@string/second"
+            android:textAllCaps="false"
+            android:textColor="@color/colorLight" />
+
+        <Button
+            android:layout_gravity="end"
+            android:id="@+id/third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/third"
             android:textAllCaps="false"
             android:textColor="@color/colorLight" />
 
@@ -68,7 +79,6 @@
             android:background="@color/colorPrimary"
             android:text="@string/save"
             android:textAllCaps="false"
-            android:visibility="gone"
             android:textColor="@color/colorLight" />
     </LinearLayout>
 

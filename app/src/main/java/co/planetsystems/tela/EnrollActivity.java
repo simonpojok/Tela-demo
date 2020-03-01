@@ -22,6 +22,7 @@ import java.util.Objects;
 
 import co.planetsystems.tela.enroll.BasicFragment;
 import co.planetsystems.tela.enroll.PrimaryFragment;
+import co.planetsystems.tela.enroll.SupplementaryFragment;
 
 public class EnrollActivity extends AppCompatActivity {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
@@ -46,8 +47,9 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText role;
     private Button save;
     private ViewPager mPager;
-    private Button previous;
-    private Button next;
+    private Button third;
+    private Button second;
+    private Button first;
     private EnrollActivityViewModel viewModel;
 
     @Override
@@ -55,8 +57,7 @@ public class EnrollActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
 
-        previous = findViewById(R.id.previous);
-        next = findViewById(R.id.next);
+
         save = findViewById(R.id.save);
         viewModel = new ViewModelProvider(this).get(EnrollActivityViewModel.class);
 
@@ -65,19 +66,5 @@ public class EnrollActivity extends AppCompatActivity {
                     .add(R.id.enroll_fragment, new BasicFragment())
                     .commit();
         }
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }
