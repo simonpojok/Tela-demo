@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -79,11 +81,17 @@ public class EnrollActivity extends AppCompatActivity {
     }
 
     private void enrollTeacher() {
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        saveButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (TextUtils.isEmpty(firstName.getText())) {
+//                    firstName.setBackgroundColor(getResources().getColor(R.color.colorRed));
+//                }
+//
+//                if (TextUtils.isEmpty(lastName.getText())) {
+//
+//                }
+//            }
+//        });
     }
 }
