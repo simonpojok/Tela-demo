@@ -27,7 +27,8 @@ import co.planetsystems.tela.enroll.SupplementaryFragment;
 public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
         PrimaryFragment.OnNextPrimaryClickListener,
-        SupplementaryFragment.OnPreviousClickSupplementaryListener{
+        SupplementaryFragment.OnPreviousClickSupplementaryListener,
+        PrimaryFragment.OnPreviousPrimaryClickListener {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -100,5 +101,12 @@ public class EnrollActivity extends AppCompatActivity implements
         this.schoolName = school;
         this.district = district;
         this.role = role;
+    }
+
+    @Override
+    public void onPreviousPrimaryClick(String email, String gender, String nationId) {
+        this.emailAddress = email;
+        this.gender = gender;
+        this.nationalID = nationId;
     }
 }
