@@ -1,12 +1,17 @@
 package co.planetsystems.tela;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -37,6 +42,12 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText role;
     private Button saveButton;
     private ViewPager mPager;
+
+    int nLayouts[] = {
+            R.layout.basic_information,
+            R.layout.primary_information,
+            R.layout.suplementary_information
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +108,35 @@ public class EnrollActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
+    }
+
+    class EnrollPagerAdapter extends PagerAdapter {
+        LayoutInflater inflater;
+
+        public EnrollPagerAdapter(LayoutInflater inflater) {
+            this.inflater = inflater;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            View view = inflater.inflate(nLayouts[position], null);
+            container.addView(view);
+            return view;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public int getCount() {
+            return nLayouts.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
+        }
     }
 }
