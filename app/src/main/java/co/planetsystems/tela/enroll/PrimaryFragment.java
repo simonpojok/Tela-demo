@@ -92,7 +92,7 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
             );
         }
 
-        if (v.getId() == R.id.sup_previous) {
+        if (v.getId() == R.id.primary_previous) {
             clickPreviousListener.onPreviousPrimaryClick(
                     email.getText().toString(),
                     gender.getText().toString(),

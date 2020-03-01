@@ -107,7 +107,7 @@ public class EnrollActivity extends AppCompatActivity implements
     public void onNextPrimaryClick(String email, String gender, String nationId) {
         this.emailAddress = email;
         this.gender = gender;
-        this.nationalID = nationalID;
+        this.nationalID = nationId;
         Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.enroll_fragment,
@@ -132,10 +132,11 @@ public class EnrollActivity extends AppCompatActivity implements
         this.emailAddress = email;
         this.gender = gender;
         this.nationalID = nationId;
+        Toast.makeText(this, "Going Back to Basic", Toast.LENGTH_SHORT).show();
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
-                .commit();
+                .commitNow();
     }
 
     @Override
