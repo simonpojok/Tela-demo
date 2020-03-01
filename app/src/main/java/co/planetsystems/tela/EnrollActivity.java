@@ -48,12 +48,6 @@ public class EnrollActivity extends AppCompatActivity {
     private Button previous;
     private Button next;
 
-    int nLayouts[] = {
-            R.layout.basic_information,
-            R.layout.primary_information,
-            R.layout.suplementary_information
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,45 +56,6 @@ public class EnrollActivity extends AppCompatActivity {
         previous = findViewById(R.id.previous);
         next = findViewById(R.id.next);
         save = findViewById(R.id.save);
-
-//
-//        firstName = findViewById(R.id.tr_firstName);
-//        lastName = findViewById(R.id.tr_lastNames);
-//        phoneNumber = findViewById(R.id.tr_telephone);
-//        emailAddress = findViewById(R.id.tr_email);
-//        gender = findViewById(R.id.tr_gender);
-//        schoolName = findViewById(R.id.tr_school);
-//        nationalID = findViewById(R.id.tr_nin);
-//        district = findViewById(R.id.tr_district);
-//        role = findViewById(R.id.tr_role);
-//        saveButton = findViewById(R.id.button_save);
-
-//        if (Objects.equals(getIntent().getAction(), ACTION_ENROLL)) {
-//            enrollTeacher();
-//        } else {
-//            Intent intent = getIntent();
-//            ((TextView)findViewById(R.id.action_title)).setText("Verify Teacher");
-//            firstName.setText(intent.getStringExtra(FIRST_NAME));
-//            lastName.setText(intent.getStringExtra(LAST_NAME));
-//            phoneNumber.setText(intent.getStringExtra(PHONE_NUMBER));
-//            emailAddress.setText(intent.getStringExtra(EMAIL_ADDRESS));
-//            gender.setText(intent.getStringExtra(GENDER));
-//            nationalID.setText(intent.getStringExtra(NATIONAL_ID));
-//            schoolName.setText(intent.getStringExtra(SCHOOL_NAME));
-//            district.setText(intent.getStringExtra(DISTRICT));
-//            role.setText(intent.getStringExtra(ROLE));
-//
-//            firstName.setEnabled(false);
-//            lastName.setEnabled(false);
-//            phoneNumber.setEnabled(false);
-//            emailAddress.setEnabled(false);
-//            gender.setEnabled(false);
-//            nationalID.setEnabled(false);
-//            schoolName.setEnabled(false);
-//            district.setEnabled(false);
-//            role.setEnabled(false);
-//            saveButton.setVisibility(View.INVISIBLE);
-//        }
 
         if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
             getSupportFragmentManager().beginTransaction()
@@ -119,52 +74,4 @@ public class EnrollActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void enrollTeacher() {
-//        saveButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (TextUtils.isEmpty(firstName.getText())) {
-//                    firstName.setBackgroundColor(getResources().getColor(R.color.colorRed));
-//                }
-//
-//                if (TextUtils.isEmpty(lastName.getText())) {
-//
-//                }
-//            }
-//        });
-    }
-
-    class EnrollPagerAdapter extends PagerAdapter {
-        LayoutInflater inflater;
-
-        public EnrollPagerAdapter(LayoutInflater inflater) {
-            this.inflater = inflater;
-        }
-
-        @NonNull
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            View view = inflater.inflate(nLayouts[position], null);
-            container.addView(view);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
-
-        @Override
-        public int getCount() {
-            return nLayouts.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-            return view == object;
-        }
-    }
-
-    // fragment
 }
