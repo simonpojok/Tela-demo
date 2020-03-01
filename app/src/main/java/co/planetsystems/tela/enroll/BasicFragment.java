@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -104,6 +105,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener, Val
 
     @Override
     public void onClick(View v) {
+        validator.validate();
         if (v.getId() == R.id.basic_next) {
             onNextBasicClick.clickNextBasic(
                     firstName.getText().toString(),
@@ -115,12 +117,20 @@ public class BasicFragment extends Fragment implements View.OnClickListener, Val
 
     @Override
     public void onValidationSucceeded() {
-
+        Toast.makeText(getActivity(), "We got it right!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
-
+        for (ValidationError error : errors ) {
+            View view = error.getView();
+            String message = error.getCollatedErrorMessage(getActivity());
+            if (view instanceof EditText) {
+                ((EditText)view).setError(message);
+            } else {
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public interface OnNextBasicClick {
