@@ -93,4 +93,7 @@
     <string name="example_name">Janet Museveni</string>
     <string name="list_teachers">Attendance</string>
     <string name="moe">Ministry of Education</string>
+    <string name="menu_setting">Setting</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
 </resources>
