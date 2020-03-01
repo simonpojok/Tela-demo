@@ -47,6 +47,10 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherH
         return teachers.get(position);
     }
 
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
     class TeacherHolder extends RecyclerView.ViewHolder {
         TextView firstName;
         TextView lastName;

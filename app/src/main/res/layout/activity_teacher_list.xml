@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="8dp"
     android:layout_height="match_parent"
     tools:context=".TeacherListActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/recycler_view"
+        android:id="@+id/teachers_list"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

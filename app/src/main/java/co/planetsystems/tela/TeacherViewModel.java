@@ -27,4 +27,8 @@ public class TeacherViewModel extends AndroidViewModel {
     void addAttendance(Attendance attendance) {
         respository.addAttendance(attendance);
     }
+
+    LiveData<List<Teacher>> getTeachers() {
+        return teachers;
+    }
 }
