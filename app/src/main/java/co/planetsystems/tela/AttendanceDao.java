@@ -1,10 +1,13 @@
 package co.planetsystems.tela;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Database;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
+
+import java.util.List;
 
 @Dao
 public interface AttendanceDao {
@@ -15,5 +18,5 @@ public interface AttendanceDao {
     void updateAttendance(Attendance attendance);
 
     @Query("SELECT * FROM attendance ORDER BY date")
-    void getAttendance();
+    LiveData<List<Attendance>> getAttendance();
 }

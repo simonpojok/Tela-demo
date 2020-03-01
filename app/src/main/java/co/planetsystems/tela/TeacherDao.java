@@ -1,5 +1,6 @@
 package co.planetsystems.tela;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -18,7 +19,7 @@ public interface TeacherDao {
     void deleteTeachers();
 
     @Query("SELECT * FROM teacher_table ORDER BY nationalID ASC")
-    void getTeachers();
+    LiveData<List<Teacher>> getTeachers();
 
     @Delete
     void deleteTeacher(Teacher teacher);
