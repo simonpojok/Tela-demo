@@ -31,55 +31,15 @@
         android:layout_marginBottom="10dp"
         android:id="@+id/enroll_fragment"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:layout_gravity="end"
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_gravity="start"
-            android:id="@+id/first"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/first"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLight" />
-
-        <Button
-            android:layout_gravity="end"
-            android:id="@+id/second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/second"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLight" />
-
-        <Button
-            android:layout_gravity="end"
-            android:id="@+id/third"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/third"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLight" />
-
-        <Button
-            android:layout_gravity="end"
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            android:textColor="@color/colorLight" />
-    </LinearLayout>
+        android:layout_margin="5dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/colorLight" />
 
 </LinearLayout>
