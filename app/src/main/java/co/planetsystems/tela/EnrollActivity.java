@@ -1,6 +1,7 @@
 package co.planetsystems.tela;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,11 +36,14 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText district;
     private EditText role;
     private Button saveButton;
+    private ViewPager mPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
+
+        mPager = findViewById(R.id.viewPager);
 //
 //        firstName = findViewById(R.id.tr_firstName);
 //        lastName = findViewById(R.id.tr_lastNames);
