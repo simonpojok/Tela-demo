@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mainContext = this;
-        attendance = findViewById(R.id.check_device);
+        attendance = findViewById(R.id.list_teachers);
         enroll = findViewById(R.id.enroll);
         verify = findViewById(R.id.verify);
         clockIn = findViewById(R.id.clock_in);
