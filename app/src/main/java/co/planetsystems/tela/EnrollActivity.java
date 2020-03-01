@@ -28,8 +28,7 @@ public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
         PrimaryFragment.OnNextPrimaryClickListener,
         SupplementaryFragment.OnPreviousClickSupplementaryListener,
-        PrimaryFragment.OnPreviousPrimaryClickListener,
-        View.OnClickListener {
+        PrimaryFragment.OnPreviousPrimaryClickListener, {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -50,7 +49,6 @@ public class EnrollActivity extends AppCompatActivity implements
     private String schoolName;
     private String district;
     private String role;
-    private Button save;
     private EnrollActivityViewModel viewModel;
 
     @Override
@@ -58,8 +56,6 @@ public class EnrollActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll);
 
-
-        save = findViewById(R.id.save);
         viewModel = new ViewModelProvider(this).get(EnrollActivityViewModel.class);
 
         if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) == null) {
@@ -68,23 +64,7 @@ public class EnrollActivity extends AppCompatActivity implements
                     .commit();
         }
 
-        if (!getValidity()) {
-            save.setEnabled(false);
-        }
-
         save.setOnClickListener(this);
-    }
-
-    private boolean getValidity() {
-        return !TextUtils.isEmpty(firstName) &&
-                !TextUtils.isEmpty(lastName) &&
-                !TextUtils.isEmpty(phoneNumber) &&
-                !TextUtils.isEmpty(emailAddress) &&
-                !TextUtils.isEmpty(gender) &&
-                !TextUtils.isEmpty(nationalID) &&
-                !TextUtils.isEmpty(schoolName) &&
-                !TextUtils.isEmpty(district) &&
-                !TextUtils.isEmpty(role);
     }
 
     @Override
@@ -130,12 +110,5 @@ public class EnrollActivity extends AppCompatActivity implements
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
                 .commitNow();
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.save) {
-            Toast.makeText(this, "Saving data", Toast.LENGTH_SHORT).show();
-        }
     }
 }
