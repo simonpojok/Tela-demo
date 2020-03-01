@@ -434,6 +434,7 @@ public class MainActivity extends AppCompatActivity {
                     "23/93/10029",
                     null
             );
+            teacherViewModel.enrollTeacher(teacher);
         }
     }
 }
