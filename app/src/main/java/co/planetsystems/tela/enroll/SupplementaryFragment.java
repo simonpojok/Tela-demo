@@ -84,7 +84,7 @@ implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.sup_previous) {
-            supplementaryListener.onPreviousClick(
+            supplementaryListener.onPreviousSupplementaryClick(
                     school.getText().toString(),
                     district.getText().toString(),
                     role.getText().toString()
@@ -93,6 +93,6 @@ implements View.OnClickListener {
     }
 
     public interface OnPreviousClickSupplementaryListener {
-        void onPreviousClick(String school, String district, String role);
+        void onPreviousSupplementaryClick(String school, String district, String role);
     }
 }

@@ -96,7 +96,7 @@ public class EnrollActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onPreviousClick(String school, String district, String role) {
+    public void onPreviousSupplementaryClick(String school, String district, String role) {
         this.schoolName = school;
         this.district = district;
         this.role = role;
