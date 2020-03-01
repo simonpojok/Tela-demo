@@ -96,4 +96,6 @@
     <string name="first">1</string>
     <string name="second">2</string>
     <string name="third">3</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>

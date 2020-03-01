@@ -2,28 +2,56 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
-        android:id="@+id/tr_firstName"
-        android:layout_marginTop="5dp"
+    <LinearLayout
+        android:layout_weight="9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_firstName"
-        android:inputType="text" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/tr_lastNames"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_lastNames"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/tr_firstName"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_firstName"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/tr_telephone"
-        android:layout_marginTop="5dp"
+        <EditText
+            android:id="@+id/tr_lastNames"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_lastNames"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/tr_telephone"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_tr_telephone"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="end"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_telephone"
-        android:inputType="phone" />
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/previous"
+            android:id="@+id/basic_previous"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:id="@+id/basic_next"/>
+    </LinearLayout>
 
 </LinearLayout>
