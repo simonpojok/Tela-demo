@@ -117,6 +117,7 @@ public class EnrollActivity extends AppCompatActivity {
             this.inflater = inflater;
         }
 
+        @NonNull
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View view = inflater.inflate(nLayouts[position], null);
@@ -135,7 +136,7 @@ public class EnrollActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object) {
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
     }
