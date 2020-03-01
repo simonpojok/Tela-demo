@@ -81,10 +81,10 @@ public class MainActivity extends AppCompatActivity {
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
                         if(iv != null) {
                             iv.setImageBitmap(capturedImage);
-                            verify.setEnabled(true);
-                            clockIn.setEnabled(true);
-                            clockOut.setEnabled(true);
-                            enroll.setEnabled(true);
+                            enableButton(verify);
+                            enableButton(enroll);
+                            enableButton(clockIn);
+                            enableButton(clockOut);
                         }
                     }
                 }
@@ -95,47 +95,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onCaptureError(Object contest, int errorCode, String error) {
             backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundError));
+            disableButton(verify);
+            disableButton(enroll);
+            disableButton(clockIn);
+            disableButton(clockOut);
             log("onCaptureError : " + error + " ErrorCode :" + errorCode);
             if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
                 printState(getResources().getText(R.string.capture_single_fail) + "("+error+")");
-        }
-    };
-
-    private CaptureResponder mCaptureResponsePrev = new CaptureResponder() {
-        @Override
-        public boolean onCaptureEx(final Object context, final Bitmap capturedImage,
-                                   final IBioMiniDevice.TemplateData capturedTemplate,
-                                   final IBioMiniDevice.FingerState fingerState) {
-
-            Log.d("CaptureResponsePrev", String.format(Locale.ENGLISH , "captureTemplate.size (%d) , fingerState(%s)" , capturedTemplate== null? 0 : capturedTemplate.data.length, String.valueOf(fingerState.isFingerExist)));
-            printState(getResources().getText(R.string.start_capture_ok));
-            byte[] pImage_raw =null;
-            if( (mCurrentDevice!= null && (pImage_raw = mCurrentDevice.getCaptureImageAsRAW_8() )!= null)) {
-                Log.d("CaptureResponsePrev ", String.format(Locale.ENGLISH, "pImage (%d) , FP Quality(%d)", pImage_raw.length , mCurrentDevice.getFPQuality(pImage_raw, mCurrentDevice.getImageWidth(), mCurrentDevice.getImageHeight(), 2)));
-            }
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundSuccess));
-                    if(capturedImage != null) {
-                        ((ImageView) findViewById(R.id.finger_image)).setImageBitmap(null);
-                        ImageView iv = (ImageView) findViewById(R.id.finger_image);
-                        if(iv != null) {
-                            iv.setImageBitmap(capturedImage);
-                        }
-                    }
-                }
-            });
-            return true;
-        }
-
-        @Override
-        public void onCaptureError(Object context, int errorCode, String error) {
-            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundError));
-            log("onCaptureError : " + error);
-            log(((IBioMiniDevice)context).popPerformanceLog());
-            if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
-                printState(getResources().getText(R.string.start_capture_fail));
         }
     };
 
@@ -232,11 +198,11 @@ public class MainActivity extends AppCompatActivity {
         capture = findViewById(R.id.capture);
 
         // disable very thing
-        enroll.setEnabled(false);
-        verify.setEnabled(false);
-        clockIn.setEnabled(false);
-        clockOut.setEnabled(false);
-        capture.setEnabled(false);
+        disableButton(enroll);
+        disableButton(verify);
+        disableButton(clockIn);
+        disableButton(clockOut);
+        disableButton(capture);
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
@@ -315,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
                     log("Fingerprint Scanner Changed : " + event);
                     log("----------------------------------------");
                     handleDevChange(event, dev);
+
                 }
             };
         }
@@ -335,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                         printState(getResources().getText(R.string.device_attached));
                         Log.d(TAG, "Hardware Attached : " + mCurrentDevice);
                         if (mCurrentDevice != null /*&& mCurrentDevice.getDeviceInfo() != null*/) {
-                            capture.setEnabled(true);
+                            enableButton(capture);
                             backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundConnected));
                             log(" DeviceName : " + mCurrentDevice.getDeviceInfo().deviceName);
                             log("         SN : " + mCurrentDevice.getDeviceInfo().deviceSN);
@@ -346,9 +313,11 @@ public class MainActivity extends AppCompatActivity {
             }).start();
         } else if (mCurrentDevice != null && event == IUsbEventHandler.DeviceChangeEvent.DEVICE_DETACHED && mCurrentDevice.isEqual(dev)) {
             backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorRed));
-            capture.setEnabled(false);
-            capture.setBackgroundColor(getResources().getColor(R.color.colorLight));
-            capture.setTextColor(getResources().getColor(R.color.white));
+            disableButton(capture);
+            disableButton(verify);
+            disableButton(enroll);
+            disableButton(clockOut);
+            disableButton(clockIn);
             printState(getResources().getText(R.string.device_detached));
             Log.d(TAG, "Fingerprint Scanner removed : " + mCurrentDevice);
             mCurrentDevice = null;
