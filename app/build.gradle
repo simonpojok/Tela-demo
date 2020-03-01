@@ -41,4 +41,6 @@ dependencies {
 
     androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+    implementation "com.mobsandgeeks:android-saripaar:2.0.3"
 }
