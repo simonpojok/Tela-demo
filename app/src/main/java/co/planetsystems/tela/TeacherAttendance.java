@@ -10,7 +10,7 @@ public class TeacherAttendance {
     @Embedded
     public Teacher teacher;
     @Relation(
-            parentColumn = "nationID",
+            parentColumn = "nationalID",
             entityColumn = "teacher_nin",
             entity = Attendance.class
     )

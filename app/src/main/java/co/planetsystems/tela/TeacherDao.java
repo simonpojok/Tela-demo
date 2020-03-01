@@ -27,7 +27,6 @@ public interface TeacherDao {
     @Update
     void updateTeacher(Teacher teacher);
 
-    @Transaction
-    @Query("SELECT * FROM teacher_table")
-    List<TeacherAttendance> getTeacherAttendances();
+//    @Query("SELECT * FROM teacher_table")
+//    LiveData<List<TeacherAttendance>> getTeacherAttendancies();
 }
