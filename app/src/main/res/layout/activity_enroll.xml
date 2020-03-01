@@ -8,99 +8,21 @@
     android:orientation="vertical"
     tools:context=".EnrollActivity">
 
-<!--    <LinearLayout-->
-<!--        android:layout_weight="2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:orientation="vertical">-->
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/action_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/action_enroll"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:id="@+id/action_title"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="8dp"-->
-<!--            android:text="@string/action_enroll"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_firstName"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_firstName"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_lastNames"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_lastNames"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_telephone"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_telephone"-->
-<!--            android:inputType="phone" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_email"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_email"-->
-<!--            android:inputType="textEmailAddress" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_gender"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_gender"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_nin"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_nin"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_school"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_school"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_district"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_district"-->
-<!--            android:inputType="text" />-->
-
-<!--        <EditText-->
-<!--            android:id="@+id/tr_role"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/hint_tr_role"-->
-<!--            android:inputType="text" />-->
-<!--    </LinearLayout>-->
 
     <androidx.viewpager.widget.ViewPager
         android:layout_weight="4"

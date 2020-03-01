@@ -2,28 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <EditText
-        android:id="@+id/tr_firstName"
+        android:id="@+id/tr_school"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_firstName"
+        android:hint="@string/hint_tr_school"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/tr_lastNames"
+        android:id="@+id/tr_district"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_lastNames"
+        android:hint="@string/hint_tr_district"
         android:inputType="text" />
 
     <EditText
-        android:id="@+id/tr_telephone"
+        android:id="@+id/tr_role"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_tr_telephone"
-        android:inputType="phone" />
+        android:hint="@string/hint_tr_role"
+        android:inputType="text" />
 
 </LinearLayout>
