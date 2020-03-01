@@ -55,6 +55,29 @@ public class EnrollActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enroll);
 
         mPager = findViewById(R.id.viewPager);
+        EnrollPagerAdapter enrollPagerAdapter = new EnrollPagerAdapter(getLayoutInflater());
+        mPager.setAdapter(enrollPagerAdapter);
+        mPager.setOffscreenPageLimit(5);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Toast.makeText(EnrollActivity.this, "onPageScrolled Page Number " + String.valueOf(position),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Toast.makeText(EnrollActivity.this, "onPageSelected Page Number " + String.valueOf(position),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                Toast.makeText(EnrollActivity.this, "onPageScrollStateChanged Page Number " + String.valueOf(state),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 //
 //        firstName = findViewById(R.id.tr_firstName);
 //        lastName = findViewById(R.id.tr_lastNames);
