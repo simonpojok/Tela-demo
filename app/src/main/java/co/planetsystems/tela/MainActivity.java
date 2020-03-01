@@ -239,10 +239,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if( !mbUsbExternalUSBManager ){
+        if(!mbUsbExternalUSBManager ){
             Button btn_checkDevice = (Button)findViewById(R.id.check_device);
             btn_checkDevice.setClickable(false);
             btn_checkDevice.setEnabled(false);
+            btn_checkDevice.setBackgroundColor(getResources().getColor(R.color.colorLight));
+            btn_checkDevice.setTextColor(getResources().getColor(R.color.white));
         }else{
             ((Button)findViewById(R.id.check_device)).setOnClickListener(new View.OnClickListener() {
                 @Override
