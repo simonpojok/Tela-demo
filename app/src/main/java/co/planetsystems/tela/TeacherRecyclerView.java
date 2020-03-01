@@ -30,6 +30,7 @@ public class TeacherRecyclerView extends RecyclerView.Adapter<TeacherRecyclerVie
         TextView lastName;
         TextView role;
         TextView district;
+        View itemHolder;
 
         public TeacherHolder(@NonNull View itemView) {
             super(itemView);
@@ -37,6 +38,25 @@ public class TeacherRecyclerView extends RecyclerView.Adapter<TeacherRecyclerVie
             lastName = itemView.findViewById(R.id.lastName);
             role = itemView.findViewById(R.id.role);
             district = itemView.findViewById(R.id.district);
+            this.itemHolder = itemView;
         }
+
+        public void bindTeacher(Teacher teacher, final OnTeacherClickListener listener) {
+            firstName.setText(teacher.getFirstName());
+            lastName.setText(teacher.getLastName());
+            role.setText(teacher.getRole());
+            district.setText(teacher.getDistrict());
+            itemHolder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onTeacherClick(teacher);
+                }
+            });
+
+        }
+    }
+
+    public interface OnTeacherClickListener {
+        void onTeacherClick(Teacher teacher);
     }
 }
