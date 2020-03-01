@@ -21,7 +21,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     private static final String FIRST_NAME = "co.planetsystems.tela.BasicFragment.FIRST_NAME";
     private static final String LAST_NAME = "co.planetsystems.tela.BasicFragment.LAST_NAME";
     private static final String PHONE_NUMBER = "co.planetsystems.tela.BasicFragment.PHONE_NUMBER";
-    OnNextClick onNextClick;
+    OnNextBasicClick onNextBasicClick;
     private EditText firstName;
     private EditText lastName;
     private EditText phoneNumber;
@@ -62,7 +62,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        onNextClick = (OnNextClick) context;
+        onNextBasicClick = (OnNextBasicClick) context;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.basic_next) {
-            onNextClick.clickNext(
+            onNextBasicClick.clickNextBasic(
                     firstName.getText().toString(),
                     lastName.getText().toString(),
                     phoneNumber.getText().toString()
@@ -93,8 +93,8 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    public interface OnNextClick {
-        public void clickNext(String firstName, String lastName, String phoneNumber);
+    public interface OnNextBasicClick {
+        public void clickNextBasic(String firstName, String lastName, String phoneNumber);
     }
 
 }

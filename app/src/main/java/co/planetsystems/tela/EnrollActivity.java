@@ -24,7 +24,7 @@ import co.planetsystems.tela.enroll.BasicFragment;
 import co.planetsystems.tela.enroll.PrimaryFragment;
 import co.planetsystems.tela.enroll.SupplementaryFragment;
 
-public class EnrollActivity extends AppCompatActivity implements BasicFragment.OnNextClick {
+public class EnrollActivity extends AppCompatActivity implements BasicFragment.OnNextBasicClick {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -69,7 +69,7 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
     }
 
     @Override
-    public void clickNext(String firstName, String lastName, String phoneNumber) {
+    public void clickNextBasic(String firstName, String lastName, String phoneNumber) {
         Toast.makeText(this, firstName, Toast.LENGTH_SHORT).show();
     }
 }
