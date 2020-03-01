@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.ViewPager;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clockOut;
     public IBioMiniDevice.TemplateData teacherCapturedTemplate;
     private Bitmap teacherImage;
-    private MainActivityViewModel mainActivityViewModel;
+    private TeacherViewModel teacherViewModel;
 
     private IBioMiniDevice.CaptureOption mCaptureOptionDefault = new IBioMiniDevice.CaptureOption();
     private CaptureResponder mCaptureResponseDefault = new CaptureResponder() {
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
         textDate = findViewById(R.id.date_view);
         textDate.setText(getCurrentDate());
 
-        mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        teacherViewModel = new ViewModelProvider(this).get(TeacherViewModel.class);
 
 
         findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {

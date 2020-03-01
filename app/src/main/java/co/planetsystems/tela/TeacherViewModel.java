@@ -8,13 +8,13 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class MainActivityViewModel extends AndroidViewModel {
+public class TeacherViewModel extends AndroidViewModel {
     private TeacherRespository respository;
     private LiveData<List<Teacher>> teachers;
     private LiveData<List<Attendance>> attendances;
 
 
-    public MainActivityViewModel(@NonNull Application application) {
+    public TeacherViewModel(@NonNull Application application) {
         super(application);
         respository = new TeacherRespository(application);
         teachers = respository.getTeachers();
