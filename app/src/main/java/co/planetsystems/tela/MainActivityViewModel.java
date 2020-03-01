@@ -16,5 +16,15 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
+        respository = new TeacherRespository(application);
+        teachers = respository.getTeachers();
+    }
+
+    void enrollTeacher(Teacher teacher) {
+        respository.enrollTeacher(teacher);
+    }
+
+    void addAttendance(Attendance attendance) {
+        respository.addAttendance(attendance);
     }
 }
