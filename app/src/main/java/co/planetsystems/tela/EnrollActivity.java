@@ -51,10 +51,6 @@ public class EnrollActivity extends AppCompatActivity implements
     private String district;
     private String role;
     private Button save;
-    private ViewPager mPager;
-    private Button third;
-    private Button second;
-    private Button first;
     private EnrollActivityViewModel viewModel;
 
     @Override
@@ -96,7 +92,6 @@ public class EnrollActivity extends AppCompatActivity implements
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        Toast.makeText(this, firstName, Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.enroll_fragment,
                 PrimaryFragment.newInstance(emailAddress, gender, nationalID)
@@ -108,7 +103,6 @@ public class EnrollActivity extends AppCompatActivity implements
         this.emailAddress = email;
         this.gender = gender;
         this.nationalID = nationId;
-        Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.enroll_fragment,
                 SupplementaryFragment.newInstance(schoolName, district, role)
