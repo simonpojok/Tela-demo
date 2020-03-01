@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -8,29 +11,66 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/sup_school"
-            android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_school"
-            android:inputType="text" />
+            android:id="@+id/sup_school_layout"
+            android:hint="@string/school_name"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your School Name ie Kijjabwemi Primary School"
+            app:counterEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="10"
+            app:startIconContentDescription="@string/school_ico"
+            app:startIconDrawable="@drawable/ic_school_black_24dp"
+            tools:ignore="HardcodedText">
 
-        <EditText
-            android:id="@+id/sup_district"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_district"
-            android:inputType="text" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/sup_school"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/sup_role"
-            android:layout_marginTop="5dp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_tr_role"
-            android:inputType="text" />
+            android:id="@+id/sup_district_layout"
+            android:hint="@string/district_name"
+            app:helperTextEnabled="true"
+            app:helperText="Enter your District of work ie Masaka"
+            app:counterEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="10"
+            app:startIconContentDescription="@string/district_icon"
+            app:startIconDrawable="@drawable/ic_location_on_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/sup_district"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sup_role_layout"
+            android:hint="@string/role"
+            app:helperTextEnabled="true"
+            app:helperText="Enter role under at this school ie HeadTeacher"
+            app:counterEnabled="true"
+            android:layout_marginTop="5dp"
+            app:counterMaxLength="10"
+            app:startIconContentDescription="@string/role_icon"
+            app:startIconDrawable="@drawable/ic_work_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:id="@+id/sup_role"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 

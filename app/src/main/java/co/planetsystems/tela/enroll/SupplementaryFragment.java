@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import co.planetsystems.tela.R;
 
 public class SupplementaryFragment extends Fragment
@@ -20,9 +22,9 @@ implements View.OnClickListener {
     private static final String DISTRICT = "co.planetsystems.tela.enroll.SupplementaryFragment.DISTRICT";
     private static final String ROLE = "co.planetsystems.tela.enroll.SupplementaryFragment.ROLE";
 
-    private EditText school;
-    private EditText district;
-    private EditText role;
+    private TextInputEditText school;
+    private TextInputEditText district;
+    private TextInputEditText role;
     private Button previous;
     private OnPreviousClickSupplementaryListener supplementaryListener;
 
