@@ -16,7 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
-        android:textSize="60sp"
+        android:textSize="40sp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,6 +126,7 @@
 
         <Button
             android:id="@+id/check_device"
+            style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -133,6 +134,7 @@
 
         <Button
             android:id="@+id/enroll"
+            style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -140,6 +142,7 @@
 
         <Button
             android:id="@+id/verify"
+            style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -158,12 +161,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/AppTheme.Button"
             android:text="@string/clock_in" />
 
         <Button
             android:id="@+id/capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/AppTheme.Button"
             android:layout_weight="1"
             android:text="@string/capture" />
 
@@ -172,6 +177,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/AppTheme.Button"
             android:text="@string/clock_out" />
     </LinearLayout>
 
