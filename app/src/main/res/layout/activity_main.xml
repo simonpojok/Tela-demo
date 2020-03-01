@@ -128,12 +128,12 @@
         tools:layout_editor_absoluteX="8dp">
 
         <Button
-            android:id="@+id/check_device"
+            android:id="@+id/list_teachers"
             style="@style/AppTheme.Button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/check_device" />
+            android:text="@string/list_teachers" />
 
         <Button
             android:id="@+id/enroll"
