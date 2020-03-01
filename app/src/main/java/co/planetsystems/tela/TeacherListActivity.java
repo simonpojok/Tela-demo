@@ -29,6 +29,7 @@ public class TeacherListActivity extends AppCompatActivity  implements TeacherAd
         teacherViewModel.getTeachers().observe(this, new Observer<List<Teacher>>() {
             @Override
             public void onChanged(List<Teacher> teachers) {
+                Toast.makeText(TeacherListActivity.this, String.valueOf(teachers.size()), Toast.LENGTH_SHORT).show();
                 teacherAdapter.setTeachers(teachers);
             }
         });
