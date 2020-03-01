@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/tr_email"
+            android:id="@+id/primary_email"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             android:inputType="textEmailAddress" />
 
         <EditText
-            android:id="@+id/tr_gender"
+            android:id="@+id/primary_gender"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/tr_nin"
+            android:id="@+id/primary_nin"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

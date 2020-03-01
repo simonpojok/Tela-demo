@@ -24,7 +24,9 @@ import co.planetsystems.tela.enroll.BasicFragment;
 import co.planetsystems.tela.enroll.PrimaryFragment;
 import co.planetsystems.tela.enroll.SupplementaryFragment;
 
-public class EnrollActivity extends AppCompatActivity implements BasicFragment.OnNextBasicClick {
+public class EnrollActivity extends AppCompatActivity implements
+        BasicFragment.OnNextBasicClick,
+        PrimaryFragment.OnNextPrimaryClickListener{
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -76,7 +78,15 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
         Toast.makeText(this, firstName, Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.enroll_fragment,
-                PrimaryFragment.newInstance()
+                PrimaryFragment.newInstance(emailAddress, gender, nationalID)
         );
+    }
+
+    @Override
+    public void onNextPrimaryClick(String email, String gender, String nationId) {
+        this.emailAddress = email;
+        this.gender = gender;
+        this.nationalID = nationalID;
+        Toast.makeText(this, email, Toast.LENGTH_SHORT).show();
     }
 }
