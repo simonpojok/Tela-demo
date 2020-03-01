@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +23,8 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
     private EditText nationalId;
     private Button nextButton;
     private Button previousButton;
-    private OnNextPrimaryClickListener clickListener;
+    private OnNextPrimaryClickListener clickNextListener;
+    private OnPreviousPrimaryClickListener clickPreviousListener;
     public PrimaryFragment() {
         // Required empty public constructor
     }
@@ -57,6 +57,7 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
         gender = view.findViewById(R.id.primary_gender);
         nationalId = view.findViewById(R.id.primary_nin);
         nextButton = view.findViewById(R.id.primary_next);
+        previousButton = view.findViewById(R.id.primary_previous);
 
         if (getArguments() != null) {
             email.setText(getArguments().getString(EMAIL_ADDRESS));
@@ -65,13 +66,15 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
         }
 
         nextButton.setOnClickListener(this);
+        previousButton.setOnClickListener(this);
 
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        clickListener = (OnNextPrimaryClickListener) context;
+        clickNextListener = (OnNextPrimaryClickListener) context;
+        clickPreviousListener = (OnPreviousPrimaryClickListener) context;
     }
 
     @Override
@@ -82,7 +85,15 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.primary_next) {
-            clickListener.onNextPrimaryClick(
+            clickNextListener.onNextPrimaryClick(
+                    email.getText().toString(),
+                    gender.getText().toString(),
+                    nationalId.getText().toString()
+            );
+        }
+
+        if (v.getId() == R.id.sup_previous) {
+            clickPreviousListener.onPreviousPrimaryClick(
                     email.getText().toString(),
                     gender.getText().toString(),
                     nationalId.getText().toString()
@@ -92,5 +103,9 @@ public class PrimaryFragment extends Fragment implements View.OnClickListener{
 
     public interface OnNextPrimaryClickListener {
         void onNextPrimaryClick(String email, String gender, String nationId);
+    }
+
+    public interface  OnPreviousPrimaryClickListener {
+        void onPreviousPrimaryClick(String email, String gender, String nationId);
     }
 }

@@ -68,7 +68,6 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
         lastName = view.findViewById(R.id.basic_lastName);
         phoneNumber = view.findViewById(R.id.basic_telephone);
         buttonNext = view.findViewById(R.id.basic_next);
-        buttonPrevious = view.findViewById(R.id.basic_previous);
 
         buttonNext.setOnClickListener(this);
         if (getArguments() != null) {
