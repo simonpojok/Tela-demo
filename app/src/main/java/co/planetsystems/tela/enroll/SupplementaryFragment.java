@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import co.planetsystems.tela.R;
@@ -19,13 +22,20 @@ public class SupplementaryFragment extends Fragment {
     private EditText school;
     private EditText district;
     private EditText role;
+    private Button previous;
 
     public SupplementaryFragment() {
         // Required empty public constructor
     }
 
-    public static BasicFragment newInstance() {
-        return new BasicFragment();
+    public static SupplementaryFragment newInstance(String schoolName, String district, String role) {
+        SupplementaryFragment fragment = new SupplementaryFragment();
+        Bundle args = new Bundle();
+        args.putString(SCHOOL_NAME, schoolName);
+        args.putString(DISTRICT, district);
+        args.putString(ROLE, role);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -47,5 +57,17 @@ public class SupplementaryFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        school = view.findViewById(R.id.sup_school);
+        district = view.findViewById(R.id.sup_district);
+        role = view.findViewById(R.id.sup_role);
+        previous = view.findViewById(R.id.sup_previous);
+
+
+
     }
 }

@@ -4,13 +4,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_weight="9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/tr_school"
+            android:id="@+id/sup_school"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +17,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/tr_district"
+            android:id="@+id/sup_district"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +25,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/tr_role"
+            android:id="@+id/sup_role"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/previous"
-            android:id="@+id/basic_previous"/>
+            android:id="@+id/sup_previous"/>
     </LinearLayout>
 
 </LinearLayout>
