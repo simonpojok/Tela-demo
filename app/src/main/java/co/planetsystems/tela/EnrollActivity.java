@@ -28,7 +28,8 @@ public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
         PrimaryFragment.OnNextPrimaryClickListener,
         SupplementaryFragment.OnPreviousClickSupplementaryListener,
-        PrimaryFragment.OnPreviousPrimaryClickListener {
+        PrimaryFragment.OnPreviousPrimaryClickListener,
+        View.OnClickListener {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -74,6 +75,8 @@ public class EnrollActivity extends AppCompatActivity implements
         if (!getValidity()) {
             save.setEnabled(false);
         }
+
+        save.setOnClickListener(this);
     }
 
     private boolean getValidity() {
@@ -124,5 +127,12 @@ public class EnrollActivity extends AppCompatActivity implements
         this.emailAddress = email;
         this.gender = gender;
         this.nationalID = nationId;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.save) {
+            Toast.makeText(this, "Saving data", Toast.LENGTH_SHORT).show();
+        }
     }
 }
