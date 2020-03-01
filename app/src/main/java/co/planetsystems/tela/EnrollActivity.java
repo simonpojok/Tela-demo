@@ -36,9 +36,9 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
     public static final String SCHOOL_NAME = "co.planetsystems.tela.SCHOOL_NAME";
     public static final String DISTRICT = "co.planetsystems.tela.DISTRICT";
     public static final String ROLE = "co.planetsystems.tela.ROLE";
-    private EditText firstName;
-    private EditText lastName;
-    private EditText phoneNumber;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
     private EditText emailAddress;
     private EditText gender;
     private EditText nationalID;
@@ -70,6 +70,9 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
 
     @Override
     public void clickNextBasic(String firstName, String lastName, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
         Toast.makeText(this, firstName, Toast.LENGTH_SHORT).show();
     }
 }

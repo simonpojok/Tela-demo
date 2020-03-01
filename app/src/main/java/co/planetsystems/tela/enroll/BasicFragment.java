@@ -48,8 +48,9 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
+            firstName.setText(getArguments().getString(FIRST_NAME));
+            lastName.setText(getArguments().getString(LAST_NAME));
+            phoneNumber.setText(getArguments().getString(PHONE_NUMBER));
         }
     }
 
@@ -94,7 +95,7 @@ public class BasicFragment extends Fragment implements View.OnClickListener{
     }
 
     public interface OnNextBasicClick {
-        public void clickNextBasic(String firstName, String lastName, String phoneNumber);
+        void clickNextBasic(String firstName, String lastName, String phoneNumber);
     }
 
 }
