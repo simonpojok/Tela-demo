@@ -12,12 +12,21 @@ import androidx.fragment.app.Fragment;
 import co.planetsystems.tela.R;
 
 public class PrimaryFragment extends Fragment {
+    private static final String EMAIL_ADDRESS = "co.planetsystems.tela.enroll.PrimaryFragment.EMAIL_ADDRESS";
+    private static final String GENDER = "co.planetsystems.tela.enroll.PrimaryFragment.GENDER";
+    private static final String NATIONAL_ID = "co.planetsystems.tela.enroll.PrimaryFragment.NATIONAL_ID";
     public PrimaryFragment() {
         // Required empty public constructor
     }
 
-    public static BasicFragment newInstance() {
-        return new BasicFragment();
+    public static PrimaryFragment newInstance(String email, String gender, String nationalId) {
+        PrimaryFragment fragment = new PrimaryFragment();
+        Bundle args = new Bundle();
+        args.putString(EMAIL_ADDRESS, email);
+        args.putString(GENDER, gender);
+        args.putString(NATIONAL_ID, nationalId);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override

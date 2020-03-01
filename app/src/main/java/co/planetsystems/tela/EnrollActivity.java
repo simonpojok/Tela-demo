@@ -39,12 +39,12 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private EditText emailAddress;
-    private EditText gender;
-    private EditText nationalID;
-    private EditText schoolName;
-    private EditText district;
-    private EditText role;
+    private String emailAddress;
+    private String gender;
+    private String nationalID;
+    private String schoolName;
+    private String district;
+    private String role;
     private Button save;
     private ViewPager mPager;
     private Button third;
@@ -74,5 +74,9 @@ public class EnrollActivity extends AppCompatActivity implements BasicFragment.O
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         Toast.makeText(this, firstName, Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.enroll_fragment,
+                PrimaryFragment.newInstance()
+        );
     }
 }
