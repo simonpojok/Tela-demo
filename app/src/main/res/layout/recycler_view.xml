@@ -47,10 +47,10 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/school"
+                android:id="@+id/role"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Kijjabwemi Secondary School"
+                android:text="HeadMaster"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
             <LinearLayout
