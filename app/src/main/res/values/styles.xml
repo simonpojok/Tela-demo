@@ -9,6 +9,10 @@
     </style>
 
     <style name="AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -22,5 +26,4 @@
         <item name="android:textColor">@color/colorLight</item>
         <item name="android:layout_margin">2dp</item>
     </style>
-
 </resources>
