@@ -79,7 +79,7 @@ public class EnrollActivity extends AppCompatActivity implements
         getSupportFragmentManager().beginTransaction().replace(
                 R.id.enroll_fragment,
                 PrimaryFragment.newInstance(emailAddress, gender, nationalID)
-        );
+        ).commitNow();
     }
 
     @Override
