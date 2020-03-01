@@ -42,12 +42,13 @@ public class Teacher {
     @ColumnInfo(name = "fingerPrint")
     private byte[] fingerPrint;
 
-    @NonNull
-    public String getNationID() {
-        return nationID;
-    }
+    @ColumnInfo(name = "enrolled")
+    private String enrolled;
 
-    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, byte[] thumbImage, byte[] fingerPrint) {
+    @ColumnInfo(name = "updated")
+    private String updated;
+
+    public Teacher(@NonNull String nationID, String firstName, String lastName, String telephone, String email, String gender, String school, String district, String role, byte[] thumbImage, byte[] fingerPrint, String enrolled, String updated) {
         this.nationID = nationID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -59,6 +60,29 @@ public class Teacher {
         this.role = role;
         this.thumbImage = thumbImage;
         this.fingerPrint = fingerPrint;
+        this.enrolled = enrolled;
+        this.updated = updated;
+    }
+
+    @NonNull
+    public String getNationID() {
+        return nationID;
+    }
+
+    public String getEnrolled() {
+        return enrolled;
+    }
+
+    public void setEnrolled(String enrolled) {
+        this.enrolled = enrolled;
+    }
+
+    public String getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(String updated) {
+        this.updated = updated;
     }
 
     public void setNationID(@NonNull String nationID) {
