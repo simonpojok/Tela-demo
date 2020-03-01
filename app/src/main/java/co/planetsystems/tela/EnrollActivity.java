@@ -26,7 +26,8 @@ import co.planetsystems.tela.enroll.SupplementaryFragment;
 
 public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
-        PrimaryFragment.OnNextPrimaryClickListener{
+        PrimaryFragment.OnNextPrimaryClickListener,
+        SupplementaryFragment.OnPreviousClickSupplementaryListener{
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -92,5 +93,12 @@ public class EnrollActivity extends AppCompatActivity implements
                 R.id.enroll_fragment,
                 SupplementaryFragment.newInstance(schoolName, district, role)
         ).commitNow();
+    }
+
+    @Override
+    public void onPreviousClick(String school, String district, String role) {
+        this.schoolName = school;
+        this.district = district;
+        this.role = role;
     }
 }
