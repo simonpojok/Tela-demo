@@ -77,7 +77,15 @@ public class EnrollActivity extends AppCompatActivity implements
     }
 
     private boolean getValidity() {
-
+        return !TextUtils.isEmpty(firstName) &&
+                !TextUtils.isEmpty(lastName) &&
+                !TextUtils.isEmpty(phoneNumber) &&
+                !TextUtils.isEmpty(emailAddress) &&
+                !TextUtils.isEmpty(gender) &&
+                !TextUtils.isEmpty(nationalID) &&
+                !TextUtils.isEmpty(schoolName) &&
+                !TextUtils.isEmpty(district) &&
+                !TextUtils.isEmpty(role);
     }
 
     @Override
