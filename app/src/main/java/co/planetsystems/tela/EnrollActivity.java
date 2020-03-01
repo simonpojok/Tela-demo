@@ -70,6 +70,14 @@ public class EnrollActivity extends AppCompatActivity implements
                     .add(R.id.enroll_fragment, BasicFragment.newInstance("Simon", "Ojok", "0775415"))
                     .commit();
         }
+
+        if (!getValidity()) {
+            save.setEnabled(false);
+        }
+    }
+
+    private boolean getValidity() {
+
     }
 
     @Override

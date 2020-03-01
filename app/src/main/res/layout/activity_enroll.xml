@@ -37,10 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:background="@color/colorPrimary"
         android:text="@string/save"
-        android:textAllCaps="false"
-        android:visibility="gone"
-        android:textColor="@color/colorLight" />
+        android:textAllCaps="false" />
 
 </LinearLayout>
