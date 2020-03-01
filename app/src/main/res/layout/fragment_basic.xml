@@ -9,7 +9,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/tr_firstName"
+            android:id="@+id/basic_firstName"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/tr_lastNames"
+            android:id="@+id/basic_lastName"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/tr_telephone"
+            android:id="@+id/basic_telephone"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -4,19 +4,29 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import co.planetsystems.tela.R;
 
 
-public class BasicFragment extends Fragment {
+public class BasicFragment extends Fragment implements View.OnClickListener{
     private static final String FIRST_NAME = "co.planetsystems.tela.BasicFragment.FIRST_NAME";
     private static final String LAST_NAME = "co.planetsystems.tela.BasicFragment.LAST_NAME";
     private static final String PHONE_NUMBER = "co.planetsystems.tela.BasicFragment.PHONE_NUMBER";
+    OnNextClick onNextClick;
+    private EditText firstName;
+    private EditText lastName;
+    private EditText phoneNumber;
+    private Button buttonNext;
+    private Button buttonPrevious;
 
 
 
@@ -52,11 +62,35 @@ public class BasicFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        onNextClick = (OnNextClick) context;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        firstName = view.findViewById(R.id.basic_firstName);
+        lastName = view.findViewById(R.id.basic_lastName);
+        phoneNumber = view.findViewById(R.id.basic_telephone);
+        buttonNext = view.findViewById(R.id.basic_next);
+        buttonPrevious = view.findViewById(R.id.basic_previous);
+
+        buttonNext.setOnClickListener(this);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.basic_next) {
+            onNextClick.clickNext(
+                    firstName.getText().toString(),
+                    lastName.getText().toString(),
+                    phoneNumber.getText().toString()
+            );
+        }
     }
 
     public interface OnNextClick {
