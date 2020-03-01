@@ -260,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                intent.setAction(EnrollActivity.ACTION_ENROLL);
                 startActivity(intent);
             }
         });
@@ -268,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                intent.setAction(EnrollActivity.ACTION_VERIFY);
                 startActivity(intent);
             }
         });

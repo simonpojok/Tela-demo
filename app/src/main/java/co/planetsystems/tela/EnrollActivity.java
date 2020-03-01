@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ public class EnrollActivity extends AppCompatActivity {
     private EditText schoolName;
     private EditText district;
     private EditText role;
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,10 @@ public class EnrollActivity extends AppCompatActivity {
         nationalID = findViewById(R.id.tr_nin);
         district = findViewById(R.id.tr_district);
         role = findViewById(R.id.tr_role);
+        saveButton = findViewById(R.id.button_save);
 
         if (Objects.equals(getIntent().getAction(), ACTION_ENROLL)) {
-            // add new teacher
+            enrollTeacher();
         } else {
             Intent intent = getIntent();
             ((TextView)findViewById(R.id.action_title)).setText("Verify Teacher");
@@ -70,6 +74,16 @@ public class EnrollActivity extends AppCompatActivity {
             schoolName.setEnabled(false);
             district.setEnabled(false);
             role.setEnabled(false);
+            saveButton.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void enrollTeacher() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
