@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import co.planetsystems.tela.enroll.BasicFragment;
+import co.planetsystems.tela.enroll.PrimaryFragment;
 
 public class EnrollActivity extends AppCompatActivity {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
@@ -110,11 +111,11 @@ public class EnrollActivity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) != null) {
+//                if (getSupportFragmentManager().findFragmentById(R.id.enroll_fragment) != null) {
                     getSupportFragmentManager().beginTransaction().replace(
-                            R.id.enroll_fragment, null
-                    );
-                }
+                            R.id.enroll_fragment, new PrimaryFragment()
+                    ).commitNow();
+//                }
             }
         });
     }
