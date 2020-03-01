@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Objects;
 
@@ -49,6 +50,7 @@ public class EnrollActivity extends AppCompatActivity {
             // add new teacher
         } else {
             Intent intent = getIntent();
+            ((TextView)findViewById(R.id.action_title)).setText("Verify Teacher");
             firstName.setText(intent.getStringExtra(FIRST_NAME));
             lastName.setText(intent.getStringExtra(LAST_NAME));
             phoneNumber.setText(intent.getStringExtra(PHONE_NUMBER));
@@ -58,8 +60,6 @@ public class EnrollActivity extends AppCompatActivity {
             schoolName.setText(intent.getStringExtra(SCHOOL_NAME));
             district.setText(intent.getStringExtra(DISTRICT));
             role.setText(intent.getStringExtra(ROLE));
-
-
 
             firstName.setEnabled(false);
             lastName.setEnabled(false);
