@@ -28,7 +28,7 @@ public class EnrollActivity extends AppCompatActivity implements
         BasicFragment.OnNextBasicClick,
         PrimaryFragment.OnNextPrimaryClickListener,
         SupplementaryFragment.OnPreviousClickSupplementaryListener,
-        PrimaryFragment.OnPreviousPrimaryClickListener, {
+        PrimaryFragment.OnPreviousPrimaryClickListener {
     public static final String ACTION_ENROLL = "co.planetsystems.tela.ACTION_ENROLL";
     public static final String ACTION_VERIFY = "co.planetsystems.tela.ACTION_VERIFY";
     public static final String FIRST_NAME = "co.planetsystems.tela.FIRST_NAME";
@@ -64,7 +64,6 @@ public class EnrollActivity extends AppCompatActivity implements
                     .commit();
         }
 
-        save.setOnClickListener(this);
     }
 
     @Override
