@@ -139,4 +139,6 @@ public class EnrollActivity extends AppCompatActivity {
             return view == object;
         }
     }
+
+    // fragment
 }
