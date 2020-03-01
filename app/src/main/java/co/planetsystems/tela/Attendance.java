@@ -1,5 +1,6 @@
 package co.planetsystems.tela;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,6 +10,10 @@ public class Attendance {
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = true)
     private long id;
+
+    @NonNull
+    @ColumnInfo(name = "teacher_nin")
+    private String teacherNIN;
 
     @ColumnInfo(name = "date")
     private String date;
@@ -31,7 +36,8 @@ public class Attendance {
     @ColumnInfo(name = "out_bitmap")
     private byte[] outBitmap;
 
-    public Attendance(String date, String clockIn, byte[] inPrints, byte[] inBitmap, String clockOut, byte[] outPrints, byte[] outBitmap) {
+    public Attendance(@NonNull String teacherNIN, String date, String clockIn, byte[] inPrints, byte[] inBitmap, String clockOut, byte[] outPrints, byte[] outBitmap) {
+        this.teacherNIN = teacherNIN;
         this.date = date;
         this.clockIn = clockIn;
         this.inPrints = inPrints;
@@ -103,5 +109,13 @@ public class Attendance {
 
     public void setOutBitmap(byte[] outBitmap) {
         this.outBitmap = outBitmap;
+    }
+
+    public String getTeacherNIN() {
+        return teacherNIN;
+    }
+
+    public void setTeacherNIN(String teacherNIN) {
+        this.teacherNIN = teacherNIN;
     }
 }
