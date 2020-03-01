@@ -74,7 +74,7 @@
 
     <string name="device_attached">Device Connected</string>
     <string name="device_detached">Device Disconnected</string>
-    <string name="device_not_ready">Fingerprint Scanner Missing</string>
+    <string name="device_not_ready">Device Missing</string>
     <string name="action_enroll">Enroll Teacher</string>
     <string name="hint_tr_firstName">First Name</string>
     <string name="hint_tr_lastNames">Last Name</string>

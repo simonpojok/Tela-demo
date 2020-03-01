@@ -81,6 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/status_view"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
         app:layout_constraintBottom_toTopOf="@+id/scrollLog"
         app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +90,7 @@
         android:layout_margin="20dp"
         android:gravity="center"
         android:text="@string/device_not_ready"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textColor="@color/colorRed"/>
 
     <ScrollView
