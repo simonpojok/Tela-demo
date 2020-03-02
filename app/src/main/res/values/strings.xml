@@ -118,4 +118,5 @@
     <string name="clock_in">Clock In</string>
     <string name="enrolled_on">Enrolled On</string>
     <string name="school">School</string>
+    <string name="OK">confirm_sigin</string>
 </resources>
