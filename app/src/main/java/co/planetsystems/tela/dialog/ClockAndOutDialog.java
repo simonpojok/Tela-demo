@@ -7,11 +7,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+
+import org.w3c.dom.Text;
 
 import co.planetsystems.tela.R;
 
@@ -36,9 +39,7 @@ public class ClockAndOutDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        LayoutInflater inflater = requireActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.clock_in_and_out, null))
-                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // we are safe
@@ -63,17 +64,16 @@ public class ClockAndOutDialog extends DialogFragment {
         }
     }
 
+    @Nullable
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        teacherName = view.findViewById(R.id.dialog_teacher_name);
-        action = view.findViewById(R.id.dialog_action);
-        time = view.findViewById(R.id.dialog_clock);
-        if (getArguments() != null) {
-            teacherName.setText(getArguments().getString(DIALOG_TEACHER_NAME));
-            action.setText(DIALOG_ACTION);
-            time.setText(DIALOG_TIME);
-        }
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.clock_in_and_out, container, false);
+        TextView fullName = v.findViewById(R.id.dialog_teacher_name);
+        fullName.setText(getArguments().getString(DIALOG_TEACHER_NAME));
+        TextView action = v.findViewById(R.id.dialog_action);
+        action.setText(DIALOG_ACTION);
+        TextView time = v.findViewById(R.id.dialog_clock);
+        time.setText(DIALOG_TIME);
+        return v;
     }
 }

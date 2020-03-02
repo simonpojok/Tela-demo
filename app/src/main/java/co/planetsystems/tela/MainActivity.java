@@ -30,6 +30,7 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.suprema.BioMiniFactory;
 import com.suprema.CaptureResponder;
 import com.suprema.IBioMiniDevice;
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
         disableButton(enroll);
         disableButton(verify);
         disableButton(clockIn);
-        disableButton(clockOut);
+//        disableButton(clockOut);
         disableButton(capture);
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
@@ -325,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
 
         restartBioMini();
 
-        printRev(""+mBioMiniFactory.getSDKInfo());
+//        printRev(""+mBioMiniFactory.getSDKInfo());
 
     }
 
@@ -333,22 +334,23 @@ public class MainActivity extends AppCompatActivity {
         teacherViewModel.getTeachers().observe(this, new Observer<List<Teacher>>() {
             @Override
             public void onChanged(List<Teacher> teachers) {
-                for (int i = 0; i <= teachers.size(); i++) {
+                for (int i = 0; i < teachers.size(); i++) {
                     Teacher teacher = teachers.get(i);
                     if (mCurrentDevice != null) {
                         if (mCurrentDevice.verify(teacherCapturedTemplate.data, teacher.getFingerPrint())) {
-                            Toast.makeText(MainActivity.this, "Teacher found", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(
+                                    findViewById(android.R.id.content),
+                                    "Clocked In " + teacher.getFirstName() + " " + getCurrentTime(),
+                                    Snackbar.LENGTH_LONG).show();
+                        }
+                        if ( i == teachers.size()) {
+                            Toast.makeText(MainActivity.this, "Teacher NOT found Enroll", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                 }
             }
         });
-//        teacherViewModel.addAttendance();
-        ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
-                "Simon Peter",
-                "Clock IN",
-                "08: 30 am");
-        dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
     }
 
     void restartBioMini() {
