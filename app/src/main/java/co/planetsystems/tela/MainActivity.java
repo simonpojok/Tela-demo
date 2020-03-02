@@ -82,24 +82,17 @@ public class MainActivity extends AppCompatActivity {
         public boolean onCaptureEx(final Object context, final Bitmap capturedImage,
                                    final IBioMiniDevice.TemplateData capturedTemplate,
                                    final IBioMiniDevice.FingerState fingerState) {
-            log("Capture Fingerprint : Capture successful!");
-            fingerBytes = capturedTemplate.data;
-            teacherImage = capturedImage;
+            log("onCapture : Capture successful!");
             printState(getResources().getText(R.string.capture_single_ok));
 
             log(((IBioMiniDevice) context).popPerformanceLog());
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundSuccess));
                     if(capturedImage != null) {
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
                         if(iv != null) {
                             iv.setImageBitmap(capturedImage);
-                            enableButton(verify);
-                            enableButton(enroll);
-                            enableButton(clockIn);
-                            enableButton(clockOut);
                         }
                     }
                 }
@@ -109,22 +102,50 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onCaptureError(Object contest, int errorCode, String error) {
-            backgroundCard.setCardBackgroundColor(getResources().getColor(R.color.colorBackgroundError));
-            disableButton(verify);
-            disableButton(enroll);
-            disableButton(clockIn);
-            disableButton(clockOut);
             log("onCaptureError : " + error + " ErrorCode :" + errorCode);
             if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
                 printState(getResources().getText(R.string.capture_single_fail) + "("+error+")");
         }
     };
+    private CaptureResponder mCaptureResponsePrev = new CaptureResponder() {
+        @Override
+        public boolean onCaptureEx(final Object context, final Bitmap capturedImage,
+                                   final IBioMiniDevice.TemplateData capturedTemplate,
+                                   final IBioMiniDevice.FingerState fingerState) {
 
+            Log.d("CaptureResponsePrev", String.format(Locale.ENGLISH , "captureTemplate.size (%d) , fingerState(%s)" , capturedTemplate== null? 0 : capturedTemplate.data.length, String.valueOf(fingerState.isFingerExist)));
+            printState(getResources().getText(R.string.start_capture_ok));
+            byte[] pImage_raw =null;
+            if( (mCurrentDevice!= null && (pImage_raw = mCurrentDevice.getCaptureImageAsRAW_8() )!= null)) {
+                Log.d("CaptureResponsePrev ", String.format(Locale.ENGLISH, "pImage (%d) , FP Quality(%d)", pImage_raw.length , mCurrentDevice.getFPQuality(pImage_raw, mCurrentDevice.getImageWidth(), mCurrentDevice.getImageHeight(), 2)));
+            }
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(capturedImage != null) {
+                        ImageView iv = (ImageView) findViewById(R.id.finger_image);
+                        if(iv != null) {
+                            iv.setImageBitmap(capturedImage);
+                        }
+                    }
+                }
+            });
+            return true;
+        }
+
+        @Override
+        public void onCaptureError(Object context, int errorCode, String error) {
+            log("onCaptureError : " + error);
+            log(((IBioMiniDevice)context).popPerformanceLog());
+            if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
+                printState(getResources().getText(R.string.start_capture_fail));
+        }
+    };
     synchronized public void printState(final CharSequence str){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mStatusView.setText(str);
+                ((TextView)findViewById(R.id.status_view)).setText(str);
             }
         });
 
@@ -157,13 +178,15 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_LONG).show();
 //                ((TextView) findViewById(R.id.revText)).setText(msg);
             }
         });
     }
 
+
     private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver(){
-        public void onReceive(Context context, Intent intent){
+        public void onReceive(Context context,Intent intent){
             String action = intent.getAction();
             if(ACTION_USB_PERMISSION.equals(action)){
                 synchronized(this){
@@ -176,16 +199,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     else{
-                        Log.d(TAG, "Permission Denied"+ device);
+                        Log.d(TAG, "permission denied for device"+ device);
                     }
                 }
             }
         }
     };
-
     public void checkDevice(){
         if(mUsbManager == null) return;
-        log("Check Fingerprint Scanner");
+        log("checkDevice");
         HashMap<String , UsbDevice> deviceList = mUsbManager.getDeviceList();
         Iterator<UsbDevice> deviceIter = deviceList.values().iterator();
         while(deviceIter.hasNext()){
@@ -233,11 +255,11 @@ public class MainActivity extends AppCompatActivity {
         enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((fingerBytes != null)) {
+                if ((teacherCapturedTemplate != null)) {
                     Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
                     intent.setAction(EnrollActivity.ACTION_ENROLL);
                     intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
-                    intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, fingerBytes);
+                    intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, teacherCapturedTemplate.data);
                     startActivityForResult(intent, ENROLL_TEACHTER);
                 } else {
                     Toast.makeText(MainActivity.this, "Please Capture your fingerprint", Toast.LENGTH_SHORT).show();
@@ -289,10 +311,70 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        findViewById(R.id.buttonStartCapturing).setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                if(mCurrentDevice != null) {
+//                    BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
+//                        @Override
+//                        public void onDeviceChange(DeviceChangeEvent event, Object dev) {
+//
+//                        }
+//                    };
+//                    IBioMiniDevice mCurrentDeivce = null;
+//                    // Make BioMiniFactory instance, and get device handler(IBioMiniDevice).
+//                    //mCaptureOptionDefault.captureTemplate =true;
+//                    mCaptureOptionDefault.captureImage=true;
+//                    //mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.ELOW;
+//                    mCurrentDevice.startCapturing(
+//                            mCaptureOptionDefault,
+//                            mCaptureResponsePrev);
+//                }
+//            }
+//        });
+
+//        findViewById(R.id.buttonAbortCapturing).setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                if(mCurrentDevice != null) {
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            mCurrentDevice.abortCapturing();
+//                            int nRetryCount =0;
+//                            while(mCurrentDevice != null && mCurrentDevice.isCapturing()){
+//                                SystemClock.sleep(10);
+//                                nRetryCount++;
+//                            }
+//                            Log.d("AbortCapturing" , String.format(Locale.ENGLISH ,
+//                                    "IsCapturing return false.(Abort-lead time: %dms) " ,
+//                                    nRetryCount* 10));
+//                        }
+//                    }).start();
+//                }
+//            }
+//        });
+
+        if(mBioMiniFactory != null) {
+            mBioMiniFactory.close();
+        }
+
+//        if( !mbUsbExternalUSBManager ){
+//            Button btn_checkDevice = (Button)findViewById(R.id.buttonCheckDevice);
+//            btn_checkDevice.setClickable(false);
+//            btn_checkDevice.setEnabled(false);
+//        }else{
+//            ((Button)findViewById(R.id.buttonCheckDevice)).setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    checkDevice();
+//                }
+//            });
+//        }
+
         restartBioMini();
 
         printRev(""+mBioMiniFactory.getSDKInfo());
-
 
     }
 
