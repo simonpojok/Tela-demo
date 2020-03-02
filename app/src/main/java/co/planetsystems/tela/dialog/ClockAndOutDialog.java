@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,21 @@ import co.planetsystems.tela.R;
 
 public class ClockAndOutDialog extends DialogFragment {
     OnClockInAndOutDialogListener listener;
+    public static final String DIALOG_ACTION = "co.planetsystems.tela.dialog.DialogFragment.DIALOG_ACTION";
+    public static final String DIALOG_TIME = "co.planetsystems.tela.dialog.DialogFragment.DIALOG_TIME";
+    public static final String DIALOG_TEACHER_NAME = "co.planetsystems.tela.dialog.DialogFragment.DIALOG_TEACHER_NAME";
+    TextView teacherName;
+    TextView action;
+    TextView time;
+
+    public static ClockAndOutDialog newInstance(String teacherName, String action, String time) {
+        ClockAndOutDialog dialog = new ClockAndOutDialog();
+        Bundle bundle = new Bundle();
+        bundle.putString(DIALOG_TEACHER_NAME, teacherName);
+        bundle.putString(DIALOG_ACTION, action);
+        bundle.putString(DIALOG_TIME, time);
+        return dialog;
+    }
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -26,7 +43,7 @@ public class ClockAndOutDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         // we are safe
                     }
-                });
+                }).setTitle(R.string.clock_in_and_out);
 
         return builder.create();
     }
@@ -44,5 +61,19 @@ public class ClockAndOutDialog extends DialogFragment {
         } catch (ClassCastException e) {
 //            throw new ClassCastException(getActivity().toString(), "Must implement This Interface");
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        teacherName = view.findViewById(R.id.dialog_teacher_name);
+        action = view.findViewById(R.id.dialog_action);
+        time = view.findViewById(R.id.dialog_clock);
+        if (getArguments() != null) {
+            teacherName.setText(getArguments().getString(DIALOG_TEACHER_NAME));
+            action.setText(DIALOG_ACTION);
+            time.setText(DIALOG_TIME);
+        }
+
     }
 }
