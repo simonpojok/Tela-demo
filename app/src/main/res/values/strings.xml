@@ -113,4 +113,6 @@
     <string name="district_icon">District Icon</string>
     <string name="role">Role</string>
     <string name="role_icon">Roll Icon</string>
+    <string name="fingerprint_image">Fingerprint Image</string>
+    <string name="example_time">08:30am</string>
 </resources>
