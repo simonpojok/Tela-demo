@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.PendingIntent;
@@ -39,6 +40,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 import co.planetsystems.tela.dialog.ClockAndOutDialog;
@@ -289,11 +291,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.clock_in).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
-                        "Simon Peter",
-                        "Clock IN",
-                        "08: 30 am");
-                dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
+                clockInTeacher(v);
             }
         });
 
@@ -329,6 +327,28 @@ public class MainActivity extends AppCompatActivity {
 
         printRev(""+mBioMiniFactory.getSDKInfo());
 
+    }
+
+    private void clockInTeacher(View v) {
+        teacherViewModel.getTeachers().observe(this, new Observer<List<Teacher>>() {
+            @Override
+            public void onChanged(List<Teacher> teachers) {
+                for (int i = 0; i <= teachers.size(); i++) {
+                    Teacher teacher = teachers.get(i);
+                    if (mCurrentDevice != null) {
+                        if (mCurrentDevice.verify(teacherCapturedTemplate.data, teacher.getFingerPrint())) {
+                            Toast.makeText(MainActivity.this, "Teacher found", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        });
+//        teacherViewModel.addAttendance();
+        ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
+                "Simon Peter",
+                "Clock IN",
+                "08: 30 am");
+        dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
     }
 
     void restartBioMini() {
@@ -433,7 +453,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String getCurrentDate() {
         Date toDay = Calendar.getInstance().getTime();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMMM yyyy");
         return simpleDateFormat.format(toDay);
     }
 
@@ -495,5 +515,17 @@ public class MainActivity extends AppCompatActivity {
             );
             teacherViewModel.enrollTeacher(teacher);
         }
+    }
+
+    protected String getCurrentDay() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date day = Calendar.getInstance().getTime();
+        return dateFormat.format(day);
+    }
+
+    protected String getCurrentTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        Date time = Calendar.getInstance().getTime();
+        return dateFormat.format(time);
     }
 }
