@@ -41,10 +41,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 
+import co.planetsystems.tela.dialog.ClockAndOutDialog;
+
 public class MainActivity extends AppCompatActivity {
     //Flag.
     public static final boolean mbUsbExternalUSBManager = false;
     private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+    private static final String CLOCK_DIALOG_TAG = "co.planetsystems.tela.MainActivity.CLOCK_IN_OUT_DIALOG_TAG";
     public static final int ENROLL_TEACHTER = 542;
     private UsbManager mUsbManager = null;
     private PendingIntent mPermissionIntent= null;
@@ -271,6 +274,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, VerifyActivity.class);
                 intent.setAction(EnrollActivity.ACTION_VERIFY);
                 startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.clock_in).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClockAndOutDialog dialog = new ClockAndOutDialog();
+                dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
             }
         });
 
