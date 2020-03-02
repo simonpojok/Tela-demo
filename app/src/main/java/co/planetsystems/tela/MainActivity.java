@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suprema.BioMiniFactory;
 import com.suprema.CaptureResponder;
@@ -258,6 +259,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
                 intent.setAction(EnrollActivity.ACTION_ENROLL);
+                intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
+                intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, teacherCapturedTemplate.data);
                 startActivityForResult(intent, ENROLL_TEACHTER);
             }
         });
@@ -418,7 +421,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (resultCode == RESULT_OK && requestCode == ENROLL_TEACHTER && intent != null) {
+        if (resultCode == RESULT_OK && requestCode == ENROLL_TEACHTER) {
+            Toast.makeText(this, "Saving teacher", Toast.LENGTH_SHORT).show();
             Teacher teacher = new Teacher(
                     intent.getStringExtra(EnrollActivity.NATIONAL_ID),
                     intent.getStringExtra(EnrollActivity.FIRST_NAME),
@@ -429,8 +433,8 @@ public class MainActivity extends AppCompatActivity {
                     intent.getStringExtra(EnrollActivity.SCHOOL_NAME),
                     intent.getStringExtra(EnrollActivity.DISTRICT),
                     intent.getStringExtra(EnrollActivity.ROLE),
-                    null,
-                    teacherCapturedTemplate.data,
+                    intent.getByteArrayExtra(EnrollActivity.CAPTURED_BITMAP),
+                    intent.getByteArrayExtra(EnrollActivity.CAPTURED_TEMPLATE),
                     "23/93/10029",
                     null
             );

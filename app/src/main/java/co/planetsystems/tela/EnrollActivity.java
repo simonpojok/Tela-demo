@@ -1,24 +1,10 @@
 package co.planetsystems.tela;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.graphics.pdf.PdfRenderer;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.Objects;
 
 import co.planetsystems.tela.enroll.BasicFragment;
 import co.planetsystems.tela.enroll.PrimaryFragment;
@@ -41,6 +27,8 @@ public class EnrollActivity extends AppCompatActivity implements
     public static final String SCHOOL_NAME = "co.planetsystems.tela.SCHOOL_NAME";
     public static final String DISTRICT = "co.planetsystems.tela.DISTRICT";
     public static final String ROLE = "co.planetsystems.tela.ROLE";
+    public static final String CAPTURED_TEMPLATE = "co.planetsystems.tela.CAPTURED_TEMPLATE";
+    public static final String CAPTURED_BITMAP = "co.planetsystems.tela.CAPTURED_BITMAP";
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -51,6 +39,8 @@ public class EnrollActivity extends AppCompatActivity implements
     private String district;
     private String role;
     private EnrollActivityViewModel viewModel;
+    public byte[] capturedTemplateData;
+    private byte[] teacherThumb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +53,11 @@ public class EnrollActivity extends AppCompatActivity implements
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.enroll_fragment, BasicFragment.newInstance(firstName, lastName, phoneNumber))
                     .commit();
+        }
+
+        if (getIntent() != null) {
+            capturedTemplateData = getIntent().getByteArrayExtra(CAPTURED_TEMPLATE);
+            teacherThumb = getIntent().getByteArrayExtra(CAPTURED_BITMAP);
         }
 
     }
@@ -126,7 +121,9 @@ public class EnrollActivity extends AppCompatActivity implements
         intent.putExtra(NATIONAL_ID, nationalID);
         intent.putExtra(DISTRICT, district);
         intent.putExtra(ROLE, role);
-        setResult(RESULT_OK);
+        intent.putExtra(CAPTURED_TEMPLATE, capturedTemplateData);
+        intent.putExtra(CAPTURED_BITMAP, teacherThumb);
+        setResult(RESULT_OK, intent);
         finish();
     }
 }
