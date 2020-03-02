@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     private Button capture;
     private Button clockOut;
     public IBioMiniDevice.TemplateData teacherCapturedTemplate;
+    private byte[] fingerBytes;
     private Bitmap teacherImage;
     private TeacherViewModel teacherViewModel;
 
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                                    final IBioMiniDevice.TemplateData capturedTemplate,
                                    final IBioMiniDevice.FingerState fingerState) {
             log("Capture Fingerprint : Capture successful!");
+            fingerBytes = capturedTemplate.data;
+            teacherImage = capturedImage;
             printState(getResources().getText(R.string.capture_single_ok));
 
             log(((IBioMiniDevice) context).popPerformanceLog());
@@ -101,8 +104,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-            teacherCapturedTemplate = capturedTemplate;
-            teacherImage = capturedImage;
             return true;
         }
 
@@ -229,6 +230,41 @@ public class MainActivity extends AppCompatActivity {
 
         teacherViewModel = new ViewModelProvider(this).get(TeacherViewModel.class);
 
+        enroll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((fingerBytes != null)) {
+                    Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                    intent.setAction(EnrollActivity.ACTION_ENROLL);
+                    intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
+                    intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, fingerBytes);
+                    startActivityForResult(intent, ENROLL_TEACHTER);
+                } else {
+                    Toast.makeText(MainActivity.this, "Please Capture your fingerprint", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, VerifyActivity.class);
+                intent.setAction(EnrollActivity.ACTION_VERIFY);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.clock_in).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
+                        "Simon Peter",
+                        "Clock IN",
+                        "08: 30 am");
+                dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
+            }
+        });
+
 
         findViewById(R.id.capture).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,40 +293,6 @@ public class MainActivity extends AppCompatActivity {
 
         printRev(""+mBioMiniFactory.getSDKInfo());
 
-        enroll.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ((teacherCapturedTemplate != null) && (teacherImage != null) ) {
-                    Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
-                    intent.setAction(EnrollActivity.ACTION_ENROLL);
-                    intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
-                    intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, teacherCapturedTemplate.data);
-                    startActivityForResult(intent, ENROLL_TEACHTER);
-                } else {
-                    Toast.makeText(MainActivity.this, "Please Capture your fingerprint", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        verify.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, VerifyActivity.class);
-                intent.setAction(EnrollActivity.ACTION_VERIFY);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.clock_in).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
-                        "Simon Peter",
-                        "Clock IN",
-                        "08: 30 am");
-                dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
-            }
-        });
 
     }
 
