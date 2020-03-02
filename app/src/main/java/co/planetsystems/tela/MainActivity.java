@@ -83,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                                    final IBioMiniDevice.FingerState fingerState) {
             log("onCapture : Capture successful!");
             printState(getResources().getText(R.string.capture_single_ok));
+            enableButton(enroll);
+            enableButton(verify);
+            enableButton(clockOut);
+            enableButton(clockIn);
 
             log(((IBioMiniDevice) context).popPerformanceLog());
             runOnUiThread(new Runnable() {
@@ -95,15 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     }
-                    if (capturedTemplate == null) {
-                        Toast.makeText(MainActivity.this, "Template  Nooo", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Template exist", Toast.LENGTH_SHORT).show();
-                    }
                 }
             });
-
-//            Toast.makeText(MainActivity.this, "Stored well", Toast.LENGTH_SHORT).show();
+            teacherCapturedTemplate = capturedTemplate;
+            teacherImage = capturedImage;
             return true;
         }
 
@@ -112,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             log("onCaptureError : " + error + " ErrorCode :" + errorCode);
             if( errorCode != IBioMiniDevice.ErrorCode.OK.value())
                 printState(getResources().getText(R.string.capture_single_fail) + "("+error+")");
+            disableButton(clockIn);
+            disableButton(clockOut);
+            disableButton(verify);
+            disableButton(enroll);
         }
     };
     private CaptureResponder mCaptureResponsePrev = new CaptureResponder() {
@@ -242,11 +245,11 @@ public class MainActivity extends AppCompatActivity {
         capture = findViewById(R.id.capture);
 
         // disable very thing
-//        disableButton(enroll);
-//        disableButton(verify);
-//        disableButton(clockIn);
-//        disableButton(clockOut);
-//        disableButton(capture);
+        disableButton(enroll);
+        disableButton(verify);
+        disableButton(clockIn);
+        disableButton(clockOut);
+        disableButton(capture);
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
