@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
     private Button capture;
     private Button clockOut;
     public IBioMiniDevice.TemplateData teacherCapturedTemplate;
-    private byte[] fingerBytes;
     private Bitmap teacherImage;
     private TeacherViewModel teacherViewModel;
 
@@ -89,14 +89,22 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(capturedImage != null) {
+                    if((capturedImage != null)) {
                         ImageView iv = (ImageView) findViewById(R.id.finger_image);
                         if(iv != null) {
                             iv.setImageBitmap(capturedImage);
+
                         }
+                    }
+                    if (capturedTemplate != null) {
+                        Toast.makeText(MainActivity.this, "Template exist", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Template exist is null", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+//            Toast.makeText(MainActivity.this, "Stored well", Toast.LENGTH_SHORT).show();
             return true;
         }
 
@@ -235,11 +243,11 @@ public class MainActivity extends AppCompatActivity {
         capture = findViewById(R.id.capture);
 
         // disable very thing
-        disableButton(enroll);
-        disableButton(verify);
-        disableButton(clockIn);
-        disableButton(clockOut);
-        disableButton(capture);
+//        disableButton(enroll);
+//        disableButton(verify);
+//        disableButton(clockIn);
+//        disableButton(clockOut);
+//        disableButton(capture);
 
         mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.SHIGH;
         backgroundCard = findViewById(R.id.card_background);
@@ -311,66 +319,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        findViewById(R.id.buttonStartCapturing).setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                if(mCurrentDevice != null) {
-//                    BioMiniFactory mBioMiniFactory = new BioMiniFactory(getApplicationContext()) {
-//                        @Override
-//                        public void onDeviceChange(DeviceChangeEvent event, Object dev) {
-//
-//                        }
-//                    };
-//                    IBioMiniDevice mCurrentDeivce = null;
-//                    // Make BioMiniFactory instance, and get device handler(IBioMiniDevice).
-//                    //mCaptureOptionDefault.captureTemplate =true;
-//                    mCaptureOptionDefault.captureImage=true;
-//                    //mCaptureOptionDefault.frameRate = IBioMiniDevice.FrameRate.ELOW;
-//                    mCurrentDevice.startCapturing(
-//                            mCaptureOptionDefault,
-//                            mCaptureResponsePrev);
-//                }
-//            }
-//        });
-
-//        findViewById(R.id.buttonAbortCapturing).setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                if(mCurrentDevice != null) {
-//                    new Thread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            mCurrentDevice.abortCapturing();
-//                            int nRetryCount =0;
-//                            while(mCurrentDevice != null && mCurrentDevice.isCapturing()){
-//                                SystemClock.sleep(10);
-//                                nRetryCount++;
-//                            }
-//                            Log.d("AbortCapturing" , String.format(Locale.ENGLISH ,
-//                                    "IsCapturing return false.(Abort-lead time: %dms) " ,
-//                                    nRetryCount* 10));
-//                        }
-//                    }).start();
-//                }
-//            }
-//        });
-
         if(mBioMiniFactory != null) {
             mBioMiniFactory.close();
         }
-
-//        if( !mbUsbExternalUSBManager ){
-//            Button btn_checkDevice = (Button)findViewById(R.id.buttonCheckDevice);
-//            btn_checkDevice.setClickable(false);
-//            btn_checkDevice.setEnabled(false);
-//        }else{
-//            ((Button)findViewById(R.id.buttonCheckDevice)).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    checkDevice();
-//                }
-//            });
-//        }
 
         restartBioMini();
 
