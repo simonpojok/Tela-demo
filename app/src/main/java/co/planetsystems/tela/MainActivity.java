@@ -260,11 +260,15 @@ public class MainActivity extends AppCompatActivity {
         enroll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
-                intent.setAction(EnrollActivity.ACTION_ENROLL);
-                intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
-                intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, teacherCapturedTemplate.data);
-                startActivityForResult(intent, ENROLL_TEACHTER);
+                if ((teacherCapturedTemplate != null) && (teacherImage != null) ) {
+                    Intent intent = new Intent(MainActivity.this, EnrollActivity.class);
+                    intent.setAction(EnrollActivity.ACTION_ENROLL);
+                    intent.putExtra(EnrollActivity.CAPTURED_BITMAP, teacherImage);
+                    intent.putExtra(EnrollActivity.CAPTURED_TEMPLATE, teacherCapturedTemplate.data);
+                    startActivityForResult(intent, ENROLL_TEACHTER);
+                } else {
+                    Toast.makeText(MainActivity.this, "Please Capture your fingerprint", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -280,7 +284,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.clock_in).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClockAndOutDialog dialog = new ClockAndOutDialog();
+                ClockAndOutDialog dialog = ClockAndOutDialog.newInstance(
+                        "Simon Peter",
+                        "Clock IN",
+                        "08: 30 am");
                 dialog.show(getSupportFragmentManager(), CLOCK_DIALOG_TAG);
             }
         });
